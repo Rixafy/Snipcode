@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa8197044fc64992800d0ce71b56ba78",
+    "content-hash": "5dd8aa701328d2667f54d28acde52202",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2557,6 +2557,50 @@
             "time": "2018-07-02T15:55:56+00:00"
         },
         {
+            "name": "peterkahl/country-to-locale",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/peterkahl/Country-to-Locale.git",
+                "reference": "7f8c1be5df2044992b0fa7b0d704866692967b83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/peterkahl/Country-to-Locale/zipball/7f8c1be5df2044992b0fa7b0d704866692967b83",
+                "reference": "7f8c1be5df2044992b0fa7b0d704866692967b83",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "peterkahl\\locale\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Kahl",
+                    "email": "peter.kahl@colossalmind.com",
+                    "homepage": "https://www.colossalmind.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Converts country code to locale code.",
+            "homepage": "https://github.com/peterkahl/Country-to-Locale",
+            "keywords": [
+                "language-code",
+                "locale",
+                "localization"
+            ],
+            "time": "2018-05-21T15:08:14+00:00"
+        },
+        {
             "name": "ramsey/uuid",
             "version": "3.8.0",
             "source": {
@@ -3141,7 +3185,8 @@
     "stability-flags": {
         "contributte/console": 20,
         "freezy-bee/doctrine-form-mapper": 20,
-        "nettrine/extensions": 20
+        "nettrine/extensions": 20,
+        "peterkahl/country-to-locale": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

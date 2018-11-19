@@ -1,0 +1,4 @@
+services:
+    profileFacade:
+        inject: true
+        class: App\Facade\ProfileFacade

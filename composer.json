@@ -26,7 +26,8 @@
 		"contributte/console": "dev-master",
 		"freezy-bee/doctrine-form-mapper": "dev-master",
 		"nettrine/extensions": "^0.4.0@dev",
-		"ramsey/uuid-doctrine": "^1.5"
+		"ramsey/uuid-doctrine": "^1.5",
+		"peterkahl/country-to-locale": "dev-master"
 	},
 	"require-dev": {
 		"nette/tester": "^2.0"

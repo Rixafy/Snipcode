@@ -41,13 +41,11 @@ class IpAddressRepository extends BaseRepository
 
     /**
      * @param string $address
-     * @param string $domain_host
-     * @param bool $ipv6
      * @param Country $country
      * @return IpAddress
      */
-    public function create(string $address, string $domain_host, bool $ipv6, Country $country): IpAddress
+    public function create(string $address, Country $country): IpAddress
     {
-        return new IpAddress($address, $domain_host, $ipv6, $country);
+        return new IpAddress($address, gethostbyaddr($address), strlen($address) > 15, $country);
     }
 }
