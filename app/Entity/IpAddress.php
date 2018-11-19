@@ -7,10 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="ip_address")
+ * @ORM\HasLifecycleCallbacks
  */
 class IpAddress
 {
     use UniqueTrait;
+    use DateTimeTrait;
 
     /**
      * @ORM\Column(type="string", unique=true, length=39)
