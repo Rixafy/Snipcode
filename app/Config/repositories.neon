@@ -1,3 +1,5 @@
 services:
     - App\Repository\ConstantRepository
     - App\Repository\SyntaxRepository
+    - App\Repository\CountryRepository
+    - App\Repository\IpAddressRepository
