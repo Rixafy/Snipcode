@@ -31,6 +31,15 @@ class SyntaxRepository extends BaseRepository
     }
 
     /**
+     * @param string $name
+     * @return Syntax|object
+     */
+    public function getByShortName(string $name)
+    {
+        return $this->getRepository()->findOneBy(['short_name' => $name]);
+    }
+
+    /**
      * @return Syntax[]
      */
     public function getAll()

@@ -33,7 +33,8 @@ class ConstantRepository extends BaseRepository
     /**
      * @return Constant[]
      */
-    public function getAll() {
+    public function getAll()
+    {
         return $this->getRepository()->findAll();
     }
 
