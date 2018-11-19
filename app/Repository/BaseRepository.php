@@ -7,6 +7,7 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\TransactionRequiredException;
 use Nettrine\ORM\EntityManager;
+use Ramsey\Uuid\Uuid;
 
 abstract class BaseRepository
 {
@@ -30,12 +31,14 @@ abstract class BaseRepository
      * @param $id
      * @return object
      */
-    public function get(int $id)
+    public function get(string $id)
     {
         $entity = null;
 
+        bdump($id);
+
         try {
-            $entity = $this->entityManager->find($this->class, $id);
+            $entity = $this->entityManager->find($this->class, Uuid::fromString($id));
         } catch (OptimisticLockException $e) {
         } catch (TransactionRequiredException $e) {
         } catch (ORMException $e) {
@@ -51,7 +54,6 @@ abstract class BaseRepository
         } catch (ORMException $e) {
             exit($e->getMessage());
         }
-
 
         if ($flush) {
             try {

@@ -6,7 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="session")
+ * @ORM\Table(name="session", indexes={@ORM\Index(name="search_index", columns={"hash"})})
+ * @ORM\HasLifecycleCallbacks
  */
 class Session
 {
@@ -14,7 +15,7 @@ class Session
     use DateTimeTrait;
 
     /**
-     * @ORM\Column(type="string", length=26)
+     * @ORM\Column(type="string", length=26, unique=true)
      * @var string
      */
     private $hash;

@@ -20,6 +20,7 @@ $container = $configurator->createContainer();
 
 try {
     \Doctrine\DBAL\Types\Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
+    \Doctrine\DBAL\Types\Type::addType('uuid_binary', 'Ramsey\Uuid\Doctrine\UuidBinaryType');
 } catch (\Doctrine\DBAL\DBALException $e) {
 }
 

@@ -17,7 +17,7 @@ class IpAddressRepository extends BaseRepository
      * @param $id
      * @return IpAddress|object
      */
-    public function get(int $id)
+    public function get(string $id)
     {
         return parent::get($id);
     }

@@ -16,7 +16,7 @@ class ConstantRepository extends BaseRepository
      * @param $id
      * @return Constant|object
      */
-    public function get(int $id)
+    public function get(string $id)
     {
         return parent::get($id);
     }

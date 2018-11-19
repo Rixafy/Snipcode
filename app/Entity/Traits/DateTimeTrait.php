@@ -2,9 +2,13 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 
-/** @Entity @HasLifecycleCallbacks */
+/**
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
+ */
 trait DateTimeTrait
 {
     /**

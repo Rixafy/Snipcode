@@ -16,7 +16,7 @@ class SyntaxRepository extends BaseRepository
      * @param $id
      * @return Syntax|object
      */
-    public function get(int $id)
+    public function get(string $id)
     {
         return parent::get($id);
     }

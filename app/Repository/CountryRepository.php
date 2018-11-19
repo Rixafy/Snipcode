@@ -16,7 +16,7 @@ class CountryRepository extends BaseRepository
      * @param $id
      * @return Country|object
      */
-    public function get(int $id)
+    public function get(string $id)
     {
         return parent::get($id);
     }
