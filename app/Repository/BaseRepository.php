@@ -34,9 +34,7 @@ abstract class BaseRepository
     public function get(string $id)
     {
         $entity = null;
-
-        bdump($id);
-
+        
         try {
             $entity = $this->entityManager->find($this->class, Uuid::fromString($id));
         } catch (OptimisticLockException $e) {
