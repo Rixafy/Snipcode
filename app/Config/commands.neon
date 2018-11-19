@@ -1,0 +1,4 @@
+services:
+    addConstantCommand:
+        inject: true
+        class: App\Command\AddConstantCommand
