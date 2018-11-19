@@ -3,3 +3,4 @@ services:
     - App\Repository\SyntaxRepository
     - App\Repository\CountryRepository
     - App\Repository\IpAddressRepository
+    - App\Repository\SessionRepository
