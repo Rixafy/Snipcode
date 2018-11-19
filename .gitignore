@@ -1,0 +1,5 @@
+/.idea/
+/vendor/
+/temp/
+/log/
+/app/Config/credentials.neon

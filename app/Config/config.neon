@@ -1,0 +1,49 @@
+parameters:
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+services:
+	router: App\RouterFactory::createRouter
+
+
+extensions:
+    # Console
+    console: Contributte\Console\DI\ConsoleExtension(CLI)
+
+    # Dbal
+    dbal: Nettrine\DBAL\DI\DbalExtension
+    dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
+
+    # Orm and annotations
+    orm: Nettrine\ORM\DI\OrmExtension
+    orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
+    orm.console: Nettrine\ORM\DI\OrmConsoleExtension
+    annotations: Nettrine\Annotations\DI\AnnotationsExtension
+
+    # Doctrine form mapper
+    formMapper: FreezyBee\DoctrineFormMapper\DI\FormMapperExtension
+
+
+orm.annotations:
+    debug: %debugMode%
+    excludePaths: []
+    defaultCache: filesystem
+    paths:
+        - app/Entity
+
+
+includes:
+	- credentials.neon
+	- facades.neon
+	- forms.neon
+	- repositories.neon
+	- commands.neon
