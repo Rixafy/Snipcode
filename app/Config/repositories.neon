@@ -5,3 +5,4 @@ services:
     - App\Repository\IpAddressRepository
     - App\Repository\SessionRepository
     - App\Repository\SnippetRepository
+    - App\Repository\VariableRepository
