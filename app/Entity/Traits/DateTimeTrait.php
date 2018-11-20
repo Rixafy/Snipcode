@@ -15,13 +15,13 @@ trait DateTimeTrait
      * @ORM\Column(type="datetime")
      * @var DateTime
      */
-    private $created_at = null;
+    private $created_at;
 
     /**
      * @ORM\Column(type="datetime")
      * @var DateTime
      */
-    private $updated_at = null;
+    private $updated_at;
 
     public function getCreatedAt(): ?DateTime
     {
@@ -47,7 +47,7 @@ trait DateTimeTrait
      * @ORM\PrePersist
      * @ORM\PreUpdate
      */
-    public function updatedTimestamps()
+    public function timestampUpdate()
     {
         $this->updated_at = new DateTime();
 
