@@ -2,3 +2,6 @@ services:
     profileFacade:
         inject: true
         class: App\Facade\ProfileFacade
+    snippetFacade:
+        inject: true
+        class: App\Facade\SnippetFacade

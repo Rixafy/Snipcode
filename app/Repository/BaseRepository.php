@@ -45,6 +45,22 @@ abstract class BaseRepository
         return $entity;
     }
 
+    /**
+     * @param $id
+     * @return object
+     */
+    public function getReference(string $id)
+    {
+        $entity = null;
+
+        try {
+            $entity = $this->entityManager->getReference($this->class, Uuid::fromString($id));
+        } catch (ORMException $e) {
+        }
+
+        return $entity;
+    }
+
     public function save($entity, bool $flush = false)
     {
         try {
@@ -96,6 +112,35 @@ abstract class BaseRepository
             ->getQuery()
             ->getArrayResult()
         );
+    }
+
+    public function getAssociatedArray(string $column, string $nullValue = null, $excluded = null): array
+    {
+        $result = [];
+
+        if ($nullValue) {
+            $result = ['null' => $nullValue];
+        }
+
+        $builder = $this->getManager()
+            ->createQueryBuilder();
+
+        if ($excluded) {
+            if (is_numeric($excluded))
+                $excluded = [$excluded];
+            $builder->where($builder->expr()->notIn('e.id', $excluded));
+        }
+
+        $builder
+            ->select('e.id, e.' . $column . '')
+            ->resetDQLPart('from')
+            ->from($this->class, 'e', 'e.id');
+
+        foreach ($builder->getQuery()->getArrayResult() as $id => $value) {
+            $result[$value['id']->{'toString'}()] = $value[$column];
+        }
+
+        return $result;
     }
 
     /**

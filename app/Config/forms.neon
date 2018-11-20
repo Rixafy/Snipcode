@@ -1,2 +1,2 @@
 services:
-    - App\Repository\SnippetRepository
+    - App\Form\SnippetFormFactory

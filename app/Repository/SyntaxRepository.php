@@ -22,6 +22,15 @@ class SyntaxRepository extends BaseRepository
     }
 
     /**
+     * @param $id
+     * @return Syntax|object
+     */
+    public function getReference(string $id)
+    {
+        return parent::getReference($id);
+    }
+
+    /**
      * @param string $name
      * @return Syntax|object
      */

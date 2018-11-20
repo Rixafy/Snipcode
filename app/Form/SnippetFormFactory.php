@@ -2,46 +2,56 @@
 
 namespace App\Form;
 
-use App\Entity\Snippet;
 use App\Facade\ProfileFacade;
-use FreezyBee\DoctrineFormMapper\DoctrineFormMapper;
+use App\Facade\SnippetFacade;
+use App\Repository\SyntaxRepository;
+use DateTime;
 use Nette\Application\UI\Form;
 
 class SnippetFormFactory
 {
-    /** @var DoctrineFormMapper @inject */
-    public $mapper;
+    /** @var SnippetFacade @inject */
+    public $snippetFacade;
 
-    /** @var ProfileFacade @inject */
-    public $profileFacade;
+    /** @var SyntaxRepository @inject */
+    public $syntaxRepository;
 
-    public function __construct(DoctrineFormMapper $mapper, ProfileFacade $profileFacade)
+    public function __construct(SnippetFacade $snippetFacade, SyntaxRepository $syntaxRepository)
     {
-        $this->mapper = $mapper;
-        $this->profileFacade = $profileFacade;
+        $this->snippetFacade = $snippetFacade;
+        $this->syntaxRepository = $syntaxRepository;
     }
 
     public function create()
     {
         $form = new Form;
 
-        $entity = new Snippet('', null, null, null);
+        $form->addTextArea('payload', 'Snippet');
 
-        $form->addText('payload', 'Snippet');
+        $form->addSelect('syntax', 'Select syntax', $this->syntaxRepository->getAssociatedArray('name'));
 
-        $form->addSelect('syntax', 'Select syntax');
+        $form->addSelect('expire_in', 'Select syntax', [
+            1 => 'One Day',
+            7 => 'One Week',
+            30 => 'One Month',
+            365 => 'One Year'
+        ]);
 
         $form->addSubmit('send', 'Send');
-
-        $this->mapper->load($entity, $form);
 
         $form->onSuccess[] = [$this, 'processForm'];
 
         return $form;
     }
 
-    public function processForm(Form $form)
+    public function processForm(Form $form, array $values)
     {
-        bdump($form->getValues());
+        $expireAt = new DateTime('+' . $values['expire_in'] . ' day');
+
+        $snippet = $this->snippetFacade->createSnippet($values['payload'], $values['syntax'], $expireAt);
+
+        $this->snippetFacade->flushSnippets();
+
+        bdump($expireAt->format('Y-m-d'));
     }
 }
