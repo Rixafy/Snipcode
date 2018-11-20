@@ -89,8 +89,19 @@ class ProfileFacade
         $this->sessionRepository->flush();
     }
 
+    /**
+     * @return IpAddress
+     */
     public function getCurrentIpAddress(): IpAddress
     {
         return $this->ipAddress;
+    }
+
+    /**
+     * @return Session
+     */
+    public function getCurrentSession(): Session
+    {
+        return $this->session;
     }
 }
