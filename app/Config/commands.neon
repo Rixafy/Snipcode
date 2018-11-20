@@ -2,3 +2,6 @@ services:
     addConstantCommand:
         inject: true
         class: App\Command\AddConstantCommand
+    addVariableCommand:
+        inject: true
+        class: App\Command\AddVariableCommand

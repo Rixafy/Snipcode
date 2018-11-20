@@ -52,4 +52,12 @@ class Variable
     {
         $this->value += $add;
     }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }
