@@ -21,7 +21,7 @@ class Session
     private $hash;
 
     /**
-     * Many Sessions have IpAddress
+     * Many Sessions have One IpAddress
      * @ORM\ManyToOne(targetEntity="IpAddress", inversedBy="session", cascade={"persist"})
      * @var IpAddress
      */
