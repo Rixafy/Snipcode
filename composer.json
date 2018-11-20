@@ -27,7 +27,8 @@
 		"freezy-bee/doctrine-form-mapper": "dev-master",
 		"nettrine/extensions": "^0.4.0@dev",
 		"ramsey/uuid-doctrine": "^1.5",
-		"peterkahl/country-to-locale": "dev-master"
+		"peterkahl/country-to-locale": "dev-master",
+		"hashids/hashids": "^3.0"
 	},
 	"require-dev": {
 		"nette/tester": "^2.0"

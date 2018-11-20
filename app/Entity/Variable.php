@@ -46,10 +46,10 @@ class Variable
     }
 
     /**
-     * @param int $value
+     * @param int $add
      */
-    public function setValue(int $value): void
+    public function increaseValue(int $add = 1): void
     {
-        $this->value = $value;
+        $this->value += $add;
     }
 }
