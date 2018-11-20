@@ -49,8 +49,8 @@ class ProfileFacade
                     try {
                         if ($json = Json::decode($data)) {
                             $country = $this->countryRepository->getByCode($json->geoplugin_countryCode);
-                            if (!$country) {
-                                $country = $this->countryRepository->create($json->geoplugin_countryName, $json->geoplugin_continentCode, $json->geoplugin_currencyCode, locale::country2locale($json->geoplugin_countryCode), $json->geoplugin_countryCode);
+                            if ($country === null) {
+                                $country = $this->countryRepository->create($json->geoplugin_countryName, $json->geoplugin_currencyCode, $json->geoplugin_continentCode, $json->geoplugin_countryCode, locale::country2locale($json->geoplugin_countryCode));
                             }
                         }
                      } catch (JsonException $e) {
