@@ -22,6 +22,12 @@ class Snippet
     private $slug;
 
     /**
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    private $slug_helper;
+
+    /**
      * @ORM\Column(type="text")
      * @var string
      */
@@ -133,5 +139,21 @@ class Snippet
     public function setSyntax(Syntax $syntax): void
     {
         $this->syntax = $syntax;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSlugHelper(): int
+    {
+        return $this->slug_helper;
+    }
+
+    /**
+     * @param int $slug_helper
+     */
+    public function setSlugHelper(int $slug_helper): void
+    {
+        $this->slug_helper = $slug_helper;
     }
 }
