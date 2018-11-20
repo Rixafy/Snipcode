@@ -16,6 +16,12 @@ class Snippet
     use DateTimeTrait;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     * @var string
+     */
+    private $title;
+
+    /**
      * @ORM\Column(type="string")
      * @var string
      */
@@ -62,14 +68,16 @@ class Snippet
 
     /**
      * Snippet constructor.
+     * @param string $title
      * @param string $payload
      * @param Session $author_session
      * @param IpAddress $author_ip_address
      * @param Syntax $syntax
      * @param DateTime|null $expire_at
      */
-    public function __construct(string $payload, Session $author_session, IpAddress $author_ip_address, Syntax $syntax, DateTime $expire_at = null)
+    public function __construct(?string $title, string $payload, Session $author_session, IpAddress $author_ip_address, Syntax $syntax, DateTime $expire_at = null)
     {
+        $this->title = $title;
         $this->payload = $payload;
         $this->author_session = $author_session;
         $this->author_ip_address = $author_ip_address;
@@ -155,5 +163,13 @@ class Snippet
     public function setSlugHelper(int $slug_helper): void
     {
         $this->slug_helper = $slug_helper;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
     }
 }

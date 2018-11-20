@@ -26,11 +26,13 @@ class SnippetFormFactory
     {
         $form = new Form;
 
+        $form->addText('title', 'Title');
+
         $form->addTextArea('payload', 'Snippet');
 
         $form->addSelect('syntax', 'Select syntax', $this->syntaxRepository->getAssociatedArray('name'));
 
-        $form->addSelect('expire_in', 'Select syntax', [
+        $form->addSelect('expire_in', 'Expire in', [
             1 => 'One Day',
             7 => 'One Week',
             30 => 'One Month',
@@ -48,7 +50,7 @@ class SnippetFormFactory
     {
         $expireAt = new DateTime('+' . $values['expire_in'] . ' day');
 
-        $snippet = $this->snippetFacade->createSnippet($values['payload'], $values['syntax'], $expireAt);
+        $snippet = $this->snippetFacade->createSnippet($values['title'], $values['payload'], $values['syntax'], $expireAt);
 
         $this->snippetFacade->flushSnippets();
 

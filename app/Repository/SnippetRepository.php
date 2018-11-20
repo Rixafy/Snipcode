@@ -37,6 +37,7 @@ class SnippetRepository extends BaseRepository
     }
 
     /**
+     * @param null|string $title
      * @param string $payload
      * @param Session $authorSession
      * @param IpAddress $authorIpAddress
@@ -44,8 +45,8 @@ class SnippetRepository extends BaseRepository
      * @param DateTime $expireAt
      * @return Snippet
      */
-    public function create(string $payload, Session $authorSession, IpAddress $authorIpAddress, Syntax $syntax, DateTime $expireAt): Snippet
+    public function create(?string $title, string $payload, Session $authorSession, IpAddress $authorIpAddress, Syntax $syntax, DateTime $expireAt): Snippet
     {
-        return new Snippet($payload, $authorSession, $authorIpAddress, $syntax, $expireAt);
+        return new Snippet($title, $payload, $authorSession, $authorIpAddress, $syntax, $expireAt);
     }
 }
