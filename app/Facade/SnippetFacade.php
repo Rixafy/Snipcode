@@ -37,7 +37,7 @@ class SnippetFacade
         $snippets_inserted->increaseValue();
 
         $snippet->setSlugHelper($snippets_inserted->getValue());
-        $snippet->setSlug($this->slugGenerator->generateSlug($snippet->getSlugHelper()));
+        $snippet->setSlug($this->slugGenerator->encodeSlug($snippet->getSlugHelper()));
 
         $this->snippetRepository->save($snippet);
         $this->variableRepository->save($snippets_inserted);

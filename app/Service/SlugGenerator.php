@@ -26,8 +26,17 @@ class SlugGenerator
      * @param int $number
      * @return string
      */
-    public function generateSlug(int $number): string
+    public function encodeSlug(int $number): string
     {
         return $this->hashIds->encode($number);
+    }
+
+    /**
+     * @param string $slug
+     * @return int
+     */
+    public function decodeSlug(string $slug): int
+    {
+        return $this->hashIds->decode($slug)[0];
     }
 }
