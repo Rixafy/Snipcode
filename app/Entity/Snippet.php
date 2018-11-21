@@ -75,7 +75,7 @@ class Snippet
      * @param Syntax $syntax
      * @param DateTime|null $expire_at
      */
-    public function __construct(?string $title, string $payload, Session $author_session, IpAddress $author_ip_address, Syntax $syntax, DateTime $expire_at = null)
+    public function __construct(?string $title, string $payload, Session $author_session, IpAddress $author_ip_address, ?Syntax $syntax, DateTime $expire_at = null)
     {
         $this->title = $title;
         $this->payload = $payload;
@@ -83,6 +83,8 @@ class Snippet
         $this->author_ip_address = $author_ip_address;
         $this->syntax = $syntax;
         $this->expire_at = $expire_at;
+
+        $author_session->addSnippet($this);
     }
 
     /**

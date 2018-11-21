@@ -1,5 +1,116 @@
-html, body {height:100%; width:100%; margin:0; padding:0}
+html, body {height:100%; width:100%; margin:0; padding:0; background:#232525; color:#aaa; font-family:sans-serif}
+
+body pre {margin:0; padding:0;}
+body pre > code, body pre > .hljs {white-space:pre; margin-top:-1.20em; display:block; padding-top:1em;}
 
 body form {margin:0; padding:0; width:100%; height:100%}
 body form .snippet {padding:1em; width:100%; height:100%; box-sizing:border-box; margin:0; display:block; border:none; background:#232525; color:#aaa; font-family:"Courier New", Courier, monospace}
 body form .snippet:hover, body form .snippet:active, body form .snippet:focus {outline:none}
+
+body .box {position:fixed; top:1.5em; right:1.5em; background:#0000004a; padding:1.5em; border-radius:2px;}
+body .box input, body form .box select {box-sizing:border-box; width:100%; display:block; background:#111; padding:0.7em 1em; color:#ddd; border-radius:2px; border:1px solid #444; font-family:"Courier New", Courier, monospace; margin-bottom:1em;}
+body .box input:hover, body form .box input:active, body form .box input:focus, body form .box select:hover, body form .box select:active, body form .box select:focus {outline:none; background:#222}
+body .box .button {box-sizing:border-box; text-align:center; text-decoration:none; display:block; width:100%; background:#657be4; border:none; padding:.5em 1.5em; font-weight:bold; font-size:1em; color:#fff; border-radius:2px; cursor:pointer}
+body .box .button:hover, body .box .button:active, body .box .button:focus {outline:none}
+body .box .button.green {background:#439e38}
+
+body .box-down {position:fixed; bottom:1.5em; right:1.5em; background:#0000004a; padding:0.5em 1.5em; border-radius:2px; font-family:"Courier New", Courier, monospace; color:#eee}
+
+
+.hljs {
+    display: block;
+    overflow-x: auto;
+    background: #232525;
+}
+
+.hljs,
+.hljs-subst,
+.hljs-tag,
+.hljs-title {
+    color: #aaaaaa;
+}
+
+.hljs-strong,
+.hljs-emphasis {
+    color: #a8a8a2;
+}
+
+.hljs-bullet,
+.hljs-quote,
+.hljs-number,
+.hljs-regexp,
+.hljs-literal {
+    color: #ff55ff;
+}
+
+.hljs-code
+.hljs-selector-class {
+    color: #aaaaff;
+}
+
+.hljs-emphasis,
+.hljs-stronge,
+.hljs-type {
+    font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-function,
+.hljs-section,
+.hljs-symbol,
+.hljs-name {
+    color: #ffff55;
+}
+
+.hljs-attribute {
+    color: #ff5555;
+}
+
+.hljs-variable,
+.hljs-params,
+.hljs-class .hljs-title {
+    color: #8888ff;
+}
+
+.hljs-string,
+.hljs-selector-id,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-type,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-addition,
+.hljs-link {
+    color: #ff55ff;
+}
+
+.hljs-comment,
+.hljs-meta,
+.hljs-deletion {
+    color: #55ffff;
+}
+
+/* for block of numbers */
+td.hljs-ln-numbers {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    text-align: center;
+    color: #ccc;
+    border-right: 1px solid #333;
+    vertical-align: top;
+    padding-right: 15px;
+
+    /* your custom style here */
+}
+
+/* for block of code */
+td.hljs-ln-code {
+    padding-left: 10px;
+}

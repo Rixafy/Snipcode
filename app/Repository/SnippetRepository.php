@@ -45,8 +45,33 @@ class SnippetRepository extends BaseRepository
      * @param DateTime $expireAt
      * @return Snippet
      */
-    public function create(?string $title, string $payload, Session $authorSession, IpAddress $authorIpAddress, Syntax $syntax, DateTime $expireAt): Snippet
+    public function create(?string $title, string $payload, Session $authorSession, IpAddress $authorIpAddress, ?Syntax $syntax, DateTime $expireAt): Snippet
     {
         return new Snippet($title, $payload, $authorSession, $authorIpAddress, $syntax, $expireAt);
+    }
+
+    //TODO: Need case sensitive support in Doctrine2
+
+    /**
+     * @param string $slug
+     * @return Snippet[]
+     */
+    public function getBySlug(string $slug): array
+    {
+        return $this->getRepository()->findBy(['slug' => $slug]);
+    }
+
+    /**
+     * @param string $slug
+     * @return Snippet|null
+     */
+    public function getOneBySlug(string $slug): ?Snippet
+    {
+        foreach ($this->getBySlug($slug) as $snippet) {
+            if ($snippet->getSlug() === $slug)
+                return $snippet;
+        }
+
+        return null;
     }
 }

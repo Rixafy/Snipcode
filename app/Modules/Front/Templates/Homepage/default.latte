@@ -1,3 +1,12 @@
 {block content}
 
 {control snippetForm}
+
+<section n:if="count($session->getSnippets()) > 0" class="box-down">
+    <h2>Your Snippets</h2>
+    <ul>
+        <li n:foreach="$session->getSnippets() as $snippet">
+            <a n:href="Snippet:view $snippet->getSlug()">{$snippet->getId()->toString()}</a>
+        </li>
+    </ul>
+</section>

@@ -1,0 +1,16 @@
+{block content}
+
+<pre>
+    <code>{$snippet->getPayload()}</code>
+</pre>
+
+<section class="box">
+    <a class="button green" n:href="Homepage:default">Create New</a>
+</section>
+
+{block scripts}
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+{/block}

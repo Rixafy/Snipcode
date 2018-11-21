@@ -3,6 +3,7 @@
 namespace App\Facade;
 
 use App\Entity\Snippet;
+use App\Entity\Syntax;
 use App\Repository\SnippetRepository;
 use App\Repository\SyntaxRepository;
 use App\Repository\VariableRepository;
@@ -26,6 +27,14 @@ class SnippetFacade
     /** @var ProfileFacade @inject */
     public $profileFacade;
 
+    /** @var Snippet */
+    private $temporarySnippet;
+
+    public function getSnippet(string $slug)
+    {
+        return $this->snippetRepository->getOneBySlug($slug);
+    }
+
     /**
      * @param Snippet $snippet
      * @return Snippet
@@ -48,13 +57,13 @@ class SnippetFacade
     /**
      * @param null|string $title
      * @param string $payload
-     * @param string $syntax
+     * @param Syntax|null $syntax
      * @param DateTime $expireAt
      * @return Snippet
      */
-    public function createSnippet(?string $title, string $payload, string $syntax, DateTime $expireAt): Snippet
+    public function createSnippet(?string $title, string $payload, ?Syntax $syntax, DateTime $expireAt): Snippet
     {
-        $snippet = $this->snippetRepository->create($title, $payload, $this->profileFacade->getCurrentSession(), $this->profileFacade->getCurrentIpAddress(), $this->syntaxRepository->getReference($syntax), $expireAt);
+        $snippet = $this->snippetRepository->create($title, $payload, $this->profileFacade->getCurrentSession(), $this->profileFacade->getCurrentIpAddress(), $syntax, $expireAt);
 
         return $this->generateSlug($snippet);
     }
@@ -62,5 +71,21 @@ class SnippetFacade
     public function flushSnippets(): void
     {
         $this->snippetRepository->flush();
+    }
+
+    /**
+     * @return Snippet
+     */
+    public function getTemporarySnippet(): Snippet
+    {
+        return $this->temporarySnippet;
+    }
+
+    /**
+     * @param Snippet $temporarySnippet
+     */
+    public function setTemporarySnippet(Snippet $temporarySnippet): void
+    {
+        $this->temporarySnippet = $temporarySnippet;
     }
 }

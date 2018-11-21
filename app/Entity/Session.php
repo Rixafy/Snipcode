@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +29,13 @@ class Session
     private $ip_address;
 
     /**
+     * One Session has Many Snippets
+     * @ORM\OneToMany(targetEntity="Snippet", mappedBy="author_session", cascade={"persist", "remove"})
+     * @var Snippet[]
+     */
+    private $snippets;
+
+    /**
      * Session constructor.
      * @param string $hash
      * @param IpAddress $ip_address
@@ -36,6 +44,7 @@ class Session
     {
         $this->hash = $hash;
         $this->ip_address = $ip_address;
+        $this->snippets = new ArrayCollection();
     }
 
     /**
@@ -60,5 +69,21 @@ class Session
     public function changeIpAddress(IpAddress $ip_address): void
     {
         $this->ip_address = $ip_address;
+    }
+
+    /**
+     * @return Snippet[]
+     */
+    public function getSnippets()
+    {
+        return $this->snippets;
+    }
+
+    /**
+     * @param Snippet $snippet
+     */
+    public function addSnippet(Snippet $snippet): void
+    {
+        $this->snippets->add($snippet);
     }
 }

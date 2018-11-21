@@ -17,7 +17,8 @@ final class RouterFactory
 	public static function createRouter()
 	{
 		$router = new RouteList;
-		$router[] = new Route('<presenter>/<action>[/<id>]', 'Homepage:default');
+		$router[] = new Route('<slug>', 'Snippet:view');
+		$router[] = new Route('', 'Homepage:default');
 		return $router;
 	}
 }
