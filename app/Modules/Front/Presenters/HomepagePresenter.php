@@ -2,15 +2,15 @@
 
 namespace App\Presenters;
 
-use App\Form\SnippetFormFactory;
+use App\Component\SnippetFormComponent;
 
 final class HomepagePresenter extends BasePresenter
 {
-    /** @var SnippetFormFactory @inject */
-    public $snippetFormFactory;
+    /** @var SnippetFormComponent @inject */
+    public $snippetFormComponent;
 
     protected function createComponentSnippetForm()
     {
-        return $this->snippetFormFactory->create();
+        return $this->snippetFormComponent;
     }
 }

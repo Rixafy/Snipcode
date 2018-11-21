@@ -47,4 +47,5 @@ includes:
 	- forms.neon
 	- repositories.neon
 	- commands.neon
+	- components.neon
 	- services.neon
