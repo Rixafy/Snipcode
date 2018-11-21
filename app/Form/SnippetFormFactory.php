@@ -54,6 +54,6 @@ class SnippetFormFactory
 
         $this->snippetFacade->flushSnippets();
 
-        bdump($expireAt->format('Y-m-d'));
+        bdump($snippet);
     }
 }
