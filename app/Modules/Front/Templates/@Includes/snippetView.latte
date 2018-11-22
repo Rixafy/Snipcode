@@ -9,11 +9,10 @@
 </section>
 
 <script>
-    $('pre > code').each(function() {
-        hljs.highlightBlock(this);
-    });
     $('pre > code.hljs').each(function(i, block) {
         hljs.lineNumbersBlock(block);
-        alert("test");
+    });
+    $('pre > code').each(function() {
+        hljs.highlightBlock(this);
     });
 </script>

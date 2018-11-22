@@ -65,11 +65,9 @@ class SnippetFormFactory
     {
         $expireAt = new DateTime('+' . $values['expire_in'] . ' day');
 
-        $snippet = $this->snippetFacade->createSnippet($values['title'], $values['payload'], null, $expireAt);
+        $this->snippetFacade->createSnippet($values['title'], $values['payload'], null, $expireAt);
 
         $this->snippetFacade->flushSnippets();
-
-        $this->snippetFacade->setTemporarySnippet($snippet);
 
         $this->baseComponent->onSuccess();
     }
