@@ -28,7 +28,7 @@ final class HomepagePresenter extends BasePresenter
     public function actionDefault()
     {
         $this->session = $this->profileFacade->getCurrentSession();
-        bdump($this->getHttpRequest()->getPost());
+
         if (!empty($this->getHttpRequest()->getPost())) {
             $this->snippet = $this->snippetFacade->getLastSnippet($this->session);
         }
@@ -46,8 +46,6 @@ final class HomepagePresenter extends BasePresenter
     protected function createComponentSnippetForm()
     {
         return $this->snippetFormComponent->addOnSuccess(function () {
-            //bdump('redirecting');
-            //$this->redirect('Snippet:view', ['slug' => $this->snippetFacade->getTemporarySnippet()->getSlug()]);
             $this->redrawControl('homepage');
         });
     }

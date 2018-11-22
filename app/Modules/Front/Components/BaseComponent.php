@@ -18,7 +18,7 @@ abstract class BaseComponent extends Control
     public function render()
     {
         $template = $this->template;
-        bdump($this->params);
+
         $template->setFile($this->getPresenter()->context->parameters['appDir'] . '/Modules/Front/Templates/@Components/' . $this->getName() . '.latte');
 
         $template->render();
