@@ -1,12 +1,6 @@
 {block content}
 
-<pre>
-    <code>{$snippet->getPayload()}</code>
-</pre>
-
-<section class="box">
-    <a class="button green" n:href="Homepage:default">Create New</a>
-</section>
+{include '../@Includes/snippetView.latte'}
 
 {block scripts}
 <script>
