@@ -9,6 +9,11 @@
 </section>
 
 <script>
-    hljs.initHighlightingOnLoad();
-    hljs.initLineNumbersOnLoad();
+    $('pre > code').each(function() {
+        hljs.highlightBlock(this);
+    });
+    $('pre > code.hljs').each(function(i, block) {
+        hljs.lineNumbersBlock(block);
+        alert("test");
+    });
 </script>
