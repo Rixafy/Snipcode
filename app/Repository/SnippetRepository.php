@@ -8,6 +8,7 @@ use App\Entity\Snippet;
 use App\Entity\Syntax;
 use DateTime;
 use Nettrine\ORM\EntityManager;
+use Ramsey\Uuid\Doctrine\UuidBinaryType;
 
 class SnippetRepository extends BaseRepository
 {
@@ -73,5 +74,18 @@ class SnippetRepository extends BaseRepository
         }
 
         return null;
+    }
+
+    /**
+     * @param Session $session
+     * @return Snippet|object
+     */
+    public function getLastBySession(Session $session): ?Snippet
+    {
+        return $this->getRepository()->findOneBy([
+            'author_session' => $session
+        ], [
+            'created_at' => 'desc'
+        ]);
     }
 }

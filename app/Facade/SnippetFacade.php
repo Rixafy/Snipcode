@@ -2,6 +2,7 @@
 
 namespace App\Facade;
 
+use App\Entity\Session;
 use App\Entity\Snippet;
 use App\Entity\Syntax;
 use App\Repository\SnippetRepository;
@@ -87,5 +88,10 @@ class SnippetFacade
     public function setTemporarySnippet(Snippet $temporarySnippet): void
     {
         $this->temporarySnippet = $temporarySnippet;
+    }
+
+    public function getLastSnippet(Session $session)
+    {
+        return $this->snippetRepository->getLastBySession($session);
     }
 }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="snippet", indexes={@ORM\Index(name="search_index", columns={"slug"})})
+ * @ORM\Table(name="snippet", indexes={@ORM\Index(name="search_index", columns={"slug"}), @ORM\Index(name="updated_order", columns={"updated_at"}), @ORM\Index(name="created_order", columns={"created_at"})})
  * @ORM\HasLifecycleCallbacks
  */
 class Snippet

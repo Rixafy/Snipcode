@@ -49,7 +49,8 @@ class SnippetFormFactory
             365 => 'Expire in One Year'
         ]);
 
-        $form->addSubmit('send', 'Send');
+        $form->addSubmit('send', 'Save Snippet')
+            ->setAttribute('class', 'ajax button');
 
         $form->setDefaults([
             'expire_in' => 7

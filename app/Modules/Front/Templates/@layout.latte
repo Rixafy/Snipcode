@@ -14,12 +14,20 @@
 </head>
 
 <body>
+	<div id="ajax-spinner"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
 	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
 
 	{include content}
 
 	{block scripts}
-	<script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/nette.forms.js"></script>
+	<script src="/js/nette.ajax.js"></script>
+	<script src="/js/custom.js"></script>
+		<script>
+            hljs.initHighlightingOnLoad();
+            hljs.initLineNumbersOnLoad();
+		</script>
 	{/block}
 </body>
 </html>
