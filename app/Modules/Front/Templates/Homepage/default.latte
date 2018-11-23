@@ -1,8 +1,9 @@
 {block content}
 
     {snippet homepage}
-        {ifset $snippet}
-            {include '../@Includes/snippetView.latte'}
+        {var $snippet = $presenter->snippetFacade->getSnippet($presenter->getSession()->getSection('snippet')->{'pending'} ?? '')}
+        {if $snippet !== null}
+            {include '../@Includes/snippetView.latte', snippet => $snippet}
         {else}
             {control snippetForm}
             <section n:if="count($session->getSnippets()) > 0" class="box-down">
@@ -13,5 +14,5 @@
                     </li>
                 </ul>
             </section>
-        {/ifset}
+        {/if}
     {/snippet}

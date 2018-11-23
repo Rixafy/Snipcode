@@ -40,6 +40,12 @@ class Snippet
     private $payload;
 
     /**
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    private $views = 0;
+
+    /**
      * Many Snippets have One Session
      * @ORM\ManyToOne(targetEntity="Session", inversedBy="snippet", cascade={"persist"})
      * @var Session
@@ -173,5 +179,18 @@ class Snippet
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    /**
+     * @return int
+     */
+    public function getViews(): int
+    {
+        return $this->views;
+    }
+
+    public function addView(): void
+    {
+        $this->views++;
     }
 }

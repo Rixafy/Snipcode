@@ -8,6 +8,7 @@ use App\Facade\SnippetFacade;
 use App\Repository\SyntaxRepository;
 use DateTime;
 use Nette\Application\UI\Form;
+use Nette\Http\Session;
 
 class SnippetFormFactory
 {
@@ -20,10 +21,14 @@ class SnippetFormFactory
     /** @var BaseComponent */
     private $baseComponent;
 
-    public function __construct(SnippetFacade $snippetFacade, SyntaxRepository $syntaxRepository)
+    /** @var Session */
+    private $netteSession;
+
+    public function __construct(SnippetFacade $snippetFacade, SyntaxRepository $syntaxRepository, Session $netteSession)
     {
         $this->snippetFacade = $snippetFacade;
         $this->syntaxRepository = $syntaxRepository;
+        $this->netteSession = $netteSession;
     }
 
     public function create(BaseComponent $baseComponent)
@@ -65,7 +70,9 @@ class SnippetFormFactory
     {
         $expireAt = new DateTime('+' . $values['expire_in'] . ' day');
 
-        $this->snippetFacade->createSnippet($values['title'], $values['payload'], null, $expireAt);
+        $snippet = $this->snippetFacade->createSnippet($values['title'], $values['payload'], null, $expireAt);
+
+        $this->netteSession->getSection('snippet')->{'pending'} = $snippet->getSlug();
 
         $this->snippetFacade->flushSnippets();
 

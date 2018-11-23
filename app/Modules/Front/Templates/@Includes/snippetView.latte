@@ -9,10 +9,17 @@
 </section>
 
 <script>
-    $('pre > code.hljs').each(function(i, block) {
-        hljs.lineNumbersBlock(block);
-    });
+
     $('pre > code').each(function() {
         hljs.highlightBlock(this);
     });
+
+    $(document).ready(function() {
+        $('code.hljs').each(function(i, block) {
+            hljs.lineNumbersBlock(block);
+        });
+    });
+
+    document.title = "TEST";
+    window.history.pushState({"pageTitle":"test"},"", 'https://code.haelexuis.eu/test');
 </script>

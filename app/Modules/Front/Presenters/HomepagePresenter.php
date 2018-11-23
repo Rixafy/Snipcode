@@ -22,25 +22,20 @@ final class HomepagePresenter extends BasePresenter
     /** @var Session */
     private $session;
 
-    /** @var Snippet */
-    private $snippet;
-
     public function actionDefault()
     {
-        $this->session = $this->profileFacade->getCurrentSession();
+        $sessionSnippet = $this->getSession()->getSection('snippet');
 
-        if (!empty($this->getHttpRequest()->getPost())) {
-            $this->snippet = $this->snippetFacade->getLastSnippet($this->session);
+        if ($sessionSnippet->{'pending'} !== null) {
+            unset($sessionSnippet->{'pending'});
         }
+
+        $this->session = $this->profileFacade->getCurrentSession();
     }
 
     public function renderDefault()
     {
         $this->template->session = $this->session;
-
-        if ($this->snippet !== null) {
-            $this->template->snippet = $this->snippet;
-        }
     }
 
     protected function createComponentSnippetForm()
