@@ -1,4 +1,7 @@
 services:
+    configFacade:
+        inject: true
+        class: App\Facade\ConfigFacade
     profileFacade:
         inject: true
         class: App\Facade\ProfileFacade

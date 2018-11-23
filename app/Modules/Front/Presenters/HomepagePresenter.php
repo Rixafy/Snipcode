@@ -5,11 +5,15 @@ namespace App\Presenters;
 use App\Component\SnippetFormComponent;
 use App\Entity\Session;
 use App\Entity\Snippet;
+use App\Facade\ConfigFacade;
 use App\Facade\ProfileFacade;
 use App\Facade\SnippetFacade;
 
 final class HomepagePresenter extends BasePresenter
 {
+    /** @var ConfigFacade @inject */
+    public $configFacade;
+
     /** @var ProfileFacade @inject */
     public $profileFacade;
 
@@ -35,6 +39,7 @@ final class HomepagePresenter extends BasePresenter
 
     public function renderDefault()
     {
+        $this->template->session = $this->session;
         $this->template->session = $this->session;
     }
 
