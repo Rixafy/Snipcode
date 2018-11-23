@@ -70,7 +70,7 @@ class SnippetFormFactory
     {
         $expireAt = new DateTime('+' . $values['expire_in'] . ' day');
 
-        $snippet = $this->snippetFacade->createSnippet($values['title'], $values['payload'], null, $expireAt);
+        $snippet = $this->snippetFacade->createSnippet($values['title'] === '' ? null : $values['title'], $values['payload'], null, $expireAt);
 
         $this->netteSession->getSection('snippet')->{'pending'} = $snippet->getSlug();
 

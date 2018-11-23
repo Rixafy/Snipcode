@@ -20,6 +20,6 @@
         });
     });
 
-    document.title = "TEST";
+    document.title = {$snippet->getTitle()};
     window.history.pushState({"pageTitle":"test"},"", 'https://code.haelexuis.eu/' + {$snippet->getSlug()});
 </script>
