@@ -3,6 +3,10 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width"/>
+	<meta name="description" content="{$constants['project_description']}">
+	<meta name="keywords" content="{$constants['project_keywords']}">
+	<meta name="author" content="{$constants['project_author']}">
+
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css"/>
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
@@ -10,7 +14,7 @@
 
 	<link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
-	<title>{ifset title}{include title|stripHtml} | {/ifset}{$constants['project_name']}</title>
+	<title>{ifset title}{include title|stripHtml} | {/ifset}{$constants['project_title']}</title>
 </head>
 
 <body>
