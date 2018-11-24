@@ -26,8 +26,13 @@ final class HomepagePresenter extends BasePresenter
     /** @var Session */
     private $session;
 
-    public function actionDefault()
+    /** @var Snippet */
+    private $forkSnippet;
+
+    public function startup()
     {
+        parent::startup();
+
         $sessionSnippet = $this->getSession()->getSection('snippet');
 
         if ($sessionSnippet->{'pending'} !== null) {
@@ -37,10 +42,26 @@ final class HomepagePresenter extends BasePresenter
         $this->session = $this->profileFacade->getCurrentSession();
     }
 
-    public function renderDefault()
+    public function actionDefault(?string $forkId = null)
+    {
+        if ($forkId != null) {
+            $this->forkSnippet = $this->snippetFacade->getById($forkId);
+        }
+    }
+
+    public function renderDefault(?string $forkId = null)
     {
         $this->template->session = $this->session;
-        $this->template->session = $this->session;
+        $this->template->forkSnippet = $this->forkSnippet;
+    }
+
+    public function getForkText()
+    {
+        if ($this->forkSnippet !== null) {
+            return $this->forkSnippet->getPayload();
+        }
+
+        return null;
     }
 
     protected function createComponentSnippetForm()

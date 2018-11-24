@@ -15,7 +15,7 @@ final class SnippetPresenter extends BasePresenter
 
     public function actionView(string $slug)
     {
-        $this->snippet = $this->snippetFacade->getSnippet($slug);
+        $this->snippet = $this->snippetFacade->getBySlug($slug);
     }
 
     public function renderView(string $slug)

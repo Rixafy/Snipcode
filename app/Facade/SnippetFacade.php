@@ -31,7 +31,12 @@ class SnippetFacade
     /** @var Snippet */
     private $temporarySnippet;
 
-    public function getSnippet(string $slug)
+    public function getById(string $id)
+    {
+        return $this->snippetRepository->get($id);
+    }
+
+    public function getBySlug(string $slug)
     {
         return $this->snippetRepository->getOneBySlug($slug);
     }

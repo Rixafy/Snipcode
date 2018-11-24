@@ -31,7 +31,7 @@ class SnippetFormFactory
         $this->netteSession = $netteSession;
     }
 
-    public function create(BaseComponent $baseComponent)
+    public function create(BaseComponent $baseComponent, ?string $forkText)
     {
         $this->baseComponent = $baseComponent;
 
@@ -58,7 +58,8 @@ class SnippetFormFactory
             ->setAttribute('class', 'ajax button bg-blue');
 
         $form->setDefaults([
-            'expire_in' => 7
+            'expire_in' => 7,
+            'payload' => $forkText ?? ''
         ]);
 
         $form->onSuccess[] = [$this, 'processForm'];

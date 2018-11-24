@@ -11,6 +11,6 @@ class SnippetFormComponent extends BaseComponent
 
     public function createComponentForm()
     {
-        return $this->snippetFormFactory->create($this);
+        return $this->snippetFormFactory->create($this, $this->getPresenter()->getForkText());
     }
 }

@@ -18,6 +18,7 @@ final class RouterFactory
 	{
 		$router = new RouteList;
 		$router[] = new Route('<slug>', 'Snippet:view');
+		$router[] = new Route('fork/<forkId>', 'Homepage:default');
 		$router[] = new Route('', 'Homepage:default');
 		return $router;
 	}

@@ -1,7 +1,7 @@
-{block title}New Snippet{/block}
+{block title}{if $forkSnippet !== null}Fork snippet {$forkSnippet->getSlug()}{else}New Snippet{/if}{/block}
 {block content}
     {snippet homepage}
-        {var $snippet = $presenter->snippetFacade->getSnippet($presenter->getSession()->getSection('snippet')->{'pending'} ?? '')}
+        {var $snippet = $presenter->snippetFacade->getBySlug($presenter->getSession()->getSection('snippet')->{'pending'} ?? '')}
         {if $snippet !== null}
             {include '../@Includes/snippetView.latte', snippet => $snippet}
         {else}
