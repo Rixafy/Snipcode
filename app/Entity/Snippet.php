@@ -178,7 +178,7 @@ class Snippet
      */
     public function getTitle(): string
     {
-        return $this->title == null ? 'Snippet '.$this->getSlug() : $this->title;
+        return $this->title == null ? 'Snippet #'.$this->getSlug() : $this->title;
     }
 
     /**
