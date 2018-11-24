@@ -16,6 +16,10 @@ final class SnippetPresenter extends BasePresenter
     public function actionDefault(string $slug)
     {
         $this->snippet = $this->snippetFacade->getBySlug($slug, true);
+
+        if($this->snippet === null) {
+            $this->error("Snippet not found");
+        }
     }
 
     public function renderDefault()

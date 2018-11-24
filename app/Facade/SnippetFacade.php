@@ -40,7 +40,7 @@ class SnippetFacade
     {
         $snippet = $this->snippetRepository->getOneBySlug($slug);
 
-        if ($addView) {
+        if ($snippet !== null && $addView) {
             $snippet->addView();
             $this->snippetRepository->save($snippet);
             $this->snippetRepository->flush();
