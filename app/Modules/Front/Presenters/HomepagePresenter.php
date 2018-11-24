@@ -49,7 +49,7 @@ final class HomepagePresenter extends BasePresenter
         }
     }
 
-    public function renderDefault(?string $forkId = null)
+    public function renderDefault()
     {
         $this->template->session = $this->session;
         $this->template->forkSnippet = $this->forkSnippet;
