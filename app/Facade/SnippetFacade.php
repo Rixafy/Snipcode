@@ -36,9 +36,17 @@ class SnippetFacade
         return $this->snippetRepository->get($id);
     }
 
-    public function getBySlug(string $slug)
+    public function getBySlug(string $slug, bool $addView = false)
     {
-        return $this->snippetRepository->getOneBySlug($slug);
+        $snippet = $this->snippetRepository->getOneBySlug($slug);
+
+        if ($addView) {
+            $snippet->addView();
+            $this->snippetRepository->save($snippet);
+            $this->snippetRepository->flush();
+        }
+
+        return $snippet;
     }
 
     /**
