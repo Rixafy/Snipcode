@@ -1,28 +1,45 @@
-html, body {height:100%; width:100%; margin:0; padding:0; background:#232525; color:#aaa; font-family:sans-serif}
+:root {
+    --main-bg-color:#13151C;
+    --layer-bg-color:#0000006b;
+    --main-text-color:#ddd;
+    --code-font:"Courier New", Courier, monospace
+}
+
+html, body {height:100%; width:100%; margin:0; padding:0; background:var(--main-bg-color); color:#aaa; font-family:sans-serif}
 
 body > div {width:100%; height:100%}
+
+body p {margin-top:0; margin-bottom:1em}
 
 body pre {margin:0; padding:0;}
 body pre > code, body pre > .hljs {white-space:pre; margin-top:-1.20em; display:block; padding-top:1em;}
 
-body form {margin:0; padding:0; width:100%; height:100%}
-body form .snippet {padding:1em; width:100%; height:100%; box-sizing:border-box; margin:0; display:block; border:none; background:#232525; color:#aaa; font-family:"Courier New", Courier, monospace}
-body form .snippet:hover, body form .snippet:active, body form .snippet:focus {outline:none}
+body form, body form textarea {margin:0; width:100%; height:100%}
+body form textarea {padding:1em; box-sizing:border-box; margin:0; display:block; border:none; background:var(--main-bg-color); color:#aaa; font-family:var(--code-font)}
+body form textarea:hover, body form textarea:active, body form textarea:focus {outline:none}
 
-body .box {position:fixed; top:1.5em; right:1.5em; background:#0000004a; padding:1.5em; border-radius:2px;}
-body .box input, body form .box select {box-sizing:border-box; width:100%; display:block; background:#111; padding:0.7em 1em; color:#ddd; border-radius:2px; border:1px solid #444; font-family:"Courier New", Courier, monospace; margin-bottom:1em;}
-body .box input:hover, body form .box input:active, body form .box input:focus, body form .box select:hover, body form .box select:active, body form .box select:focus {outline:none; background:#222}
-body .box .button {box-sizing:border-box; text-align:center; text-decoration:none; display:block; width:100%; background:#657be4; border:none; padding:.5em 1.5em; font-weight:bold; font-size:1em; color:#fff; border-radius:2px; cursor:pointer}
+body .box {position:fixed; top:1.5em; right:1.5em; background:var(--layer-bg-color); padding:1.5em 1.5em 0.5em 1.5em}
+body .box * {display:block; box-sizing:border-box; width:100%}
+body .box, body .box input, body .box select {border:2px solid #292c35; border-radius:0; box-sizing:border-box; margin-bottom:1em}
+
+body .box input, body .box select {width:100%; display:block; background:var(--main-bg-color); padding:0.7em 1em; color:var(--main-text-color); font-family:var(--code-font)}
+body .box input:hover, body form .box input:active, body form .box input:focus, body form .box select:hover, body form .box select:active, body form .box select:focus {outline:none}
+body .box .button {box-sizing:border-box; text-align:center; text-decoration:none; display:block; width:100%; border:none; padding:.5em 1.5em; font-weight:bold; font-size:1em; color:#fff; border-radius:0px; cursor:pointer}
 body .box .button:hover, body .box .button:active, body .box .button:focus {outline:none}
-body .box .button.green {background:#439e38}
 
-body .box-down {position:fixed; bottom:1.5em; right:1.5em; background:#0000004a; padding:0.5em 1.5em; border-radius:2px; font-family:"Courier New", Courier, monospace; color:#eee}
+body .box.down {top:230px; width:256px; color:#fff}
+body .box.down h2 {text-align:center; margin-top:0}
+body .box.down ul {list-style:none; padding:0}
+body .box.down ul li {margin-bottom:1em;}
+body .box.down ul li a {padding:0.5em; color:#fff; background:#673ab7; text-decoration:none; font-weight:bold; text-align:center}
 
+body .bg-blue {background-color:#3F51B5}
+body .bg-red {background-color:#F44336}
 
 .hljs {
     display: block;
     overflow-x: auto;
-    background: #232525;
+    background: var(--main-bg-color);
 }
 
 .hljs,

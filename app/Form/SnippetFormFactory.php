@@ -55,7 +55,7 @@ class SnippetFormFactory
         ]);
 
         $form->addSubmit('send', 'Save Snippet')
-            ->setAttribute('class', 'ajax button');
+            ->setAttribute('class', 'ajax button bg-blue');
 
         $form->setDefaults([
             'expire_in' => 7
