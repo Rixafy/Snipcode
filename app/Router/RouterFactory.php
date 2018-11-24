@@ -17,7 +17,7 @@ final class RouterFactory
 	public static function createRouter()
 	{
 		$router = new RouteList;
-		$router[] = new Route('<slug>', 'Snippet:view');
+		$router[] = new Route('<slug>', 'Snippet:default');
 		$router[] = new Route('fork/<forkId>', 'Homepage:default');
 		$router[] = new Route('', 'Homepage:default');
 		return $router;

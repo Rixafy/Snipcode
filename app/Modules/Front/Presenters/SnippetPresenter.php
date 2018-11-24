@@ -13,12 +13,12 @@ final class SnippetPresenter extends BasePresenter
     /** @var Snippet */
     private $snippet;
 
-    public function actionView(string $slug)
+    public function actionDefault(string $slug)
     {
         $this->snippet = $this->snippetFacade->getBySlug($slug, true);
     }
 
-    public function renderView()
+    public function renderDefault()
     {
         $this->template->snippet = $this->snippet;
     }
