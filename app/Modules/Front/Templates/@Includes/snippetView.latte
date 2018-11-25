@@ -26,6 +26,6 @@
     });
 
     document.title = {$snippet->getTitle()} + ' | ' + {$constants['project_name']};
-    window.history.pushState({"pageTitle":"test"},"", 'https://snipcode.link/' + {$snippet->getSlug()});
+    window.history.pushState({"pageTitle":"test"},"", {$constants['project_url']} + '/' + {$snippet->getSlug()});
 </script>
 {/block}
