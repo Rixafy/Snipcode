@@ -24,7 +24,7 @@ body .box, body .box input, body .box select {border:2px solid #292c35; border-r
 
 body .box input, body .box select {width:100%; display:block; background:var(--main-bg-color); padding:0.7em 1em; color:var(--main-text-color); font-family:var(--code-font)}
 body .box input:hover, body form .box input:active, body form .box input:focus, body form .box select:hover, body form .box select:active, body form .box select:focus {outline:none}
-body .box .button {box-sizing:border-box; text-align:center; text-decoration:none; display:block; width:100%; border:none; padding:.5em 1.5em; font-weight:bold; font-size:1em; color:#fff; border-radius:0px; cursor:pointer}
+body .box .button {font:400 13px Arial; box-sizing:border-box; text-align:center; text-decoration:none; display:block; width:100%; border:none; padding:.5em 1.5em; font-weight:bold; font-size:1em; color:#fff; border-radius:0px; cursor:pointer}
 body .box .button:hover, body .box .button:active, body .box .button:focus {outline:none}
 
 body .box.down {top:230px; width:256px; color:#fff}
