@@ -13,8 +13,8 @@
     </p>
 </section>
 
+{block scripts}
 <script>
-
     $('pre > code').each(function() {
         hljs.highlightBlock(this);
     });
@@ -26,5 +26,6 @@
     });
 
     document.title = {$snippet->getTitle()} + ' | ' + {$constants['project_name']};
-    window.history.pushState({"pageTitle":"test"},"", 'https://code.haelexuis.eu/' + {$snippet->getSlug()});
+    window.history.pushState({"pageTitle":"test"},"", 'https://snipcode.link/' + {$snippet->getSlug()});
 </script>
+{/block}

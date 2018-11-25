@@ -7,28 +7,26 @@
         <meta name="keywords" content="{$constants['project_keywords']}">
         <meta name="author" content="{$constants['project_author']}">
 
-        <link rel="stylesheet" href="/css/highlight.min.css"/>
-
-        <script src="/js/highlight.min.js"></script>
-        <script src="/js/line-numbers.min.js"></script>
-
-        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
-        <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
-        <link rel="image_src" href="/img/logo.jpg"/>
-
         <title>{ifset title}{include title|stripHtml} | {/ifset}{$constants['project_title']}</title>
-    </head>
 
-    <body>
-        <div id="ajax-spinner"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
-
-        {include content}
-
-        {block scripts}
         <script src="/js/jquery-3.3.1.min.js"></script>
         <script src="/js/nette.forms.js"></script>
         <script src="/js/nette.ajax.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.5.0/highlightjs-line-numbers.min.js"></script>
         <script src="/js/custom.js"></script>
-        {/block}
+
+        <link rel="stylesheet" href="/css/highlight.min.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+        <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
+        <link rel="image_src" href="/img/logo.jpg"/>
+    </head>
+
+    <body>
+    <div id="ajax-spinner"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+
+    {include content}
+
+    {ifset scripts}{include scripts}{/ifset}
     </body>
 </html>
