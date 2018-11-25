@@ -14,7 +14,7 @@ body p {margin-top:0; margin-bottom:1em}
 body pre {margin:0; padding:0;}
 body pre > code, body pre > .hljs {white-space:pre; margin-top:-1.20em; display:block; padding-top:1em;}
 
-body form, body form textarea {margin:0; width:100%; height:100%}
+body form, body form textarea {margin:0; width:100%; height:100%; resize:none}
 body form textarea {padding:1em; box-sizing:border-box; margin:0; display:block; border:none; background:var(--main-bg-color); color:#aaa; font-family:var(--code-font)}
 body form textarea:hover, body form textarea:active, body form textarea:focus {outline:none}
 
