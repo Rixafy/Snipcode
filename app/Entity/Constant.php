@@ -19,7 +19,7 @@ class Constant
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=31)
+     * @ORM\Column(type="string")
      * @var string
      */
     private $value;
