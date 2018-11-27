@@ -13,7 +13,6 @@
     </p>
 </section>
 
-{block scripts}
 <script>
     $('pre > code').each(function() {
         hljs.highlightBlock(this);
@@ -28,4 +27,3 @@
     document.title = {$snippet->getTitle()} + ' | ' + {$constants['project_name']};
     window.history.pushState({"pageTitle":"test"},"", {$constants['project_url']} + '/' + {$snippet->getSlug()});
 </script>
-{/block}
