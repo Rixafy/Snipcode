@@ -5,3 +5,6 @@ services:
     addVariableCommand:
         inject: true
         class: App\Command\AddVariableCommand
+    addSyntaxCommand:
+        inject: true
+        class: App\Command\AddSyntaxCommand
