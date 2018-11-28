@@ -7,7 +7,7 @@ use App\Entity\Snippet;
 use App\Entity\Syntax;
 use App\Repository\SnippetRepository;
 use App\Repository\SyntaxRepository;
-use App\Repository\SyntaxRepository;
+use App\Repository\VariableRepository;
 use App\Service\SlugGenerator;
 use DateTime;
 
@@ -19,7 +19,7 @@ class SnippetFacade
     /** @var SyntaxRepository @inject */
     public $syntaxRepository;
 
-    /** @var SyntaxRepository @inject */
+    /** @var VariableRepository @inject */
     public $variableRepository;
 
     /** @var SlugGenerator @inject */
