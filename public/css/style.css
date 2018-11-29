@@ -33,6 +33,7 @@ body .box.down ul {list-style:none; padding:0}
 body .box.down ul li {margin-bottom:1em;}
 body .box.down ul li a {padding:0.5em; color:#fff; background:#673ab7; text-decoration:none; font-weight:bold; text-align:center}
 
+body .bg-green {background-color:#4a7b12}
 body .bg-blue {background-color:#3F51B5}
 body .bg-red {background-color:#F44336}
 body .bg-purple {background-color:#673ab7}
