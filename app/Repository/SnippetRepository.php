@@ -7,6 +7,7 @@ use App\Entity\Session;
 use App\Entity\Snippet;
 use App\Entity\Syntax;
 use DateTime;
+use Nette\Utils\Strings;
 use Nettrine\ORM\EntityManager;
 use Ramsey\Uuid\Doctrine\UuidBinaryType;
 
@@ -68,6 +69,8 @@ class SnippetRepository extends BaseRepository
      */
     public function getOneBySlug(string $slug): ?Snippet
     {
+        $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $slug);
+
         foreach ($this->getBySlug($slug) as $snippet) {
             if ($snippet->getSlug() === $slug)
                 return $snippet;
