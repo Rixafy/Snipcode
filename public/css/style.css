@@ -1,6 +1,6 @@
 :root {
-    --main-bg-color:#13151C;
-    --layer-bg-color:#0000006b;
+    --main-bg-color:#202535;
+    --layer-bg-color:#0000002e;
     --main-text-color:#ddd;
     --code-font:"Courier New", Courier, monospace
 }
@@ -18,100 +18,96 @@ body form, body form textarea {margin:0; width:100%; height:100%; resize:none}
 body form textarea {padding:1em; box-sizing:border-box; margin:0; display:block; border:none; background:var(--main-bg-color); color:#aaa; font-family:var(--code-font)}
 body form textarea:hover, body form textarea:active, body form textarea:focus {outline:none}
 
-body .box {position:fixed; top:1.5em; right:1.5em; background:var(--layer-bg-color); padding:1.5em 1.5em 0.5em 1.5em}
+body .box {position:fixed; top:1.5em; right:1.5em; background:var(--layer-bg-color); padding:1.5em 1.5em 0.5em 1.5em; border-radius:10px}
 body .box * {display:block; box-sizing:border-box; width:100%}
-body .box, body .box input, body .box select {border:2px solid #292c35; border-radius:0; box-sizing:border-box; margin-bottom:1em}
+body .box, body .box input, body .box select {box-sizing:border-box; margin-bottom:1em; border:none}
 
 body .box input, body .box select {width:100%; display:block; background:var(--main-bg-color); padding:0.7em 1em; color:var(--main-text-color); font-family:var(--code-font)}
 body .box input:hover, body form .box input:active, body form .box input:focus, body form .box select:hover, body form .box select:active, body form .box select:focus {outline:none}
-body .box .button {font:400 13px Arial; box-sizing:border-box; text-align:center; text-decoration:none; display:block; width:100%; border:none; padding:.5em 1.5em; font-weight:bold; font-size:1em; color:#fff; border-radius:0px; cursor:pointer}
-body .box .button:hover, body .box .button:active, body .box .button:focus {outline:none}
+body .box .button {border-radius:20px 10%; font:400 13px Arial; box-sizing:border-box; text-align:center; text-decoration:none; display:block; width:100%; border:none; padding:.5em 1.5em; font-weight:bold; font-size:1em; color:#fff; cursor:pointer}
+body .box .button:hover, body .box .button:active, body .box .button:focus {outline:none; border-radius:10% 20px}
 
 body .box.down {top:230px; width:256px; color:#fff}
 body .box.down h2 {text-align:center; margin-top:0}
-body .box.down ul {list-style:none; padding:0}
+body .box.down ul {padding:0; list-style:none}
 body .box.down ul li {margin-bottom:1em;}
-body .box.down ul li a {padding:0.5em; color:#fff; background:#673ab7; text-decoration:none; font-weight:bold; text-align:center}
+body .box.down ul li a {padding:0.5em 1em; color:#fff; text-decoration:none; background:#4c94ff; border-radius:20px; font-weight:normal}
+body .box.down ul li a:hover {background:#fff; color:#1a1e2b}
 
-body .bg-green {background-color:#4a7b12}
-body .bg-blue {background-color:#3F51B5}
-body .bg-red {background-color:#F44336}
+body .bg-green {background-color:#00b89f}
+body .bg-blue {background-color:#4c94ff}
+body .bg-red {background-color:#ff5656}
 body .bg-purple {background-color:#673ab7}
+
 
 .hljs {
     display: block;
     overflow-x: auto;
-    background: var(--main-bg-color);
+    padding: 0.5em;
+    color: #f8f8f8;
+    background:var(--main-bg-color);
 }
 
-.hljs,
-.hljs-subst,
-.hljs-tag,
-.hljs-title {
-    color: #aaaaaa;
-}
-
-.hljs-strong,
-.hljs-emphasis {
-    color: #a8a8a2;
-}
-
-.hljs-bullet,
+.hljs-comment,
 .hljs-quote,
-.hljs-number,
-.hljs-regexp,
-.hljs-literal {
-    color: #ff55ff;
-}
-
-.hljs-code
-.hljs-selector-class {
-    color: #aaaaff;
-}
-
-.hljs-emphasis,
-.hljs-stronge,
-.hljs-type {
-    font-style: italic;
+.hljs-meta {
+    color: #7c7c7c;
 }
 
 .hljs-keyword,
 .hljs-selector-tag,
-.hljs-function,
-.hljs-section,
-.hljs-symbol,
+.hljs-tag,
 .hljs-name {
-    color: #ffff55;
+    color: #96cbfe;
 }
 
-.hljs-attribute {
-    color: #ff5555;
-}
-
-.hljs-variable,
-.hljs-params,
-.hljs-class .hljs-title {
-    color: #8888ff;
+.hljs-attribute,
+.hljs-selector-id {
+    color: #ffffb6;
 }
 
 .hljs-string,
-.hljs-selector-id,
 .hljs-selector-attr,
 .hljs-selector-pseudo,
-.hljs-type,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-template-tag,
-.hljs-template-variable,
-.hljs-addition,
-.hljs-link {
-    color: #ff55ff;
+.hljs-addition {
+    color: #a8ff60;
 }
 
-.hljs-comment,
-.hljs-meta,
+.hljs-subst {
+    color: #daefa3;
+}
+
+.hljs-regexp,
+.hljs-link {
+    color: #e9c062;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-type,
+.hljs-doctag {
+    color: #ffffb6;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-literal {
+    color: #c6c5fe;
+}
+
+.hljs-number,
 .hljs-deletion {
-    color: #55ffff;
+    color:#ff73fd;
+}
+
+.hljs-emphasis {
+    font-style: italic;
+}
+
+.hljs-strong {
+    font-weight: bold;
 }
 
 /* for block of numbers */
