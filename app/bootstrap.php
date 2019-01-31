@@ -2,6 +2,8 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+ini_set('session.gc_maxlifetime', 2678400);
+
 $configurator = new Nette\Configurator;
 
 $configurator->setDebugMode(['92.245.5.107', '92.245.5.189']);
