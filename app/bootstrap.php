@@ -1,8 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-ini_set('session.gc_maxlifetime', 2678400);
+ini_set('session.gc_maxlifetime', '2678400');
 
 $configurator = new Nette\Configurator;
 

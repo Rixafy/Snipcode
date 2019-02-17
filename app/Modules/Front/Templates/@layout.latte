@@ -39,10 +39,13 @@
     </head>
 
     <body>
-    <div id="ajax-spinner"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div id="ajax-spinner"><div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
 
-    {include content}
+        {include content}
 
-    {ifset scripts}{include scripts}{/ifset}
+        <section class="project-description">
+            Snipcode is <a href="https://github.com/rixafy/Snipcode" target="_blank">open-source</a>, created and maintained by <a href="https://rixafy.pro">Rick Strafy</a>
+        </section>
+        {ifset scripts}{include scripts}{/ifset}
     </body>
 </html>

@@ -39,6 +39,10 @@ body .bg-blue {background-color:#4c94ff}
 body .bg-red {background-color:#ff5656}
 body .bg-purple {background-color:#673ab7}
 
+body .project-description {background:#ffffff0d; position:fixed; bottom:0; right:0; padding:3px 7px; font-family:monospace}
+body .project-description a {color:#fff}
+body .project-description a:hover {color:#ddd}
+
 
 .hljs {
     display: block;
