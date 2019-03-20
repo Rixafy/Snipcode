@@ -53,7 +53,7 @@ class ProfileFacade
                                 $country = $this->countryRepository->create($json->geoplugin_countryName, $json->geoplugin_currencyCode, $json->geoplugin_continentCode, $json->geoplugin_countryCode, locale::country2locale($json->geoplugin_countryCode));
                             }
                         }
-                     } catch (JsonException $e) {
+                    } catch (JsonException $e) {
 
                     }
                 }
