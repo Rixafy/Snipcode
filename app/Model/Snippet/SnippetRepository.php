@@ -52,31 +52,13 @@ class SnippetRepository extends BaseRepository
         return new Snippet($title, $payload, $authorSession, $authorIpAddress, $syntax, $expireAt);
     }
 
-    //TODO: Need case sensitive support in Doctrine2
-
     /**
      * @param string $slug
-     * @return Snippet[]
+     * @return Snippet|null|object
      */
-    public function getBySlug(string $slug): array
+    public function getBySlug(string $slug): ?Snippet
     {
-        return $this->getRepository()->findBy(['slug' => $slug]);
-    }
-
-    /**
-     * @param string $slug
-     * @return Snippet|null
-     */
-    public function getOneBySlug(string $slug): ?Snippet
-    {
-        $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $slug);
-
-        foreach ($this->getBySlug($slug) as $snippet) {
-            if ($snippet->getSlug() === $slug)
-                return $snippet;
-        }
-
-        return null;
+        return $this->getRepository()->findOneBy(['slug' => $slug]);
     }
 
     /**

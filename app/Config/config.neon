@@ -38,7 +38,7 @@ orm.annotations:
     excludePaths: []
     defaultCache: filesystem
     paths:
-        - app/Entity
+        - app/Model
 
 
 includes:
