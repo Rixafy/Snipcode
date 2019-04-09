@@ -4,11 +4,11 @@ namespace App\Repository;
 
 use App\Entity\Country;
 use App\Entity\IpAddress;
-use Nettrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class IpAddressRepository extends BaseRepository
 {
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         parent::__construct($entityManager, IpAddress::class);
     }
@@ -22,11 +22,7 @@ class IpAddressRepository extends BaseRepository
         return parent::get($id);
     }
 
-    /**
-     * @param string $address
-     * @return IpAddress|object
-     */
-    public function getByAddress(string $address)
+    public function getByAddress(string $address): ?IpAddress
     {
         return $this->getRepository()->findOneBy(['address' => $address]);
     }
@@ -39,11 +35,6 @@ class IpAddressRepository extends BaseRepository
         return $this->getRepository()->findAll();
     }
 
-    /**
-     * @param string $address
-     * @param Country $country
-     * @return IpAddress
-     */
     public function create(string $address, Country $country): IpAddress
     {
         return new IpAddress($address, gethostbyaddr($address), strlen($address) > 15, $country);

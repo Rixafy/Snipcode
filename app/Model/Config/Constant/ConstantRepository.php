@@ -3,11 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Constant;
-use Nettrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class ConstantRepository extends BaseRepository
 {
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         parent::__construct($entityManager, Constant::class);
     }
@@ -21,11 +21,7 @@ class ConstantRepository extends BaseRepository
         return parent::get($id);
     }
 
-    /**
-     * @param string $name
-     * @return Constant|object
-     */
-    public function getByName(string $name)
+    public function getByName(string $name): ?Constant
     {
         return $this->getRepository()->findOneBy(['name' => $name]);
     }
@@ -38,11 +34,6 @@ class ConstantRepository extends BaseRepository
         return $this->getRepository()->findAll();
     }
 
-    /**
-     * @param string $name
-     * @param string $value
-     * @return Constant
-     */
     public function create(string $name, string $value): Constant
     {
         return new Constant($name, $value);

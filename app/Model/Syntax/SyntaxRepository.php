@@ -3,11 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Syntax;
-use Nettrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class SyntaxRepository extends BaseRepository
 {
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         parent::__construct($entityManager, Syntax::class);
     }
@@ -30,20 +30,12 @@ class SyntaxRepository extends BaseRepository
         return parent::getReference($id);
     }
 
-    /**
-     * @param string $name
-     * @return Syntax|object
-     */
-    public function getByName(string $name)
+    public function getByName(string $name): ?Syntax
     {
         return $this->getRepository()->findOneBy(['name' => $name]);
     }
 
-    /**
-     * @param string $name
-     * @return Syntax|object
-     */
-    public function getByShortName(string $name)
+    public function getByShortName(string $name): ?Syntax
     {
         return $this->getRepository()->findOneBy(['short_name' => $name]);
     }
@@ -56,10 +48,6 @@ class SyntaxRepository extends BaseRepository
         return $this->getRepository()->findAll();
     }
 
-    /**
-     * @param string $name
-     * @return Syntax
-     */
     public function create(string $name): Syntax
     {
         return new Syntax($name);

@@ -3,11 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Variable;
-use Nettrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class VariableRepository extends BaseRepository
 {
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         parent::__construct($entityManager, Variable::class);
     }
@@ -21,22 +21,13 @@ class VariableRepository extends BaseRepository
         return parent::get($id);
     }
 
-    /**
-     * @param string $name
-     * @return Variable|object
-     */
-    public function getByName(string $name)
+    public function getByName(string $name): ?Variable
     {
         return $this->getRepository()->findOneBy([
             'name' => $name
         ]);
     }
 
-    /**
-     * @param string $name
-     * @param int $value
-     * @return Variable
-     */
     public function create(string $name, int $value): Variable
     {
         return new Variable($name, $value);

@@ -30,6 +30,9 @@
 		"peterkahl/country-to-locale": "dev-master",
 		"hashids/hashids": "^4.0"
 	},
+	"autoload": {
+		"classmap": ["app/Booting.php"]
+	},
 	"minimum-stability": "dev",
 	"config": {
 		"platform": {

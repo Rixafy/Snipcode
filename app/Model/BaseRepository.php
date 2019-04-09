@@ -2,16 +2,14 @@
 
 namespace App\Repository;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
-use Doctrine\ORM\TransactionRequiredException;
-use Nettrine\ORM\EntityManager;
 use Ramsey\Uuid\Uuid;
 
 abstract class BaseRepository
 {
-    /** @var EntityManager */
+    /** @var EntityManagerInterface */
     public $entityManager;
 
     /** @var EntityRepository */
@@ -20,7 +18,7 @@ abstract class BaseRepository
     /** @var string */
     protected $class;
 
-    public function __construct(EntityManager $entityManager, string $class)
+    public function __construct(EntityManagerInterface $entityManager, string $class)
     {
         $this->entityManager = $entityManager;
         $this->class = $class;
@@ -33,16 +31,7 @@ abstract class BaseRepository
      */
     public function get(string $id)
     {
-        $entity = null;
-
-        try {
-            $entity = $this->entityManager->find($this->class, Uuid::fromString($id));
-        } catch (OptimisticLockException $e) {
-        } catch (TransactionRequiredException $e) {
-        } catch (ORMException $e) {
-        }
-
-        return $entity;
+        return $this->entityManager->find($this->class, Uuid::fromString($id));
     }
 
     /**

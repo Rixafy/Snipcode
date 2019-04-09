@@ -17,7 +17,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     /** @var array */
     public $constants;
 
-    public function startup()
+    public function startup(): void
     {
         parent::startup();
 
@@ -25,7 +25,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         $this->constants = $this->configFacade->getConstants();
     }
 
-    public function beforeRender()
+    public function beforeRender(): void
     {
         parent::beforeRender();
 

@@ -31,12 +31,12 @@ class SnippetFacade
     /** @var Snippet */
     private $temporarySnippet;
 
-    public function getById(string $id)
+    public function getById(string $id): ?Snippet
     {
         return $this->snippetRepository->get($id);
     }
 
-    public function getBySlug(string $slug, bool $addView = false)
+    public function getBySlug(string $slug, bool $addView = false): ?Snippet
     {
         $snippet = $this->snippetRepository->getBySlug($slug);
 
@@ -49,10 +49,6 @@ class SnippetFacade
         return $snippet;
     }
 
-    /**
-     * @param Snippet $snippet
-     * @return Snippet
-     */
     private function generateSlug(Snippet $snippet): Snippet
     {
         $snippets_inserted = $this->variableRepository->getByName('snippets_inserted');
@@ -68,13 +64,6 @@ class SnippetFacade
         return $snippet;
     }
 
-    /**
-     * @param null|string $title
-     * @param string $payload
-     * @param Syntax|null $syntax
-     * @param DateTime $expireAt
-     * @return Snippet
-     */
     public function createSnippet(?string $title, string $payload, ?Syntax $syntax, DateTime $expireAt): Snippet
     {
         $snippet = $this->snippetRepository->create($title, $payload, $this->profileFacade->getCurrentSession(), $this->profileFacade->getCurrentIpAddress(), $syntax, $expireAt);
@@ -87,23 +76,17 @@ class SnippetFacade
         $this->snippetRepository->flush();
     }
 
-    /**
-     * @return Snippet
-     */
     public function getTemporarySnippet(): Snippet
     {
         return $this->temporarySnippet;
     }
 
-    /**
-     * @param Snippet $temporarySnippet
-     */
     public function setTemporarySnippet(Snippet $temporarySnippet): void
     {
         $this->temporarySnippet = $temporarySnippet;
     }
 
-    public function getLastSnippet(Session $session)
+    public function getLastSnippet(Session $session): ?Snippet
     {
         return $this->snippetRepository->getLastBySession($session);
     }

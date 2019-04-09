@@ -16,9 +16,6 @@ services:
 
 
 extensions:
-    # Console
-    console: Contributte\Console\DI\ConsoleExtension(CLI)
-
     # Dbal
     dbal: Nettrine\DBAL\DI\DbalExtension
     dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
@@ -36,7 +33,7 @@ extensions:
 orm.annotations:
     debug: %debugMode%
     excludePaths: []
-    defaultCache: filesystem
+    defaultCache: apcu
     paths:
         - app/Model
 

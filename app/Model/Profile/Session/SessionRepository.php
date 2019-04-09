@@ -4,11 +4,11 @@ namespace App\Repository;
 
 use App\Entity\IpAddress;
 use App\Entity\Session;
-use Nettrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class SessionRepository extends BaseRepository
 {
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         parent::__construct($entityManager, Session::class);
     }
@@ -22,11 +22,7 @@ class SessionRepository extends BaseRepository
         return parent::get($id);
     }
 
-    /**
-     * @param string $hash
-     * @return Session|object
-     */
-    public function getByHash(string $hash)
+    public function getByHash(string $hash): ?Session
     {
         return $this->getRepository()->findOneBy(['hash' => $hash]);
     }
@@ -39,11 +35,6 @@ class SessionRepository extends BaseRepository
         return $this->getRepository()->findAll();
     }
 
-    /**
-     * @param string $hash
-     * @param IpAddress $ipAddress
-     * @return Session
-     */
     public function create(string $hash, IpAddress $ipAddress): Session
     {
         return new Session($hash, $ipAddress);

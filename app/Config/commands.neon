@@ -1,3 +1,11 @@
+extensions:
+    console: Contributte\Console\DI\ConsoleExtension(CLI)
+
+
+console:
+	lazy: false #TODO: Remove this if contributte/console approve my PR for smart loading
+
+
 services:
     addConstantCommand:
         inject: true
