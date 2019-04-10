@@ -10,6 +10,9 @@ use Nette\Configurator;
 
 class Booting
 {
+	/**
+	 * @throws DBALException
+	 */
 	public static function boot(): Configurator
 	{
 		ini_set('session.gc_maxlifetime', '2678400');
@@ -28,11 +31,7 @@ class Booting
 
 		$configurator->addConfig(__DIR__ . '/Config/common.neon');
 
-		try {
-			Type::addType('uuid', 'Ramsey\Uuid\Doctrine\UuidType');
-			Type::addType('uuid_binary', 'Ramsey\Uuid\Doctrine\UuidBinaryType');
-		} catch (DBALException $e) {
-		}
+		Type::addType('uuid_binary', 'Ramsey\Uuid\Doctrine\UuidBinaryType');
 
 		return $configurator;
 	}
