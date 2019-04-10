@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Module\Command\Constant;
+namespace App\Module\Console\Constant;
 
 use App\Repository\ConstantRepository;
 use Symfony\Component\Console\Command\Command;

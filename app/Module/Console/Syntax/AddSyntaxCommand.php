@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Module\Command\Syntax;
+namespace App\Module\Console\Syntax;
 
 use App\Repository\SyntaxRepository;
 use Symfony\Component\Console\Command\Command;
