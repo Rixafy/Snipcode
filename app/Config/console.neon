@@ -1,0 +1,20 @@
+extensions:
+	console: Contributte\Console\DI\ConsoleExtension(CLI)
+
+
+console:
+	lazy: false #TODO: Remove this if contributte/console approve my PR for smart loading
+
+
+services:
+	addConstantCommand:
+		inject: true
+		class: App\Module\Command\Constant\AddConstantCommand
+
+	addVariableCommand:
+		inject: true
+		class: App\Module\Command\Variable\AddVariableCommand
+
+	addSyntaxCommand:
+		class: App\Module\Command\Syntax\AddSyntaxCommand
+		inject: true

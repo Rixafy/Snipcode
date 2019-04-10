@@ -44,6 +44,6 @@ includes:
 	- facades.neon
 	- forms.neon
 	- repositories.neon
-	- commands.neon
+	- console.neon
 	- components.neon
 	- services.neon

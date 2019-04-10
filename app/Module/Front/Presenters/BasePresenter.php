@@ -29,8 +29,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     {
         parent::beforeRender();
 
-        $this->setLayout($this->context->parameters['appDir'] . '/Modules/Front/Templates/@layout.latte');
-        $this->template->setFile($this->context->parameters['appDir'] . '/Modules/Front/Templates/' . $this->getName() . '/' . $this->getAction() . '.latte');
+        $this->setLayout($this->context->parameters['appDir'] . '/Module/Front/Templates/@layout.latte');
+        $this->template->setFile($this->context->parameters['appDir'] . '/Module/Front/Templates/' . $this->getName() . '/' . $this->getAction() . '.latte');
 
         $this->template->constants = $this->constants;
     }
