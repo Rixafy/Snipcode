@@ -1,10 +1,16 @@
 services:
-    configFacade:
-        inject: true
-        class: App\Facade\ConfigFacade
-    profileFacade:
-        inject: true
-        class: App\Facade\ProfileFacade
-    snippetFacade:
-        inject: true
-        class: App\Model\Snippet\SnippetFacade
+	configFacade:
+		inject: true
+		class: App\Facade\ConfigFacade
+		
+	profileFacade:
+		inject: true
+		class: App\Facade\ProfileFacade
+		
+	snippetFacade:
+		inject: true
+		class: App\Model\Snippet\SnippetFacade
+		
+	variableFacade:
+		inject: true
+		class: App\Model\Variable\VariableFacade

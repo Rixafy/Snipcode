@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model\Snippet;
 
-use App\Entity\IpAddress;
 use App\Entity\Session;
-use App\Entity\Syntax;
-use App\Repository\BaseRepository;
-use DateTime;
+use App\Model\Snippet\Exception\SnippetNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;
 

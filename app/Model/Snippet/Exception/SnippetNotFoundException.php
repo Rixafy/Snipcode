@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Snippet;
+namespace App\Model\Snippet\Exception;
 
-class SnippetNotFoundException extends \Exception
+use Exception;
+
+class SnippetNotFoundException extends Exception
 {
 
 }

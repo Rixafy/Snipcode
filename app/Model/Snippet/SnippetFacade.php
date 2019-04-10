@@ -6,8 +6,9 @@ namespace App\Model\Snippet;
 
 use App\Entity\Session;
 use App\Facade\ProfileFacade;
+use App\Model\Snippet\Exception\SnippetNotFoundException;
+use App\Model\Variable\VariableFacade;
 use App\Repository\SyntaxRepository;
-use App\Repository\VariableRepository;
 use App\Service\SlugGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;
@@ -20,8 +21,8 @@ class SnippetFacade
     /** @var SyntaxRepository @inject */
     public $syntaxRepository;
 
-    /** @var VariableRepository @inject */
-    public $variableRepository;
+    /** @var VariableFacade @inject */
+    public $variableFacade;
 
     /** @var SlugGenerator @inject */
     public $slugGenerator;
@@ -75,7 +76,7 @@ class SnippetFacade
 
     private function generateSlug(Snippet $snippet): Snippet //TODO: Move to SlugGenerator
     {
-        $snippets_inserted = $this->variableRepository->getByName('snippets_inserted');
+        $snippets_inserted = $this->variableFacade->getByName('snippets_inserted');
         $snippets_inserted->increaseValue();
         $snippet->createSlug($snippets_inserted->getValue(), $this->slugGenerator->encodeSlug($snippets_inserted->getValue()));
 

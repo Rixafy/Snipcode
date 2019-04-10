@@ -1,35 +1,57 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace App\Repository;
+declare(strict_types=1);
 
-use App\Entity\Variable;
+namespace App\Model\Variable;
+
+use App\Model\Variable\Exception\VariableNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
+use Ramsey\Uuid\UuidInterface;
 
-class VariableRepository extends BaseRepository
+class VariableRepository
 {
+	/** @var EntityManagerInterface */
+	private $entityManager;
+
     public function __construct(EntityManagerInterface $entityManager)
     {
-        parent::__construct($entityManager, Variable::class);
+        $this->entityManager = $entityManager;
     }
 
-    /**
-     * @param $id
-     * @return Variable|object
-     */
-    public function get(string $id)
+    public function getRepository()
+	{
+		return $this->entityManager->getRepository(Variable::class);
+	}
+
+	/**
+	 * @throws VariableNotFoundException
+	 */
+	public function get(UuidInterface $id): Variable
     {
-        return parent::get($id);
+    	/** @var Variable $variable */
+    	$variable = $this->getRepository()->find($id);
+
+    	if ($variable === null) {
+    		throw new VariableNotFoundException('Variable with id ' . $id . ' not found.');
+		}
+
+        return $variable;
     }
 
+	/**
+	 * @throws VariableNotFoundException
+	 */
     public function getByName(string $name): ?Variable
     {
-        return $this->getRepository()->findOneBy([
-            'name' => $name
-        ]);
-    }
+		/** @var Variable $variable */
+		$variable = $this->getRepository()->findOneBy([
+			'name' => $name
+		]);
 
-    public function create(string $name, int $value): Variable
-    {
-        return new Variable($name, $value);
-    }
+		if ($variable === null) {
+			throw new VariableNotFoundException('Variable with name ' . $name . ' not found.');
+		}
+
+		return $variable;
+	}
 }

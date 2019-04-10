@@ -1,3 +1,6 @@
 services:
     snippetFactory:
         class: App\Model\Snippet\SnippetFactory
+
+    variableFactory:
+        class: App\Model\Variable\VariableFactory

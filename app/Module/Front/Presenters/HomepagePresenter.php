@@ -8,7 +8,7 @@ use App\Model\Snippet\Snippet;
 use App\Facade\ConfigFacade;
 use App\Facade\ProfileFacade;
 use App\Model\Snippet\SnippetFacade;
-use App\Model\Snippet\SnippetNotFoundException;
+use App\Model\Snippet\Exception\SnippetNotFoundException;
 use Nette\ComponentModel\IComponent;
 use Ramsey\Uuid\Uuid;
 

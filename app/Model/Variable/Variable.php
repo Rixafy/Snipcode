@@ -1,7 +1,11 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace App\Entity;
+declare(strict_types=1);
 
+namespace App\Model\Variable;
+
+use App\Entity\DateTimeTrait;
+use App\Entity\UniqueTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,36 +30,27 @@ class Variable
      */
     private $value;
 
-    /**
-     * Constant constructor.
-     * @param string $name
-     * @param int $value
-     */
-    public function __construct(string $name, int $value)
+    public function __construct(VariableData $variableData)
     {
-        $this->name = $name;
-        $this->value = $value;
+        $this->edit($variableData);
     }
 
-    /**
-     * @return int
-     */
+    public function edit(VariableData $variableData): void
+	{
+		$this->name = $variableData->name;
+		$this->value = $variableData->value;
+	}
+
     public function getValue(): int
     {
         return $this->value;
     }
 
-    /**
-     * @param int $add
-     */
     public function increaseValue(int $add = 1): void
     {
         $this->value += $add;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;

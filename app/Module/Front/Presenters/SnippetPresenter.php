@@ -4,7 +4,7 @@ namespace App\Presenters;
 
 use App\Model\Snippet\Snippet;
 use App\Model\Snippet\SnippetFacade;
-use App\Model\Snippet\SnippetNotFoundException;
+use App\Model\Snippet\Exception\SnippetNotFoundException;
 
 final class SnippetPresenter extends BasePresenter
 {
