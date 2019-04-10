@@ -23,10 +23,10 @@ class SnippetFormFactory
     public $syntaxRepository;
 
     /** @var BaseComponent */
-    private $baseComponent;
+    protected $baseComponent;
 
     /** @var Session */
-    private $netteSession;
+    protected $netteSession;
 
     public function __construct(SnippetFacade $snippetFacade, ProfileFacade $profileFacade, SyntaxRepository $syntaxRepository, Session $netteSession)
     {

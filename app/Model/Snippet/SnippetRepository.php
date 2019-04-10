@@ -12,7 +12,7 @@ use Ramsey\Uuid\UuidInterface;
 class SnippetRepository
 {
 	/** @var EntityManagerInterface */
-	private $entityManager;
+	protected $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
     {

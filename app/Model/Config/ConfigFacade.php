@@ -10,7 +10,7 @@ class ConfigFacade
     public $constantRepository;
 
     /** @var array */
-    private $constants;
+    protected $constants;
 
     public function getConstants(): array
     {

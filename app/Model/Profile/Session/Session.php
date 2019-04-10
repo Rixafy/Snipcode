@@ -20,21 +20,21 @@ class Session
      * @ORM\Column(type="string", length=26, unique=true)
      * @var string
      */
-    private $hash;
+    protected $hash;
 
     /**
      * Many Sessions have One IpAddress
      * @ORM\ManyToOne(targetEntity="IpAddress", inversedBy="session", cascade={"persist"})
      * @var IpAddress
      */
-    private $ip_address;
+    protected $ip_address;
 
     /**
      * One Session has Many Snippets
      * @ORM\OneToMany(targetEntity="\App\Model\Snippet\Snippet", mappedBy="author_session", cascade={"persist", "remove"})
      * @var Snippet[]
      */
-    private $snippets;
+    protected $snippets;
 
     /**
      * Session constructor.

@@ -38,7 +38,7 @@ class SnippetFacade
     public $entityManager;
 
     /** @var Snippet */
-    private $temporarySnippet;
+    protected $temporarySnippet;
 
 	/**
 	 * @throws SnippetNotFoundException

@@ -15,13 +15,13 @@ trait DateTimeTrait
      * @ORM\Column(type="datetime")
      * @var DateTime
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @ORM\Column(type="datetime")
      * @var DateTime
      */
-    private $updated_at;
+    protected $updated_at;
 
     public function getCreatedAt(): ?DateTime
     {

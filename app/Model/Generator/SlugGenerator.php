@@ -16,7 +16,7 @@ class SlugGenerator
     protected $hashIds;
 
     /** @var VariableFacade */
-    private $variableFacade;
+    protected $variableFacade;
 
     public function __construct(string $salt, VariableFacade $variableFacade)
     {

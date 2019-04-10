@@ -12,7 +12,7 @@ final class SnippetPresenter extends BasePresenter
     public $snippetFacade;
 
     /** @var Snippet */
-    private $snippet;
+    protected $snippet;
 
     public function startup(): void
 	{

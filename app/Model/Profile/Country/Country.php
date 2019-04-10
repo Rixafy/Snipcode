@@ -16,31 +16,31 @@ class Country
      * @ORM\Column(type="string", unique=true)
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @ORM\Column(type="string", length=3)
      * @var string
      */
-    private $code_currency;
+    protected $code_currency;
 
     /**
      * @ORM\Column(type="string", length=2)
      * @var string
      */
-    private $code_continent;
+    protected $code_continent;
 
     /**
      * @ORM\Column(type="string", length=2, unique=true)
      * @var string
      */
-    private $code_alpha2;
+    protected $code_alpha2;
 
     /**
      * @ORM\Column(type="string", length=5)
      * @var string
      */
-    private $code_language;
+    protected $code_language;
 
     /**
      * Country constructor.

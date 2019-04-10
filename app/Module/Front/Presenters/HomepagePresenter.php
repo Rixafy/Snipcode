@@ -27,10 +27,10 @@ final class HomepagePresenter extends BasePresenter
     public $snippetFormComponent;
 
     /** @var Session */
-    private $session;
+    protected $session;
 
     /** @var Snippet */
-    private $forkSnippet;
+    protected $forkSnippet;
 
     public function startup(): void
     {

@@ -22,13 +22,13 @@ class Variable
      * @ORM\Column(type="string", unique=true, length=31)
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @ORM\Column(type="integer", length=31)
      * @var int
      */
-    private $value;
+    protected $value;
 
     public function __construct(VariableData $variableData)
     {

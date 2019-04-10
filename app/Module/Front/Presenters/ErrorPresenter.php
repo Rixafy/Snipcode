@@ -13,7 +13,7 @@ final class ErrorPresenter implements Nette\Application\IPresenter
 	use Nette\SmartObject;
 
 	/** @var ILogger */
-	private $logger;
+	protected $logger;
 
 
 	public function __construct(ILogger $logger)

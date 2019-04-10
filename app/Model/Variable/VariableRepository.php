@@ -11,7 +11,7 @@ use Ramsey\Uuid\UuidInterface;
 class VariableRepository
 {
 	/** @var EntityManagerInterface */
-	private $entityManager;
+	protected $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
     {

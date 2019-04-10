@@ -16,13 +16,13 @@ class Syntax
      * @ORM\Column(type="string", unique=true, length=63)
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @ORM\Column(type="string", unique=true, length=31)
      * @var string
      */
-    private $short_name;
+    protected $short_name;
 
     /**
      * Syntax constructor.

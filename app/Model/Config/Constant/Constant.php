@@ -16,13 +16,13 @@ class Constant
      * @ORM\Column(type="string", unique=true, length=31)
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @ORM\Column(type="string")
      * @var string
      */
-    private $value;
+    protected $value;
 
     /**
      * Constant constructor.

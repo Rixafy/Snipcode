@@ -18,26 +18,26 @@ class IpAddress
      * @ORM\Column(type="string", unique=true, length=39)
      * @var string
      */
-    private $address;
+    protected $address;
 
     /**
      * @ORM\Column(type="string")
      * @var string
      */
-    private $domain_host;
+    protected $domain_host;
 
     /**
      * @ORM\Column(type="boolean")
      * @var boolean
      */
-    private $ipv6;
+    protected $ipv6;
 
     /**
      * Many IpAddresses have One Country.
      * @ORM\ManyToOne(targetEntity="Country", inversedBy="country", cascade={"persist"})
      * @var Country
      */
-    private $country;
+    protected $country;
 
     /**
      * IpAddress constructor.

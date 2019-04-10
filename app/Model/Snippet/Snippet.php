@@ -30,58 +30,58 @@ class Snippet
 	 * @ORM\Column(type="string", nullable=true)
 	 * @var string
 	 */
-	private $title;
+	protected $title;
 
 	/**
 	 * @ORM\Column(type="string", options={"collation":"utf8_bin"})
 	 * @var string
 	 */
-	private $slug;
+	protected $slug;
 
 	/**
 	 * @ORM\Column(type="integer")
 	 * @var int
 	 */
-	private $slug_helper;
+	protected $slug_helper;
 
 	/**
 	 * @ORM\Column(type="text")
 	 * @var string
 	 */
-	private $payload;
+	protected $payload;
 
 	/**
 	 * @ORM\Column(type="integer")
 	 * @var int
 	 */
-	private $views = 0;
+	protected $views = 0;
 
 	/**
 	 * Many Snippets have One Session
 	 * @ORM\ManyToOne(targetEntity="\App\Entity\Session", inversedBy="snippet", cascade={"persist"})
 	 * @var Session
 	 */
-	private $author_session;
+	protected $author_session;
 
 	/**
 	 * Many Snippets have One IpAddress
 	 * @ORM\ManyToOne(targetEntity="\App\Entity\IpAddress", inversedBy="snippet", cascade={"persist"})
 	 * @var IpAddress
 	 */
-	private $author_ip_address;
+	protected $author_ip_address;
 
 	/**
 	 * Many Snippets have One Syntax
 	 * @ORM\ManyToOne(targetEntity="\App\Entity\Syntax", inversedBy="snippet", cascade={"persist"})
 	 * @var Syntax
 	 */
-	private $syntax;
+	protected $syntax;
 
 	/**
 	 * @ORM\Column(type="datetime", nullable=true)
 	 * @var DateTime
 	 */
-	private $expire_at;
+	protected $expire_at;
 
 	public function __construct(SnippetData $snippetData)
 	{
