@@ -15,8 +15,6 @@ class Booting
 	 */
 	public static function boot(): Configurator
 	{
-		ini_set('session.gc_maxlifetime', '2678400');
-
 		$configurator = new Configurator;
 
 		$configurator->setDebugMode(isset($_SERVER['DEBUG']) && $_SERVER['DEBUG'] === 'true');
