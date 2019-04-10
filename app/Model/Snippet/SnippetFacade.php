@@ -7,6 +7,7 @@ namespace App\Model\Snippet;
 use App\Entity\Session;
 use App\Facade\ProfileFacade;
 use App\Model\Snippet\Exception\SnippetNotFoundException;
+use App\Model\Variable\Exception\VariableNotFoundException;
 use App\Model\Variable\VariableFacade;
 use App\Repository\SyntaxRepository;
 use App\Service\SlugGenerator;
@@ -47,11 +48,14 @@ class SnippetFacade
 		return $this->snippetRepository->get($uuid);
 	}
 
+	/**
+	 * @throws VariableNotFoundException
+	 */
 	public function create(SnippetData $snippetData): Snippet
 	{
 		$snippet = $this->snippetFactory->create($snippetData);
 
-		$this->generateSlug($snippet);
+		$this->slugGenerator->injectSlug($snippet);
 
 		$this->entityManager->persist($snippet);
 		$this->entityManager->flush();
@@ -62,7 +66,7 @@ class SnippetFacade
 	/**
 	 * @throws SnippetNotFoundException
 	 */
-	public function getBySlug(string $slug, bool $addView = false): ?Snippet
+	public function getBySlug(string $slug, bool $addView = false): Snippet
     {
         $snippet = $this->snippetRepository->getBySlug($slug);
 
@@ -70,15 +74,6 @@ class SnippetFacade
             $snippet->addView();
             $this->entityManager->flush();
         }
-
-        return $snippet;
-    }
-
-    private function generateSlug(Snippet $snippet): Snippet //TODO: Move to SlugGenerator
-    {
-        $snippets_inserted = $this->variableFacade->getByName('snippets_inserted');
-        $snippets_inserted->increaseValue();
-        $snippet->createSlug($snippets_inserted->getValue(), $this->slugGenerator->encodeSlug($snippets_inserted->getValue()));
 
         return $snippet;
     }

@@ -2,6 +2,9 @@
 
 namespace App\Service;
 
+use App\Model\Snippet\Snippet;
+use App\Model\Variable\Exception\VariableNotFoundException;
+use App\Model\Variable\VariableFacade;
 use Hashids\Hashids;
 
 class SlugGenerator
@@ -12,31 +15,27 @@ class SlugGenerator
     /** @var Hashids */
     protected $hashIds;
 
-    /**
-     * Service constructor.
-     * @param string $salt
-     */
-    public function __construct(string $salt)
+    /** @var VariableFacade */
+    private $variableFacade;
+
+    public function __construct(string $salt, VariableFacade $variableFacade)
     {
         $this->salt = $salt;
         $this->hashIds = new Hashids($salt);
+    	$this->variableFacade = $variableFacade;
     }
 
-    /**
-     * @param int $number
-     * @return string
-     */
-    public function encodeSlug(int $number): string
-    {
-        return $this->hashIds->encode($number);
-    }
+	/**
+	 * @throws VariableNotFoundException
+	 */
+	public function injectSlug(Snippet $snippet): Snippet
+	{
+		$snippets_inserted = $this->variableFacade->getByName('snippets_inserted');
 
-    /**
-     * @param string $slug
-     * @return int
-     */
-    public function decodeSlug(string $slug): int
-    {
-        return $this->hashIds->decode($slug)[0];
-    }
+		$snippets_inserted->increaseValue();
+
+		$snippet->createSlug($snippets_inserted->getValue(), $this->hashIds->encode($snippets_inserted->getValue()));
+
+		return $snippet;
+	}
 }
