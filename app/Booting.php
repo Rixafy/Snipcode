@@ -15,6 +15,8 @@ class Booting
 	 */
 	public static function boot(): Configurator
 	{
+		self::additionalSetup();
+
 		$configurator = new Configurator;
 
 		$configurator->setDebugMode(isset($_SERVER['DEBUG']) && $_SERVER['DEBUG'] === 'true');
@@ -29,8 +31,14 @@ class Booting
 
 		$configurator->addConfig(__DIR__ . '/Config/common.neon');
 
-		Type::addType('uuid_binary', 'Ramsey\Uuid\Doctrine\UuidBinaryType');
-
 		return $configurator;
+	}
+
+	/**
+	 * @throws DBALException
+	 */
+	private static function additionalSetup(): void
+	{
+		Type::addType('uuid_binary', 'Ramsey\Uuid\Doctrine\UuidBinaryType');
 	}
 }
