@@ -4,5 +4,5 @@ services:
     - App\Repository\CountryRepository
     - App\Repository\IpAddressRepository
     - App\Repository\SessionRepository
-    - App\Repository\SnippetRepository
+    - App\Model\Snippet\SnippetRepository
     - App\Repository\VariableRepository

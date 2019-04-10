@@ -1,9 +1,8 @@
 {block title}{if $forkSnippet !== null}Fork snippet {$forkSnippet->getSlug()}{else}New Snippet{/if}{/block}
 {block content}
     {snippet homepage}
-        {var $snippet = $presenter->snippetFacade->getBySlug($presenter->getSession()->getSection('snippet')->{'pending'} ?? '')}
-        {if $snippet !== null}
-            {include '../@Includes/snippetView.latte', snippet => $snippet}
+        {ifset $pendingSnippet}
+            {include '../@Includes/snippetView.latte', snippet => $pendingSnippet}
         {else}
             {control snippetForm}
             <section n:if="count($session->getSnippets()) > 0" class="box down">
@@ -14,5 +13,5 @@
                     </li>
                 </ul>
             </section>
-        {/if}
+        {/ifset}
     {/snippet}

@@ -1,7 +1,14 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace App\Entity;
+declare(strict_types=1);
 
+namespace App\Model\Snippet;
+
+use App\Entity\DateTimeTrait;
+use App\Entity\IpAddress;
+use App\Entity\Session;
+use App\Entity\Syntax;
+use App\Entity\UniqueTrait;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -51,21 +58,21 @@ class Snippet
 
     /**
      * Many Snippets have One Session
-     * @ORM\ManyToOne(targetEntity="Session", inversedBy="snippet", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="\App\Entity\Session", inversedBy="snippet", cascade={"persist"})
      * @var Session
      */
     private $author_session;
 
     /**
      * Many Snippets have One IpAddress
-     * @ORM\ManyToOne(targetEntity="IpAddress", inversedBy="snippet", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="\App\Entity\IpAddress", inversedBy="snippet", cascade={"persist"})
      * @var IpAddress
      */
     private $author_ip_address;
 
     /**
      * Many Snippets have One Syntax
-     * @ORM\ManyToOne(targetEntity="Syntax", inversedBy="snippet", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="\App\Entity\Syntax", inversedBy="snippet", cascade={"persist"})
      * @var Syntax
      */
     private $syntax;
@@ -76,118 +83,63 @@ class Snippet
      */
     private $expire_at;
 
-    /**
-     * Snippet constructor.
-     * @param string $title
-     * @param string $payload
-     * @param Session $author_session
-     * @param IpAddress $author_ip_address
-     * @param Syntax $syntax
-     * @param DateTime|null $expire_at
-     */
-    public function __construct(?string $title, string $payload, Session $author_session, IpAddress $author_ip_address, ?Syntax $syntax, DateTime $expire_at = null)
+    public function __construct(SnippetData $snippetData)
     {
-        $this->title = $title;
-        $this->payload = $payload;
-        $this->author_session = $author_session;
-        $this->author_ip_address = $author_ip_address;
-        $this->syntax = $syntax;
-        $this->expire_at = $expire_at;
-
-        $author_session->addSnippet($this);
+        $this->edit($snippetData);
+        $this->author_session->addSnippet($this);
     }
 
-    /**
-     * @return string
-     */
+    public function edit(SnippetData $snippetData): void
+	{
+		$this->title = $snippetData->title;
+		$this->payload = $snippetData->payload;
+		$this->author_session = $snippetData->authorSession;
+		$this->author_ip_address = $snippetData->authorIpAddress;
+		$this->syntax = $snippetData->syntax;
+		$this->expire_at = $snippetData->expireAt;
+	}
+
     public function getSlug(): string
     {
         return $this->slug;
     }
 
-    /**
-     * @param string $slug
-     */
-    public function setSlug(string $slug): void
+    public function createSlug(int $slugHelper, string $slug): void
     {
+    	$this->slug_helper = $slugHelper;
         $this->slug = $slug;
     }
 
-    /**
-     * @return string
-     */
     public function getPayload(): string
     {
         return $this->payload;
     }
 
-    /**
-     * @param string $payload
-     */
-    public function setPayload(string $payload): void
-    {
-        $this->payload = $payload;
-    }
-
-    /**
-     * @return Session
-     */
     public function getAuthorSession(): Session
     {
         return $this->author_session;
     }
 
-    /**
-     * @return IpAddress
-     */
     public function getAuthorIpAddress(): IpAddress
     {
         return $this->author_ip_address;
     }
 
-    /**
-     * @return Syntax
-     */
     public function getSyntax(): Syntax
     {
         return $this->syntax;
     }
 
-    /**
-     * @param Syntax $syntax
-     */
-    public function setSyntax(Syntax $syntax): void
-    {
-        $this->syntax = $syntax;
-    }
-
-    /**
-     * @return int
-     */
     public function getSlugHelper(): int
     {
         return $this->slug_helper;
     }
 
-    /**
-     * @param int $slug_helper
-     */
-    public function setSlugHelper(int $slug_helper): void
-    {
-        $this->slug_helper = $slug_helper;
-    }
-
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title == null ? 'Snippet #'.$this->getSlug() : $this->title;
     }
 
-    /**
-     * @return int
-     */
     public function getViews(): int
     {
         return $this->views;

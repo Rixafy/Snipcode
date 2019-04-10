@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Model\Snippet\Snippet;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -30,7 +31,7 @@ class Session
 
     /**
      * One Session has Many Snippets
-     * @ORM\OneToMany(targetEntity="Snippet", mappedBy="author_session", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="\App\Model\Snippet\Snippet", mappedBy="author_session", cascade={"persist", "remove"})
      * @var Snippet[]
      */
     private $snippets;

@@ -1,0 +1,3 @@
+services:
+    snippetFactory:
+        class: App\Model\Snippet\SnippetFactory

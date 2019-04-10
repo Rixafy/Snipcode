@@ -4,7 +4,8 @@ namespace App\Form;
 
 use App\Component\BaseComponent;
 use App\Facade\ProfileFacade;
-use App\Facade\SnippetFacade;
+use App\Model\Snippet\SnippetData;
+use App\Model\Snippet\SnippetFacade;
 use App\Repository\SyntaxRepository;
 use DateTime;
 use Nette\Application\UI\Form;
@@ -15,6 +16,9 @@ class SnippetFormFactory
     /** @var SnippetFacade @inject */
     public $snippetFacade;
 
+    /** @var ProfileFacade @inject */
+    public $profileFacade;
+
     /** @var SyntaxRepository @inject */
     public $syntaxRepository;
 
@@ -24,9 +28,10 @@ class SnippetFormFactory
     /** @var Session */
     private $netteSession;
 
-    public function __construct(SnippetFacade $snippetFacade, SyntaxRepository $syntaxRepository, Session $netteSession)
+    public function __construct(SnippetFacade $snippetFacade, ProfileFacade $profileFacade, SyntaxRepository $syntaxRepository, Session $netteSession)
     {
         $this->snippetFacade = $snippetFacade;
+        $this->profileFacade = $profileFacade;
         $this->syntaxRepository = $syntaxRepository;
         $this->netteSession = $netteSession;
     }
@@ -69,13 +74,16 @@ class SnippetFormFactory
 
     public function processForm(Form $form, array $values)
     {
-        $expireAt = new DateTime('+' . $values['expire_in'] . ' day');
+        $snippetData = new SnippetData;
+        $snippetData->title = $values['title'] === '' ? null : $values['title'];
+        $snippetData->payload = $values['payload'];
+        $snippetData->expireAt = new DateTime('+' . $values['expire_in'] . ' day');
+        $snippetData->authorIpAddress = $this->profileFacade->getCurrentIpAddress();
+        $snippetData->authorSession = $this->profileFacade->getCurrentSession();
 
-        $snippet = $this->snippetFacade->createSnippet($values['title'] === '' ? null : $values['title'], $values['payload'], null, $expireAt);
+        $snippet = $this->snippetFacade->create($snippetData);
 
         $this->netteSession->getSection('snippet')->{'pending'} = $snippet->getSlug();
-
-        $this->snippetFacade->flushSnippets();
 
         $this->baseComponent->onSuccess();
     }

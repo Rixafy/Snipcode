@@ -40,6 +40,7 @@ orm.annotations:
 
 includes:
 	- credentials.neon
+	- factories.neon
 	- facades.neon
 	- forms.neon
 	- repositories.neon

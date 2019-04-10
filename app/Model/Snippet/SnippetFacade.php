@@ -1,15 +1,16 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace App\Facade;
+declare(strict_types=1);
+
+namespace App\Model\Snippet;
 
 use App\Entity\Session;
-use App\Entity\Snippet;
-use App\Entity\Syntax;
-use App\Repository\SnippetRepository;
+use App\Facade\ProfileFacade;
 use App\Repository\SyntaxRepository;
 use App\Repository\VariableRepository;
 use App\Service\SlugGenerator;
-use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
+use Ramsey\Uuid\UuidInterface;
 
 class SnippetFacade
 {
@@ -28,52 +29,57 @@ class SnippetFacade
     /** @var ProfileFacade @inject */
     public $profileFacade;
 
+    /** @var SnippetFactory @inject */
+    public $snippetFactory;
+
+    /** @var EntityManagerInterface @inject */
+    public $entityManager;
+
     /** @var Snippet */
     private $temporarySnippet;
 
-    public function getById(string $id): ?Snippet
-    {
-        return $this->snippetRepository->get($id);
-    }
+	/**
+	 * @throws SnippetNotFoundException
+	 */
+	public function get(UuidInterface $uuid): Snippet
+	{
+		return $this->snippetRepository->get($uuid);
+	}
 
-    public function getBySlug(string $slug, bool $addView = false): ?Snippet
+	public function create(SnippetData $snippetData): Snippet
+	{
+		$snippet = $this->snippetFactory->create($snippetData);
+
+		$this->generateSlug($snippet);
+
+		$this->entityManager->persist($snippet);
+		$this->entityManager->flush();
+
+		return $snippet;
+	}
+
+	/**
+	 * @throws SnippetNotFoundException
+	 */
+	public function getBySlug(string $slug, bool $addView = false): ?Snippet
     {
         $snippet = $this->snippetRepository->getBySlug($slug);
 
         if ($snippet !== null && $addView) {
             $snippet->addView();
-            $this->snippetRepository->save($snippet);
-            $this->snippetRepository->flush();
+            $this->entityManager->flush();
         }
 
         return $snippet;
     }
 
-    private function generateSlug(Snippet $snippet): Snippet
+    private function generateSlug(Snippet $snippet): Snippet //TODO: Move to SlugGenerator
     {
         $snippets_inserted = $this->variableRepository->getByName('snippets_inserted');
-
         $snippets_inserted->increaseValue();
-
-        $snippet->setSlugHelper($snippets_inserted->getValue());
-        $snippet->setSlug($this->slugGenerator->encodeSlug($snippet->getSlugHelper()));
-
-        $this->snippetRepository->save($snippet);
-        $this->variableRepository->save($snippets_inserted);
+        $snippet->createSlug($snippets_inserted->getValue(), $this->slugGenerator->encodeSlug($snippets_inserted->getValue()));
 
         return $snippet;
-    }
-
-    public function createSnippet(?string $title, string $payload, ?Syntax $syntax, DateTime $expireAt): Snippet
-    {
-        $snippet = $this->snippetRepository->create($title, $payload, $this->profileFacade->getCurrentSession(), $this->profileFacade->getCurrentIpAddress(), $syntax, $expireAt);
-
-        return $this->generateSlug($snippet);
-    }
-
-    public function flushSnippets(): void
-    {
-        $this->snippetRepository->flush();
     }
 
     public function getTemporarySnippet(): Snippet
@@ -86,7 +92,10 @@ class SnippetFacade
         $this->temporarySnippet = $temporarySnippet;
     }
 
-    public function getLastSnippet(Session $session): ?Snippet
+	/**
+	 * @throws SnippetNotFoundException
+	 */
+	public function getLastSnippet(Session $session): Snippet
     {
         return $this->snippetRepository->getLastBySession($session);
     }

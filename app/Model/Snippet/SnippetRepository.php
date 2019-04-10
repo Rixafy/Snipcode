@@ -1,53 +1,95 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace App\Repository;
+declare(strict_types=1);
+
+namespace App\Model\Snippet;
 
 use App\Entity\IpAddress;
 use App\Entity\Session;
-use App\Entity\Snippet;
 use App\Entity\Syntax;
+use App\Repository\BaseRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Ramsey\Uuid\UuidInterface;
 
-class SnippetRepository extends BaseRepository
+class SnippetRepository
 {
+	/** @var EntityManagerInterface */
+	private $entityManager;
+
     public function __construct(EntityManagerInterface $entityManager)
     {
-        parent::__construct($entityManager, Snippet::class);
+        $this->entityManager = $entityManager;
     }
 
-    /**
-     * @param $id
-     * @return Snippet|object
-     */
-    public function get(string $id)
+    public function getRepository()
+	{
+		return $this->entityManager->getRepository(Snippet::class);
+	}
+
+	/**
+	 * @throws SnippetNotFoundException
+	 */
+	public function get(UuidInterface $id): Snippet
     {
-        return parent::get($id);
+    	/** @var Snippet $snippet */
+    	$snippet = $this->getRepository()->find($id);
+
+    	if ($snippet === null) {
+    		throw new SnippetNotFoundException('Snippet with id ' . $id . ' not found.');
+		}
+
+        return $snippet;
     }
 
-    public function getByAutoIncrement(int $value): ?Snippet
+	/**
+	 * @throws SnippetNotFoundException
+	 */
+	public function getByAutoIncrement(int $value): Snippet
     {
-        return $this->getRepository()->findOneBy([
+    	/** @var Snippet $snippet */
+        $snippet = $this->getRepository()->findOneBy([
             'auto_increment' => $value
         ]);
+
+        if ($snippet === null) {
+			throw new SnippetNotFoundException('Snippet with auto_increment ' . $value . ' not found.');
+		}
+
+        return $snippet;
     }
 
-    public function create(?string $title, string $payload, Session $authorSession, IpAddress $authorIpAddress, ?Syntax $syntax, DateTime $expireAt): Snippet
+	/**
+	 * @throws SnippetNotFoundException
+	 */
+	public function getBySlug(string $slug): Snippet
     {
-        return new Snippet($title, $payload, $authorSession, $authorIpAddress, $syntax, $expireAt);
+    	/** @var Snippet $snippet */
+        $snippet = $this->getRepository()->findOneBy(['slug' => $slug]);
+
+		if ($snippet === null) {
+			throw new SnippetNotFoundException('Snippet with slug ' . $slug . ' not found.');
+		}
+
+		return $snippet;
     }
 
-    public function getBySlug(string $slug): ?Snippet
+	/**
+	 * @throws SnippetNotFoundException
+	 */
+	public function getLastBySession(Session $session): Snippet
     {
-        return $this->getRepository()->findOneBy(['slug' => $slug]);
-    }
-
-    public function getLastBySession(Session $session): ?Snippet
-    {
-        return $this->getRepository()->findOneBy([
+    	/** @var Snippet $snippet */
+        $snippet =  $this->getRepository()->findOneBy([
             'author_session' => $session
         ], [
             'created_at' => 'desc'
         ]);
+
+		if ($snippet === null) {
+			throw new SnippetNotFoundException('Snippet with session ' . $session->getId() . ' not found.');
+		}
+
+		return $snippet;
     }
 }

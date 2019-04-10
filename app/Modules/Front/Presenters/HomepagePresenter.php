@@ -4,11 +4,13 @@ namespace App\Presenters;
 
 use App\Component\SnippetFormComponent;
 use App\Entity\Session;
-use App\Entity\Snippet;
+use App\Model\Snippet\Snippet;
 use App\Facade\ConfigFacade;
 use App\Facade\ProfileFacade;
-use App\Facade\SnippetFacade;
+use App\Model\Snippet\SnippetFacade;
+use App\Model\Snippet\SnippetNotFoundException;
 use Nette\ComponentModel\IComponent;
+use Ramsey\Uuid\Uuid;
 
 final class HomepagePresenter extends BasePresenter
 {
@@ -46,7 +48,7 @@ final class HomepagePresenter extends BasePresenter
     public function actionDefault(?string $forkId = null): void
     {
         if ($forkId != null) {
-            $this->forkSnippet = $this->snippetFacade->getById($forkId);
+            $this->forkSnippet = $this->snippetFacade->get(Uuid::fromString($forkId));
         }
     }
 
@@ -54,7 +56,15 @@ final class HomepagePresenter extends BasePresenter
     {
         $this->template->session = $this->session;
         $this->template->forkSnippet = $this->forkSnippet;
-    }
+
+        if (isset($this->getSession()->getSection('snippet')->{'pending'})) {
+			try {
+				$this->template->pendingSnippet = $this->snippetFacade->getBySlug($this->getSession()->getSection('snippet')->{'pending'});
+
+			} catch (SnippetNotFoundException $e) {
+			}
+        }
+	}
 
     public function getForkText(): ?string
     {

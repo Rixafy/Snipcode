@@ -2,8 +2,9 @@
 
 namespace App\Presenters;
 
-use App\Entity\Snippet;
-use App\Facade\SnippetFacade;
+use App\Model\Snippet\Snippet;
+use App\Model\Snippet\SnippetFacade;
+use App\Model\Snippet\SnippetNotFoundException;
 
 final class SnippetPresenter extends BasePresenter
 {
@@ -13,28 +14,26 @@ final class SnippetPresenter extends BasePresenter
     /** @var Snippet */
     private $snippet;
 
-    public function actionDefault(string $slug): void
-    {
-        $this->snippet = $this->snippetFacade->getBySlug($slug, true);
+    public function startup(): void
+	{
+		parent::startup();
 
-        if($this->snippet === null) {
-            $this->error('Snippet not found');
-        }
-    }
+		try {
+			$this->snippet = $this->snippetFacade->getBySlug($this->getParameter('slug'), true);
 
-    public function renderDefault(): void
+		} catch (SnippetNotFoundException $e) {
+			$this->error('Snippet not found');
+		}
+	}
+
+
+    public function renderDefault(string $slug): void
     {
         $this->template->snippet = $this->snippet;
     }
 
     public function actionRaw(string $slug): void
     {
-        $this->snippet = $this->snippetFacade->getBySlug($slug, true);
-
-        if($this->snippet === null) {
-            $this->error('Snippet not found');
-        }
-
         $this->getHttpResponse()->setContentType('text/plain', 'UTF-8');
 
         exit($this->snippet->getPayload());
