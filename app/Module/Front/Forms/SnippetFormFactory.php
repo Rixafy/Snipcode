@@ -43,11 +43,11 @@ class SnippetFormFactory
         $form = new Form;
 
         $form->addText('title', 'Title')
-            ->setAttribute('placeholder', 'Title (optional)')
-            ->setAttribute('autocomplete', 'off');
+            ->setHtmlAttribute('placeholder', 'Title (optional)')
+            ->setHtmlAttribute('autocomplete', 'off');
 
         $form->addTextArea('payload', 'Snippet')
-            ->setAttribute('autofocus', true)
+            ->setHtmlAttribute('autofocus', true)
             ->setRequired('Please paste some snippet');
 
         //$form->addSelect('syntax', 'Select syntax', $this->syntaxRepository->getAssociatedArray('name'));
@@ -60,7 +60,7 @@ class SnippetFormFactory
         ]);
 
         $form->addSubmit('send', 'Save Snippet')
-            ->setAttribute('class', 'ajax button bg-blue');
+            ->setHtmlAttribute('class', 'ajax button bg-blue');
 
         $form->setDefaults([
             'expire_in' => 7,
