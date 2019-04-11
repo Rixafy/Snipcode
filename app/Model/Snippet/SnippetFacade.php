@@ -37,9 +37,6 @@ class SnippetFacade
     /** @var EntityManagerInterface @inject */
     public $entityManager;
 
-    /** @var Snippet */
-    protected $temporarySnippet;
-
 	/**
 	 * @throws SnippetNotFoundException
 	 */
