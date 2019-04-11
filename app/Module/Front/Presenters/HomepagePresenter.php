@@ -1,14 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace App\Presenters;
+namespace Snipcode\Presenters;
 
-use App\Component\SnippetFormComponent;
-use App\Entity\Session;
-use App\Model\Snippet\Snippet;
-use App\Facade\ConfigFacade;
-use App\Facade\ProfileFacade;
-use App\Model\Snippet\SnippetFacade;
-use App\Model\Snippet\Exception\SnippetNotFoundException;
+use Snipcode\Component\SnippetFormComponent;
+use Snipcode\Entity\Session;
+use Snipcode\Model\Snippet\Snippet;
+use Snipcode\Facade\ConfigFacade;
+use Snipcode\Facade\ProfileFacade;
+use Snipcode\Model\Snippet\SnippetFacade;
+use Snipcode\Model\Snippet\Exception\SnippetNotFoundException;
+use Nette\Application;
 use Nette\ComponentModel\IComponent;
 use Ramsey\Uuid\Uuid;
 
@@ -81,4 +82,9 @@ final class HomepagePresenter extends BasePresenter
             $this->redrawControl('homepage');
         });
     }
+
+    protected function shutdown(Application\IResponse $response)
+	{
+
+	}
 }

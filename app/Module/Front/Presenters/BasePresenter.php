@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace App\Presenters;
+namespace Snipcode\Presenters;
 
-use App\Facade\ConfigFacade;
-use App\Facade\ProfileFacade;
+use Snipcode\Facade\ConfigFacade;
+use Snipcode\Facade\ProfileFacade;
 use Nette;
 
 abstract class BasePresenter extends Nette\Application\UI\Presenter

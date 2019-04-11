@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App\Service;
+namespace Snipcode\Service;
 
-use App\Model\Snippet\Snippet;
-use App\Model\Variable\Exception\VariableNotFoundException;
-use App\Model\Variable\VariableFacade;
+use Snipcode\Model\Snippet\Snippet;
+use Snipcode\Model\Variable\Exception\VariableNotFoundException;
+use Snipcode\Model\Variable\VariableFacade;
 use Hashids\Hashids;
 
 class SlugGenerator

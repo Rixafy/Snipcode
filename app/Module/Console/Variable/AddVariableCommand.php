@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Module\Console\Variable;
+namespace Snipcode\Module\Console\Variable;
 
-use App\Model\Variable\VariableData;
-use App\Model\Variable\VariableFacade;
+use Snipcode\Model\Variable\VariableData;
+use Snipcode\Model\Variable\VariableFacade;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

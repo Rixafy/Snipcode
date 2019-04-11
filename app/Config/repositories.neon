@@ -1,8 +1,8 @@
 services:
-    - App\Repository\ConstantRepository
-    - App\Repository\SyntaxRepository
-    - App\Repository\CountryRepository
-    - App\Repository\IpAddressRepository
-    - App\Repository\SessionRepository
-    - App\Model\Snippet\SnippetRepository
-    - App\Model\Variable\VariableRepository
+    - Snipcode\Repository\ConstantRepository
+    - Snipcode\Repository\SyntaxRepository
+    - Snipcode\Repository\CountryRepository
+    - Snipcode\Repository\IpAddressRepository
+    - Snipcode\Repository\SessionRepository
+    - Snipcode\Model\Snippet\SnippetRepository
+    - Snipcode\Model\Variable\VariableRepository

@@ -1,2 +1,2 @@
 services:
-    - App\Service\SlugGenerator(%hashids.salt%)
+    - Snipcode\Service\SlugGenerator(%hashids.salt%)

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Module\Console\Constant;
+namespace Snipcode\Module\Console\Constant;
 
-use App\Repository\ConstantRepository;
+use Snipcode\Repository\ConstantRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace App\Repository;
+namespace Snipcode\Repository;
 
-use App\Entity\Country;
-use App\Entity\IpAddress;
+use Snipcode\Entity\Country;
+use Snipcode\Entity\IpAddress;
 use Doctrine\ORM\EntityManagerInterface;
 
 class IpAddressRepository extends BaseRepository

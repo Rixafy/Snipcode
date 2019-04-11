@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Snippet;
+namespace Snipcode\Model\Snippet;
 
-use App\Entity\Session;
-use App\Model\Snippet\Exception\SnippetNotFoundException;
+use Snipcode\Entity\Session;
+use Snipcode\Model\Snippet\Exception\SnippetNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;
 

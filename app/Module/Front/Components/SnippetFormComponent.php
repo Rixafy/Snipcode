@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Component;
+namespace Snipcode\Component;
 
-use App\Form\SnippetFormFactory;
+use Snipcode\Form\SnippetFormFactory;
 
 class SnippetFormComponent extends BaseComponent
 {

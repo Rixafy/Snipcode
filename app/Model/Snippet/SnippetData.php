@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Snippet;
+namespace Snipcode\Model\Snippet;
 
-use App\Entity\IpAddress;
-use App\Entity\Session;
-use App\Entity\Syntax;
+use Snipcode\Entity\IpAddress;
+use Snipcode\Entity\Session;
+use Snipcode\Entity\Syntax;
 use DateTime;
 
 class SnippetData

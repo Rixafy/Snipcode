@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Repository;
+namespace Snipcode\Repository;
 
-use App\Entity\Country;
+use Snipcode\Entity\Country;
 use Doctrine\ORM\EntityManagerInterface;
 
 class CountryRepository extends BaseRepository

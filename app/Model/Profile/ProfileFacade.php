@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace App\Facade;
+namespace Snipcode\Facade;
 
-use App\Entity\IpAddress;
-use App\Entity\Session;
-use App\Repository\CountryRepository;
-use App\Repository\IpAddressRepository;
-use App\Repository\SessionRepository;
+use Snipcode\Entity\IpAddress;
+use Snipcode\Entity\Session;
+use Snipcode\Repository\CountryRepository;
+use Snipcode\Repository\IpAddressRepository;
+use Snipcode\Repository\SessionRepository;
 use Nette\Utils\Json;
 use Nette\Utils\JsonException;
 use peterkahl\locale\locale;

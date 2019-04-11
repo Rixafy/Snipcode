@@ -9,12 +9,12 @@ console:
 services:
 	addConstantCommand:
 		inject: true
-		class: App\Module\Console\Constant\AddConstantCommand
+		class: Snipcode\Module\Console\Constant\AddConstantCommand
 
 	addVariableCommand:
 		inject: true
-		class: App\Module\Console\Variable\AddVariableCommand
+		class: Snipcode\Module\Console\Variable\AddVariableCommand
 
 	addSyntaxCommand:
-		class: App\Module\Console\Syntax\AddSyntaxCommand
+		class: Snipcode\Module\Console\Syntax\AddSyntaxCommand
 		inject: true

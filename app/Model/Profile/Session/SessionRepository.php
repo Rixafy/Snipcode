@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace App\Repository;
+namespace Snipcode\Repository;
 
-use App\Entity\IpAddress;
-use App\Entity\Session;
+use Snipcode\Entity\IpAddress;
+use Snipcode\Entity\Session;
 use Doctrine\ORM\EntityManagerInterface;
 
 class SessionRepository extends BaseRepository

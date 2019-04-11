@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Variable;
+namespace Snipcode\Model\Variable;
 
-use App\Entity\DateTimeTrait;
-use App\Entity\UniqueTrait;
+use Snipcode\Entity\DateTimeTrait;
+use Snipcode\Entity\UniqueTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

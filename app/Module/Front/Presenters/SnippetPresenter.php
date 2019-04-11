@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App\Presenters;
+namespace Snipcode\Presenters;
 
-use App\Model\Snippet\Snippet;
-use App\Model\Snippet\SnippetFacade;
-use App\Model\Snippet\Exception\SnippetNotFoundException;
+use Snipcode\Model\Snippet\Snippet;
+use Snipcode\Model\Snippet\SnippetFacade;
+use Snipcode\Model\Snippet\Exception\SnippetNotFoundException;
 
 final class SnippetPresenter extends BasePresenter
 {

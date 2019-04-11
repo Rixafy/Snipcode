@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Component;
+namespace Snipcode\Component;
 
 use Nette\Application\UI\Control;
 

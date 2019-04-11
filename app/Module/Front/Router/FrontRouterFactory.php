@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Module\Front\Router;
+namespace Snipcode\Module\Front\Router;
 
 use Nette;
 use Nette\Application\Routers\RouteList;

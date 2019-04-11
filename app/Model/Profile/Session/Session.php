@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Entity;
+namespace Snipcode\Entity;
 
-use App\Model\Snippet\Snippet;
+use Snipcode\Model\Snippet\Snippet;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,7 +31,7 @@ class Session
 
     /**
      * One Session has Many Snippets
-     * @ORM\OneToMany(targetEntity="\App\Model\Snippet\Snippet", mappedBy="author_session", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="\Snipcode\Model\Snippet\Snippet", mappedBy="author_session", cascade={"persist", "remove"})
      * @var Snippet[]
      */
     protected $snippets;

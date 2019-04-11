@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Module\Console\Syntax;
+namespace Snipcode\Module\Console\Syntax;
 
-use App\Repository\SyntaxRepository;
+use Snipcode\Repository\SyntaxRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

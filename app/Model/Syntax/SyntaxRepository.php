@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Repository;
+namespace Snipcode\Repository;
 
-use App\Entity\Syntax;
+use Snipcode\Entity\Syntax;
 use Doctrine\ORM\EntityManagerInterface;
 
 class SyntaxRepository extends BaseRepository

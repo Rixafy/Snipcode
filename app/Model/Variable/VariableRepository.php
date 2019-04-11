@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Variable;
+namespace Snipcode\Model\Variable;
 
-use App\Model\Variable\Exception\VariableNotFoundException;
+use Snipcode\Model\Variable\Exception\VariableNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;
 

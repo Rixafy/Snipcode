@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace App\Form;
+namespace Snipcode\Form;
 
-use App\Component\BaseComponent;
-use App\Facade\ProfileFacade;
-use App\Model\Snippet\SnippetData;
-use App\Model\Snippet\SnippetFacade;
-use App\Repository\SyntaxRepository;
+use Snipcode\Component\BaseComponent;
+use Snipcode\Facade\ProfileFacade;
+use Snipcode\Model\Snippet\SnippetData;
+use Snipcode\Model\Snippet\SnippetFacade;
+use Snipcode\Repository\SyntaxRepository;
 use DateTime;
 use Nette\Application\UI\Form;
 use Nette\Http\Session;

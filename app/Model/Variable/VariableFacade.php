@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Variable;
+namespace Snipcode\Model\Variable;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;

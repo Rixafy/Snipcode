@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Variable\Exception;
+namespace Snipcode\Model\Variable\Exception;
 
 use Exception;
 

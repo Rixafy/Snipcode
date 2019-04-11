@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Snippet;
+namespace Snipcode\Model\Snippet;
 
-use App\Entity\DateTimeTrait;
-use App\Entity\IpAddress;
-use App\Entity\Session;
-use App\Entity\Syntax;
-use App\Entity\UniqueTrait;
+use Snipcode\Entity\DateTimeTrait;
+use Snipcode\Entity\IpAddress;
+use Snipcode\Entity\Session;
+use Snipcode\Entity\Syntax;
+use Snipcode\Entity\UniqueTrait;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -58,21 +58,21 @@ class Snippet
 
 	/**
 	 * Many Snippets have One Session
-	 * @ORM\ManyToOne(targetEntity="\App\Entity\Session", inversedBy="snippet", cascade={"persist"})
+	 * @ORM\ManyToOne(targetEntity="\Snipcode\Entity\Session", inversedBy="snippet", cascade={"persist"})
 	 * @var Session
 	 */
 	protected $author_session;
 
 	/**
 	 * Many Snippets have One IpAddress
-	 * @ORM\ManyToOne(targetEntity="\App\Entity\IpAddress", inversedBy="snippet", cascade={"persist"})
+	 * @ORM\ManyToOne(targetEntity="\Snipcode\Entity\IpAddress", inversedBy="snippet", cascade={"persist"})
 	 * @var IpAddress
 	 */
 	protected $author_ip_address;
 
 	/**
 	 * Many Snippets have One Syntax
-	 * @ORM\ManyToOne(targetEntity="\App\Entity\Syntax", inversedBy="snippet", cascade={"persist"})
+	 * @ORM\ManyToOne(targetEntity="\Snipcode\Entity\Syntax", inversedBy="snippet", cascade={"persist"})
 	 * @var Syntax
 	 */
 	protected $syntax;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Snippet;
+namespace Snipcode\Model\Snippet;
 
 class SnippetFactory
 {

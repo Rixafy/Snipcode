@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Snippet;
+namespace Snipcode\Model\Snippet;
 
-use App\Entity\Session;
-use App\Facade\ProfileFacade;
-use App\Model\Snippet\Exception\SnippetNotFoundException;
-use App\Model\Variable\Exception\VariableNotFoundException;
-use App\Model\Variable\VariableFacade;
-use App\Repository\SyntaxRepository;
-use App\Service\SlugGenerator;
+use Snipcode\Entity\Session;
+use Snipcode\Facade\ProfileFacade;
+use Snipcode\Model\Snippet\Exception\SnippetNotFoundException;
+use Snipcode\Model\Variable\Exception\VariableNotFoundException;
+use Snipcode\Model\Variable\VariableFacade;
+use Snipcode\Repository\SyntaxRepository;
+use Snipcode\Service\SlugGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;
 

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Repository;
+namespace Snipcode\Repository;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;

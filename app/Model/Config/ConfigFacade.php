@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Facade;
+namespace Snipcode\Facade;
 
-use App\Repository\ConstantRepository;
+use Snipcode\Repository\ConstantRepository;
 
 class ConfigFacade
 {
