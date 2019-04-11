@@ -12,7 +12,7 @@ session:
 
 
 services:
-	router: App\RouterFactory::createRouter
+	router: App\Module\Front\Router\FrontRouterFactory::createRouter
 
 
 extensions:
