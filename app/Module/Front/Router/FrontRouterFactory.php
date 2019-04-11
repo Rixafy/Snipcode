@@ -19,7 +19,6 @@ final class FrontRouterFactory
 		$router = new RouteList;
 
 		$router->addRoute('<slug>', 'Snippet:default');
-		$router->addRoute('<slug>', 'Snippet:default');
 		$router->addRoute('raw/<slug>', 'Snippet:raw');
 		$router->addRoute('fork/<forkId>', 'Homepage:default');
 		$router->addRoute('', 'Homepage:default');
