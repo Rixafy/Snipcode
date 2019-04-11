@@ -78,16 +78,6 @@ class SnippetFacade
         return $snippet;
     }
 
-    public function getTemporarySnippet(): Snippet
-    {
-        return $this->temporarySnippet;
-    }
-
-    public function setTemporarySnippet(Snippet $temporarySnippet): void
-    {
-        $this->temporarySnippet = $temporarySnippet;
-    }
-
 	/**
 	 * @throws SnippetNotFoundException
 	 */
