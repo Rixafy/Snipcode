@@ -1,2 +1,3 @@
 services:
-    - Snipcode\Service\SlugGenerator(%hashids.salt%)
+	slugGenerator:
+		class: Snipcode\Model\Generator\SlugGenerator(%hashids.salt%)

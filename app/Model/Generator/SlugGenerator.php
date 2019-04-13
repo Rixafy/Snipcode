@@ -1,6 +1,8 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace Snipcode\Service;
+declare(strict_types=1);
+
+namespace Snipcode\Model\Generator;
 
 use Snipcode\Model\Snippet\Snippet;
 use Snipcode\Model\Variable\Exception\VariableNotFoundException;

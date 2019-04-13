@@ -10,7 +10,7 @@ use Snipcode\Model\Snippet\Exception\SnippetNotFoundException;
 use Snipcode\Model\Variable\Exception\VariableNotFoundException;
 use Snipcode\Model\Variable\VariableFacade;
 use Snipcode\Model\Syntax\SyntaxRepository;
-use Snipcode\Service\SlugGenerator;
+use Snipcode\Model\Generator\SlugGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;
 
