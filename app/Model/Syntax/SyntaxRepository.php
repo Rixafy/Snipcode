@@ -1,55 +1,39 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace Snipcode\Repository;
+declare(strict_types=1);
 
-use Snipcode\Entity\Syntax;
+namespace Snipcode\Model\Syntax;
+
 use Doctrine\ORM\EntityManagerInterface;
+use Ramsey\Uuid\UuidInterface;
+use Snipcode\Model\Syntax\Exception\SyntaxNotFoundException;
 
-class SyntaxRepository extends BaseRepository
+class SyntaxRepository
 {
+	/** @var EntityManagerInterface */
+	protected $entityManager;
+
     public function __construct(EntityManagerInterface $entityManager)
     {
-        parent::__construct($entityManager, Syntax::class);
+        $this->entityManager = $entityManager;
     }
 
-    /**
-     * @param $id
-     * @return Syntax|object
-     */
-    public function get(string $id)
-    {
-        return parent::get($id);
-    }
+    private function getRepository()
+	{
+		return $this->entityManager->getRepository(Syntax::class);
+	}
 
-    /**
-     * @param $id
-     * @return Syntax|object
-     */
-    public function getReference(string $id)
+	/**
+	 * @throws SyntaxNotFoundException
+	 */
+	public function get(UuidInterface $id)
     {
-        return parent::getReference($id);
-    }
+    	$syntax = $this->getRepository()->find($id);
 
-    public function getByName(string $name): ?Syntax
-    {
-        return $this->getRepository()->findOneBy(['name' => $name]);
-    }
+    	if ($syntax === null) {
+    		throw new SyntaxNotFoundException('Syntax with id ' . $id . ' not found.');
+		}
 
-    public function getByShortName(string $name): ?Syntax
-    {
-        return $this->getRepository()->findOneBy(['short_name' => $name]);
-    }
-
-    /**
-     * @return Syntax[]
-     */
-    public function getAll()
-    {
-        return $this->getRepository()->findAll();
-    }
-
-    public function create(string $name): Syntax
-    {
-        return new Syntax($name);
+    	return $syntax;
     }
 }

@@ -7,10 +7,10 @@ namespace Snipcode\Model\Snippet;
 use Snipcode\Entity\DateTimeTrait;
 use Snipcode\Entity\IpAddress;
 use Snipcode\Entity\Session;
-use Snipcode\Entity\Syntax;
 use Snipcode\Entity\UniqueTrait;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Snipcode\Model\Syntax\Syntax;
 
 /**
  * @ORM\Entity
@@ -72,7 +72,7 @@ class Snippet
 
 	/**
 	 * Many Snippets have One Syntax
-	 * @ORM\ManyToOne(targetEntity="\Snipcode\Entity\Syntax", inversedBy="snippet", cascade={"persist"})
+	 * @ORM\ManyToOne(targetEntity="\Snipcode\Model\Syntax\Syntax", inversedBy="snippet", cascade={"persist"})
 	 * @var Syntax
 	 */
 	protected $syntax;

@@ -4,3 +4,6 @@ services:
 
     variableFactory:
         class: Snipcode\Model\Variable\VariableFactory
+
+    syntaxFactory:
+        class: Snipcode\Model\Syntax\SyntaxFactory

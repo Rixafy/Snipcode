@@ -6,7 +6,7 @@ use Snipcode\Component\BaseComponent;
 use Snipcode\Facade\ProfileFacade;
 use Snipcode\Model\Snippet\SnippetData;
 use Snipcode\Model\Snippet\SnippetFacade;
-use Snipcode\Repository\SyntaxRepository;
+use Snipcode\Model\Syntax\SyntaxRepository;
 use DateTime;
 use Nette\Application\UI\Form;
 use Nette\Http\Session;

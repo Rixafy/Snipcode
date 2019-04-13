@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Snipcode\Module\Console\Syntax;
 
-use Snipcode\Repository\SyntaxRepository;
+use Snipcode\Model\Syntax\SyntaxData;
+use Snipcode\Model\Syntax\SyntaxFacade;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -12,8 +13,8 @@ use Symfony\Component\Console\Question\Question;
 
 final class AddSyntaxCommand extends Command
 {
-	/** @var SyntaxRepository @inject */
-	public $syntaxRepository;
+	/** @var SyntaxFacade @inject */
+	public $syntaxFacade;
 
 	protected function configure(): void
 	{
@@ -28,11 +29,11 @@ final class AddSyntaxCommand extends Command
 		$shortName = $helper->ask($input, $output, new Question('Syntax short name: '));
 
 		if ($name !== null && $shortName !== null) {
-			$syntax = $this->syntaxRepository->create($name);
+			$syntaxData = new SyntaxData();
+			$syntaxData->name = $name;
+			$syntaxData->shortName = $shortName;
 
-			$syntax->setShortName($shortName);
-
-			$this->syntaxRepository->save($syntax, true);
+			$syntax = $this->syntaxFacade->create($syntaxData);
 
 			$output->writeln('<fg=green;options=bold>Syntax ' . $syntax->getName() . ' created!</>');
 

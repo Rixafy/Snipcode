@@ -9,7 +9,7 @@ use Snipcode\Facade\ProfileFacade;
 use Snipcode\Model\Snippet\Exception\SnippetNotFoundException;
 use Snipcode\Model\Variable\Exception\VariableNotFoundException;
 use Snipcode\Model\Variable\VariableFacade;
-use Snipcode\Repository\SyntaxRepository;
+use Snipcode\Model\Syntax\SyntaxRepository;
 use Snipcode\Service\SlugGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;

@@ -14,3 +14,7 @@ services:
 	variableFacade:
 		inject: true
 		class: Snipcode\Model\Variable\VariableFacade
+
+	syntaxFacade:
+		inject: true
+		class: Snipcode\Model\Syntax\SyntaxFacade

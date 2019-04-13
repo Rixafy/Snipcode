@@ -19,7 +19,7 @@ abstract class BaseComponent extends Control
     {
         $template = $this->template;
 
-        $template->setFile($this->getPresenter()->context->parameters['appDir'] . '/Modules/Front/Templates/@Components/' . $this->getName() . '.latte');
+        $template->setFile($this->getPresenter()->context->parameters['appDir'] . '/Module/Front/Templates/@Components/' . $this->getName() . '.latte');
 
         $template->render();
     }
