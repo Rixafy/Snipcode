@@ -8,7 +8,7 @@ use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Types\Type;
 use Nette\Configurator;
 
-class Booting
+class Bootstrap
 {
 	/**
 	 * @throws DBALException
