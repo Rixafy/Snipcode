@@ -99,6 +99,20 @@ class Snippet
 		$this->expire_at = $snippetData->expireAt;
 	}
 
+	public function getData(): SnippetData
+	{
+		$data = new SnippetData();
+
+		$data->title = $this->title;
+		$data->payload = $this->payload;
+		$data->authorSession = $this->author_session;
+		$data->authorIpAddress = $this->author_ip_address;
+		$data->syntax = $this->syntax;
+		$data->expireAt = $this->expire_at;
+
+		return $data;
+	}
+
 	public function getSlug(): string
 	{
 		return $this->slug;
