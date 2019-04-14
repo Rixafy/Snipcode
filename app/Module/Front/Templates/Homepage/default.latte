@@ -4,7 +4,6 @@
         {ifset $pendingSnippet}
             {include '../@Includes/snippetView.latte', snippet => $pendingSnippet}
         {else}
-            {dump 'pending snippet is not set'}
             {control snippetForm}
             <section n:if="count($session->getSnippets()) > 0" class="box down">
                 <h2>Your Snippets</h2>
