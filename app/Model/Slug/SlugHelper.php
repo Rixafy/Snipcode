@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Snipcode\Model\Generator;
+namespace Snipcode\Model\Slug;
 
 use Snipcode\Model\Snippet\Snippet;
 use Snipcode\Model\Variable\Exception\VariableNotFoundException;
 use Snipcode\Model\Variable\VariableFacade;
 use Hashids\Hashids;
 
-class SlugGenerator
+class SlugHelper
 {
     /** @var string */
     protected $salt;
@@ -32,11 +32,11 @@ class SlugGenerator
 	 */
 	public function injectSlug(Snippet $snippet): Snippet
 	{
-		$snippets_inserted = $this->variableFacade->getByName('snippets_inserted');
+		$insertedSnippets = $this->variableFacade->getByName('snippets_inserted');
 
-		$snippets_inserted->increaseValue();
+		$insertedSnippets->increaseValue();
 
-		$snippet->createSlug($snippets_inserted->getValue(), $this->hashIds->encode($snippets_inserted->getValue()));
+		$snippet->createSlug($insertedSnippets->getValue(), $this->hashIds->encode($insertedSnippets->getValue()));
 
 		return $snippet;
 	}

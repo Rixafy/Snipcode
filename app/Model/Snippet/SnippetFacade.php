@@ -6,11 +6,11 @@ namespace Snipcode\Model\Snippet;
 
 use Snipcode\Entity\Session;
 use Snipcode\Facade\ProfileFacade;
+use Snipcode\Model\Slug\SlugHelper;
 use Snipcode\Model\Snippet\Exception\SnippetNotFoundException;
 use Snipcode\Model\Variable\Exception\VariableNotFoundException;
 use Snipcode\Model\Variable\VariableFacade;
 use Snipcode\Model\Syntax\SyntaxRepository;
-use Snipcode\Model\Generator\SlugGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;
 
@@ -25,8 +25,8 @@ class SnippetFacade
     /** @var VariableFacade @inject */
     public $variableFacade;
 
-    /** @var SlugGenerator @inject */
-    public $slugGenerator;
+    /** @var SlugHelper @inject */
+    public $slugHelper;
 
     /** @var ProfileFacade @inject */
     public $profileFacade;
@@ -52,7 +52,7 @@ class SnippetFacade
 	{
 		$snippet = $this->snippetFactory->create($snippetData);
 
-		$this->slugGenerator->injectSlug($snippet);
+		$this->slugHelper->injectSlug($snippet);
 
 		$this->entityManager->persist($snippet);
 		$this->entityManager->flush();

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c8dd375dd4b8394a6fedb05a2bfe0d7",
+    "content-hash": "bde429ffa4b10e7871fd203473a977a1",
     "packages": [
         {
             "name": "contributte/console",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/contributte/console.git",
-                "reference": "10348d8c31753e038e0d966307e14a19647963a7"
+                "reference": "f5803f6d18af89f1294a867c86c6784093d1f944"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/contributte/console/zipball/10348d8c31753e038e0d966307e14a19647963a7",
-                "reference": "10348d8c31753e038e0d966307e14a19647963a7",
+                "url": "https://api.github.com/repos/contributte/console/zipball/f5803f6d18af89f1294a867c86c6784093d1f944",
+                "reference": "f5803f6d18af89f1294a867c86c6784093d1f944",
                 "shasum": ""
             },
             "require": {
@@ -65,7 +65,7 @@
                 "nette",
                 "symfony"
             ],
-            "time": "2019-04-07T14:58:30+00:00"
+            "time": "2019-04-14T18:21:32+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -378,12 +378,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "773275d18327bedfe4ca97a3c4878961e1856be1"
+                "reference": "11b67bbd1e8bc0b6d4caab2e2fd4e9acce1f2392"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/773275d18327bedfe4ca97a3c4878961e1856be1",
-                "reference": "773275d18327bedfe4ca97a3c4878961e1856be1",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/11b67bbd1e8bc0b6d4caab2e2fd4e9acce1f2392",
+                "reference": "11b67bbd1e8bc0b6d4caab2e2fd4e9acce1f2392",
                 "shasum": ""
             },
             "require": {
@@ -452,7 +452,7 @@
                 "php",
                 "queryobject"
             ],
-            "time": "2019-04-06T16:31:12+00:00"
+            "time": "2019-04-13T21:45:28+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -797,16 +797,16 @@
         },
         {
             "name": "doctrine/persistence",
-            "version": "1.1.x-dev",
+            "version": "1.2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/persistence.git",
-                "reference": "9fac5cd181a5e867967f904424061fd184fd5437"
+                "reference": "dfa67e7cad3651aedb2525a44dee1b1e9eb9a50d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/persistence/zipball/9fac5cd181a5e867967f904424061fd184fd5437",
-                "reference": "9fac5cd181a5e867967f904424061fd184fd5437",
+                "url": "https://api.github.com/repos/doctrine/persistence/zipball/dfa67e7cad3651aedb2525a44dee1b1e9eb9a50d",
+                "reference": "dfa67e7cad3651aedb2525a44dee1b1e9eb9a50d",
                 "shasum": ""
             },
             "require": {
@@ -828,7 +828,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -875,7 +875,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2019-02-19T06:30:21+00:00"
+            "time": "2019-04-10T12:53:06+00:00"
         },
         {
             "name": "doctrine/reflection",
@@ -1433,78 +1433,6 @@
             "time": "2019-03-22T00:57:58+00:00"
         },
         {
-            "name": "nette/database",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nette/database.git",
-                "reference": "d81e35ec19677cdb228e2f4405d093ff42cc1952"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nette/database/zipball/d81e35ec19677cdb228e2f4405d093ff42cc1952",
-                "reference": "d81e35ec19677cdb228e2f4405d093ff42cc1952",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pdo": "*",
-                "nette/caching": "^3.0",
-                "nette/utils": "^3.0",
-                "php": ">=7.1"
-            },
-            "conflict": {
-                "nette/di": "<3.0-stable"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0.0",
-                "nette/di": "^v3.0",
-                "nette/tester": "^2.0",
-                "tracy/tracy": "^2.4"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "https://davidgrudl.com"
-                },
-                {
-                    "name": "Nette Community",
-                    "homepage": "https://nette.org/contributors"
-                }
-            ],
-            "description": "💾 Nette Database: layer with a familiar PDO-like API but much more powerful. Building queries, advanced joins, drivers for MySQL, PostgreSQL, SQLite, MS SQL Server and Oracle.",
-            "homepage": "https://nette.org",
-            "keywords": [
-                "database",
-                "mssql",
-                "mysql",
-                "nette",
-                "notorm",
-                "oracle",
-                "pdo",
-                "postgresql",
-                "queries",
-                "sqlite"
-            ],
-            "time": "2019-04-09T03:20:55+00:00"
-        },
-        {
             "name": "nette/di",
             "version": "dev-master",
             "source": {
@@ -1785,12 +1713,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/mail.git",
-                "reference": "ce48a2cea92ad38945994de2916d236b09aa80c5"
+                "reference": "4c1a77099fdb1849c05d2432f0ffed6faf25b08c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/mail/zipball/ce48a2cea92ad38945994de2916d236b09aa80c5",
-                "reference": "ce48a2cea92ad38945994de2916d236b09aa80c5",
+                "url": "https://api.github.com/repos/nette/mail/zipball/4c1a77099fdb1849c05d2432f0ffed6faf25b08c",
+                "reference": "4c1a77099fdb1849c05d2432f0ffed6faf25b08c",
                 "shasum": ""
             },
             "require": {
@@ -1845,7 +1773,7 @@
                 "nette",
                 "smtp"
             ],
-            "time": "2019-04-04T03:48:54+00:00"
+            "time": "2019-04-11T16:26:25+00:00"
         },
         {
             "name": "nette/neon",
@@ -2142,70 +2070,6 @@
                 "nette"
             ],
             "time": "2019-04-03T15:53:25+00:00"
-        },
-        {
-            "name": "nette/security",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nette/security.git",
-                "reference": "23d6ae385c4a174ebc2e2b6c07e219d6c933b1f0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nette/security/zipball/23d6ae385c4a174ebc2e2b6c07e219d6c933b1f0",
-                "reference": "23d6ae385c4a174ebc2e2b6c07e219d6c933b1f0",
-                "shasum": ""
-            },
-            "require": {
-                "nette/utils": "^2.4 || ^3.0",
-                "php": ">=7.1"
-            },
-            "conflict": {
-                "nette/di": "<3.0-stable"
-            },
-            "require-dev": {
-                "nette/di": "^3.0.0",
-                "nette/http": "^3.0.0",
-                "nette/tester": "^2.0",
-                "tracy/tracy": "^2.4"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "https://davidgrudl.com"
-                },
-                {
-                    "name": "Nette Community",
-                    "homepage": "https://nette.org/contributors"
-                }
-            ],
-            "description": "🔑 Nette Security: provides authentication, authorization and a role-based access control management via ACL (Access Control List)",
-            "homepage": "https://nette.org",
-            "keywords": [
-                "Authentication",
-                "acl",
-                "authorization",
-                "nette"
-            ],
-            "time": "2019-04-04T03:49:14+00:00"
         },
         {
             "name": "nette/utils",
@@ -3223,7 +3087,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "ramsey/uuid-doctrine": 20,
-        "ramsey/uuid": 20,
         "freezy-bee/doctrine-form-mapper": 20,
         "peterkahl/country-to-locale": 20
     },
