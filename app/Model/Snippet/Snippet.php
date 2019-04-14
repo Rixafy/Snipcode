@@ -92,7 +92,7 @@ class Snippet
 	public function edit(SnippetData $snippetData): void
 	{
 		$this->title = $snippetData->title;
-		$this->payload = $snippetData->payload;
+		$this->payload = gzencode($snippetData->payload);
 		$this->author_session = $snippetData->authorSession;
 		$this->author_ip_address = $snippetData->authorIpAddress;
 		$this->syntax = $snippetData->syntax;
@@ -112,7 +112,7 @@ class Snippet
 
 	public function getPayload(): string
 	{
-		return $this->payload;
+		return gzdecode($this->payload);
 	}
 
 	public function getAuthorSession(): Session

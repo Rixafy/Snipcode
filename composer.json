@@ -25,7 +25,8 @@
 		"nettrine/dbal": "^0.5",
 		"freezy-bee/doctrine-form-mapper": "dev-master",
 		"peterkahl/country-to-locale": "dev-master",
-		"hashids/hashids": "^4.0"
+		"hashids/hashids": "^4.0",
+		"ext-zlib": "*"
 	},
 	"autoload": {
 		"classmap": ["app/Bootstrap.php"]
