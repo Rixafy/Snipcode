@@ -28,5 +28,5 @@
     });
 
     document.title = {$snippet->getTitle()} + ' | ' + {$constants['project_name']};
-    window.history.pushState({"pageTitle":"test"},"", {$constants['project_url']} + '/' + {$snippet->getSlug()});
+    window.history.pushState({'pageTitle':'test'}, '', '/' + {$snippet->getSlug()});
 </script>
