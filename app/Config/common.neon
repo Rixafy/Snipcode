@@ -38,6 +38,16 @@ orm.annotations:
         - app/Model
 
 
+dbal:
+	debug: %debugMode%
+	connection:
+		driver: pdo_mysql
+		types:
+			uuid_binary:
+				class: Ramsey\Uuid\Doctrine\UuidBinaryType
+				commented: false
+
+
 includes:
 	- credentials.neon
 	- factories.neon

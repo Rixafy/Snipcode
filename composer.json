@@ -16,7 +16,7 @@
 		"nette/mail": "^3.0",
 		"nette/robot-loader": "^3.0",
 		"nette/utils": "^3.0",
-		"latte/latte": "^2.5",
+		"latte/latte": "^3.0",
 		"tracy/tracy": "^2.6",
 		"nettrine/orm": "^0.5",
 		"contributte/console": "^0.7",
