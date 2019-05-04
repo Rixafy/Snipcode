@@ -12,7 +12,7 @@ session:
 
 
 services:
-	router: Snipcode\Module\Front\Router\FrontRouterFactory::createRouter
+	router: Snipcode\Router\RouterFactory::createRouter
 
 
 extensions:

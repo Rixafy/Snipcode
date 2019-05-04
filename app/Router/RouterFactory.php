@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Snipcode\Module\Front\Router;
+namespace Snipcode\Router;
 
 use Nette;
 use Nette\Application\Routers\RouteList;
 
-final class FrontRouterFactory
+final class RouterFactory
 {
 	use Nette\StaticClass;
 
