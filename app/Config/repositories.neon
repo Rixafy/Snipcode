@@ -3,6 +3,3 @@ services:
     - Snipcode\Repository\CountryRepository
     - Snipcode\Repository\IpAddressRepository
     - Snipcode\Repository\SessionRepository
-    - Snipcode\Model\Snippet\SnippetRepository
-    - Snipcode\Model\Variable\VariableRepository
-    - Snipcode\Model\Syntax\SyntaxRepository

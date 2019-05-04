@@ -1,0 +1,16 @@
+services:
+
+	# Snippet
+	snippetFactory: Snipcode\Model\Snippet\SnippetFactory
+	snippetRepository: Snipcode\Model\Snippet\SnippetRepository
+	snippetFacade: Snipcode\Model\Snippet\SnippetFacade
+
+	# Syntax
+	syntaxFactory: Snipcode\Model\Syntax\SyntaxFactory
+	syntaxRepository: Snipcode\Model\Syntax\SyntaxRepository
+	syntaxFacade: Snipcode\Model\Syntax\SyntaxFacade
+
+	# Variable
+	variableFactory: Snipcode\Model\Variable\VariableFactory
+	variableRepository: Snipcode\Model\Variable\VariableRepository
+	variableFacade: Snipcode\Model\Variable\VariableFacade

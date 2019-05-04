@@ -50,7 +50,7 @@ dbal:
 
 includes:
 	- credentials.neon
-	- factories.neon
+	- model.neon
 	- facades.neon
 	- forms.neon
 	- repositories.neon

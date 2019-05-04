@@ -1,9 +1,0 @@
-services:
-    snippetFactory:
-        class: Snipcode\Model\Snippet\SnippetFactory
-
-    variableFactory:
-        class: Snipcode\Model\Variable\VariableFactory
-
-    syntaxFactory:
-        class: Snipcode\Model\Syntax\SyntaxFactory

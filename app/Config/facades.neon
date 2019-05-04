@@ -6,15 +6,3 @@ services:
 	profileFacade:
 		inject: true
 		class: Snipcode\Facade\ProfileFacade
-		
-	snippetFacade:
-		inject: true
-		class: Snipcode\Model\Snippet\SnippetFacade
-		
-	variableFacade:
-		inject: true
-		class: Snipcode\Model\Variable\VariableFacade
-
-	syntaxFacade:
-		inject: true
-		class: Snipcode\Model\Syntax\SyntaxFacade
