@@ -78,9 +78,9 @@ class SnippetRepository
     {
     	/** @var Snippet $snippet */
         $snippet =  $this->getRepository()->findOneBy([
-            'author_session' => $session
+            'authorSession' => $session
         ], [
-            'created_at' => 'desc'
+            'createdAt' => 'desc'
         ]);
 
 		if ($snippet === null) {

@@ -42,7 +42,7 @@ class Snippet
 	 * @ORM\Column(type="integer")
 	 * @var int
 	 */
-	protected $slug_helper;
+	protected $slugHelper;
 
 	/**
 	 * @ORM\Column(type="text")
@@ -57,21 +57,18 @@ class Snippet
 	protected $views = 0;
 
 	/**
-	 * Many Snippets have One Session
 	 * @ORM\ManyToOne(targetEntity="\Snipcode\Entity\Session", inversedBy="snippet", cascade={"persist"})
 	 * @var Session
 	 */
-	protected $author_session;
+	protected $authorSession;
 
 	/**
-	 * Many Snippets have One IpAddress
 	 * @ORM\ManyToOne(targetEntity="\Snipcode\Entity\IpAddress", inversedBy="snippet", cascade={"persist"})
 	 * @var IpAddress
 	 */
-	protected $author_ip_address;
+	protected $authorIpAddress;
 
 	/**
-	 * Many Snippets have One Syntax
 	 * @ORM\ManyToOne(targetEntity="\Snipcode\Model\Syntax\Syntax", inversedBy="snippet", cascade={"persist"})
 	 * @var Syntax
 	 */
@@ -81,22 +78,22 @@ class Snippet
 	 * @ORM\Column(type="datetime", nullable=true)
 	 * @var DateTime
 	 */
-	protected $expire_at;
+	protected $expireAt;
 
 	public function __construct(SnippetData $snippetData)
 	{
 		$this->edit($snippetData);
-		$this->author_session->addSnippet($this);
+		$this->authorSession->addSnippet($this);
 	}
 
 	public function edit(SnippetData $snippetData): void
 	{
 		$this->title = $snippetData->title;
 		$this->payload = $snippetData->payload;
-		$this->author_session = $snippetData->authorSession;
-		$this->author_ip_address = $snippetData->authorIpAddress;
+		$this->authorSession = $snippetData->authorSession;
+		$this->authorIpAddress = $snippetData->authorIpAddress;
 		$this->syntax = $snippetData->syntax;
-		$this->expire_at = $snippetData->expireAt;
+		$this->expireAt = $snippetData->expireAt;
 	}
 
 	public function getData(): SnippetData
@@ -105,10 +102,10 @@ class Snippet
 
 		$data->title = $this->title;
 		$data->payload = $this->payload;
-		$data->authorSession = $this->author_session;
-		$data->authorIpAddress = $this->author_ip_address;
+		$data->authorSession = $this->authorSession;
+		$data->authorIpAddress = $this->authorIpAddress;
 		$data->syntax = $this->syntax;
-		$data->expireAt = $this->expire_at;
+		$data->expireAt = $this->expireAt;
 
 		return $data;
 	}
@@ -120,7 +117,7 @@ class Snippet
 
 	public function createSlug(int $slugHelper, string $slug): void
 	{
-		$this->slug_helper = $slugHelper;
+		$this->slugHelper = $slugHelper;
 		$this->slug = $slug;
 	}
 
@@ -131,12 +128,12 @@ class Snippet
 
 	public function getAuthorSession(): Session
 	{
-		return $this->author_session;
+		return $this->authorSession;
 	}
 
 	public function getAuthorIpAddress(): IpAddress
 	{
-		return $this->author_ip_address;
+		return $this->authorIpAddress;
 	}
 
 	public function getSyntax(): Syntax
@@ -146,7 +143,7 @@ class Snippet
 
 	public function getSlugHelper(): int
 	{
-		return $this->slug_helper;
+		return $this->slugHelper;
 	}
 
 	public function getTitle(): string

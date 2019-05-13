@@ -25,12 +25,12 @@ class Syntax
      * @ORM\Column(type="string", unique=true, length=31)
      * @var string
      */
-    protected $short_name;
+    protected $shortName;
 
     public function __construct(SyntaxData $syntaxData)
     {
         $this->name = $syntaxData->name;
-        $this->short_name = $syntaxData->shortName;
+        $this->shortName = $syntaxData->shortName;
     }
 
     public function getName(): string
@@ -40,6 +40,6 @@ class Syntax
 
     public function getShortName(): string
     {
-        return $this->short_name;
+        return $this->shortName;
     }
 }

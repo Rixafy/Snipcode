@@ -27,7 +27,7 @@ class Session
      * @ORM\ManyToOne(targetEntity="IpAddress", inversedBy="session", cascade={"persist"})
      * @var IpAddress
      */
-    protected $ip_address;
+    protected $ipAddress;
 
     /**
      * One Session has Many Snippets
@@ -44,7 +44,7 @@ class Session
     public function __construct(string $hash, IpAddress $ip_address)
     {
         $this->hash = $hash;
-        $this->ip_address = $ip_address;
+        $this->ipAddress = $ip_address;
         $this->snippets = new ArrayCollection();
     }
 
@@ -61,7 +61,7 @@ class Session
      */
     public function getIpAddress(): IpAddress
     {
-        return $this->ip_address;
+        return $this->ipAddress;
     }
 
     /**
@@ -69,7 +69,7 @@ class Session
      */
     public function changeIpAddress(IpAddress $ip_address): void
     {
-        $this->ip_address = $ip_address;
+        $this->ipAddress = $ip_address;
     }
 
     /**
