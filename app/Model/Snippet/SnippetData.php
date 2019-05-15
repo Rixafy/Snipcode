@@ -6,8 +6,8 @@ namespace Snipcode\Model\Snippet;
 
 use Snipcode\Entity\IpAddress;
 use Snipcode\Entity\Session;
-use Snipcode\Entity\Syntax;
 use DateTime;
+use Snipcode\Model\Syntax\Syntax;
 
 class SnippetData
 {

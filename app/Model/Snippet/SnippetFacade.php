@@ -37,16 +37,6 @@ class SnippetFacade
     /** @var EntityManagerInterface */
     private $entityManager;
 
-	/**
-	 * SnippetFacade constructor.
-	 * @param SnippetRepository $snippetRepository
-	 * @param SyntaxRepository $syntaxRepository
-	 * @param VariableFacade $variableFacade
-	 * @param SlugHelper $slugHelper
-	 * @param ProfileFacade $profileFacade
-	 * @param SnippetFactory $snippetFactory
-	 * @param EntityManagerInterface $entityManager
-	 */
 	public function __construct(
 		SnippetRepository $snippetRepository, 
 		SyntaxRepository $syntaxRepository, 
