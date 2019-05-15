@@ -28,7 +28,6 @@ class VariableFacade
 		$this->variableFactory = $variableFactory;
 	}
 
-
 	public function create(VariableData $variableData): Variable
 	{
 		$variable =  $this->variableFactory->create($variableData);
