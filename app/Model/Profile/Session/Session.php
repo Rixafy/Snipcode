@@ -31,7 +31,7 @@ class Session
 
     /**
      * One Session has Many Snippets
-     * @ORM\OneToMany(targetEntity="\Snipcode\Model\Snippet\Snippet", mappedBy="author_session", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="\Snipcode\Model\Snippet\Snippet", mappedBy="authorSession", cascade={"persist", "remove"})
      * @var Snippet[]
      */
     protected $snippets;

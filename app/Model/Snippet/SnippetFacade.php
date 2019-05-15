@@ -16,26 +16,54 @@ use Ramsey\Uuid\UuidInterface;
 
 class SnippetFacade
 {
-    /** @var SnippetRepository @inject */
-    public $snippetRepository;
+    /** @var SnippetRepository */
+    private $snippetRepository;
 
-    /** @var SyntaxRepository @inject */
-    public $syntaxRepository;
+    /** @var SyntaxRepository */
+    private $syntaxRepository;
 
-    /** @var VariableFacade @inject */
-    public $variableFacade;
+    /** @var VariableFacade */
+    private $variableFacade;
 
-    /** @var SlugHelper @inject */
-    public $slugHelper;
+    /** @var SlugHelper */
+    private $slugHelper;
 
-    /** @var ProfileFacade @inject */
-    public $profileFacade;
+    /** @var ProfileFacade */
+    private $profileFacade;
 
-    /** @var SnippetFactory @inject */
-    public $snippetFactory;
+    /** @var SnippetFactory */
+    private $snippetFactory;
 
-    /** @var EntityManagerInterface @inject */
-    public $entityManager;
+    /** @var EntityManagerInterface */
+    private $entityManager;
+
+	/**
+	 * SnippetFacade constructor.
+	 * @param SnippetRepository $snippetRepository
+	 * @param SyntaxRepository $syntaxRepository
+	 * @param VariableFacade $variableFacade
+	 * @param SlugHelper $slugHelper
+	 * @param ProfileFacade $profileFacade
+	 * @param SnippetFactory $snippetFactory
+	 * @param EntityManagerInterface $entityManager
+	 */
+	public function __construct(
+		SnippetRepository $snippetRepository, 
+		SyntaxRepository $syntaxRepository, 
+		VariableFacade $variableFacade, 
+		SlugHelper $slugHelper, 
+		ProfileFacade $profileFacade, 
+		SnippetFactory $snippetFactory, 
+		EntityManagerInterface $entityManager
+	) {
+		$this->snippetRepository = $snippetRepository;
+		$this->syntaxRepository = $syntaxRepository;
+		$this->variableFacade = $variableFacade;
+		$this->slugHelper = $slugHelper;
+		$this->profileFacade = $profileFacade;
+		$this->snippetFactory = $snippetFactory;
+		$this->entityManager = $entityManager;
+	}
 
 	/**
 	 * @throws SnippetNotFoundException
