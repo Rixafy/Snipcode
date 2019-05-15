@@ -28,7 +28,6 @@ class SyntaxFacade
 		$this->syntaxFactory = $syntaxFactory;
 	}
 
-
 	public function create(SyntaxData $syntaxData): Syntax
 	{
 		$syntax =  $this->syntaxFactory->create($syntaxData);
