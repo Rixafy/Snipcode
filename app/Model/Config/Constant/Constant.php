@@ -35,57 +35,36 @@ class Constant
         $this->value = $value;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function getValue(): string
     {
         return $this->value;
     }
 
-    /**
-     * @param string $value
-     */
     public function setValue(string $value): void
     {
         $this->value = $value;
     }
 
-    /**
-     * @param int $value
-     */
     public function setIntValue(int $value): void
     {
         $this->value = strval($value);
     }
 
-    /**
-     * @param bool $value
-     */
     public function setBoolValue(bool $value): void
     {
         $this->value = strval($value);
     }
 
-    /**
-     * @return bool
-     */
     public function getBoolValue(): bool
     {
         return boolval($this->value);
     }
 
-    /**
-     * @return int
-     */
     public function getIntValue(): int
     {
         return intval($this->value);
