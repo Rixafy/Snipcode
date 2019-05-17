@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Snipcode\Repository;
 
@@ -23,7 +25,9 @@ class ConstantRepository extends BaseRepository
 
     public function getByName(string $name): ?Constant
     {
-        return $this->getRepository()->findOneBy(['name' => $name]);
+        return $this->getRepository()->findOneBy([
+        	'name' => $name
+		]);
     }
 
     /**
