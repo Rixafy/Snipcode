@@ -1,6 +1,6 @@
 cd ~/websites/snipcode.link
 mkdir -p www
-rsync -av dev/* www
+rsync -avh dev/* www
 rm -r www/temp/cache/*
 chmod -R 755 www
 chmod -R 775 www/temp
