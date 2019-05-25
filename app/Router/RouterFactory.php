@@ -6,6 +6,7 @@ namespace Snipcode\Router;
 
 use Nette;
 use Nette\Application\Routers\RouteList;
+use Nette\Application\UI\Presenter;
 
 final class RouterFactory
 {
@@ -18,10 +19,10 @@ final class RouterFactory
 	{
 		$router = new RouteList;
 
-		$router->addRoute('<slug>', 'Snippet:default');
-		$router->addRoute('raw/<slug>', 'Snippet:raw');
-		$router->addRoute('fork/<forkId>', 'Homepage:default');
-		$router->addRoute('', 'Homepage:default');
+        $router->addRoute('/', [Presenter::PRESENTER_KEY => 'Homepage:default']);
+        $router->addRoute('/<slug>', [Presenter::PRESENTER_KEY => 'Snippet:default']);
+        $router->addRoute('/raw/<slug>', [Presenter::PRESENTER_KEY => 'Snippet:raw']);
+		$router->addRoute('/fork/<forkId>', [Presenter::PRESENTER_KEY => 'Homepage:default']);
 
 		return $router;
 	}
