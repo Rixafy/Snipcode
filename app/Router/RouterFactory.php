@@ -17,7 +17,7 @@ final class RouterFactory
 	 */
 	public static function createRouter()
 	{
-		$router = new RouteList;
+		$router = new RouteList();
 
         $router->addRoute('/', [Presenter::PRESENTER_KEY => 'Homepage:default']);
         $router->addRoute('/<slug>', [Presenter::PRESENTER_KEY => 'Snippet:default']);
