@@ -21,6 +21,7 @@
 		"nettrine/orm": "^0.5",
 		"contributte/console": "^0.7",
 		"nettrine/annotations": "^0.5",
+		"nettrine/migrations": "^0.6",
 		"ramsey/uuid-doctrine": "dev-master",
 		"nettrine/dbal": "^0.5",
 		"freezy-bee/doctrine-form-mapper": "dev-master",
