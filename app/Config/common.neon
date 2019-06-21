@@ -1,34 +1,28 @@
-parameters:
+extensions:
+    dbal: Nettrine\DBAL\DI\DbalExtension
+    dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
+    orm: Nettrine\ORM\DI\OrmExtension
+    orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
+    orm.console: Nettrine\ORM\DI\OrmConsoleExtension
+    annotations: Nettrine\Annotations\DI\AnnotationsExtension
+    formMapper: FreezyBee\DoctrineFormMapper\DI\FormMapperExtension
 
+migrations:
+    table: doctrine_migrations
+    column: version
+    directory: %appDir%/../migrations
+    namespace: Migrations
 
 application:
 	errorPresenter: Error
 	mapping:
 		*: Snipcode\*Module\Presenters\*Presenter
 
-
 session:
 	expiration: 30 days
 
-
 services:
 	router: Snipcode\Router\RouterFactory::createRouter
-
-
-extensions:
-    # Dbal
-    dbal: Nettrine\DBAL\DI\DbalExtension
-    dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
-
-    # Orm and annotations
-    orm: Nettrine\ORM\DI\OrmExtension
-    orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
-    orm.console: Nettrine\ORM\DI\OrmConsoleExtension
-    annotations: Nettrine\Annotations\DI\AnnotationsExtension
-
-    # Doctrine form mapper
-    formMapper: FreezyBee\DoctrineFormMapper\DI\FormMapperExtension
-
 
 orm.annotations:
     debug: %debugMode%
@@ -36,7 +30,6 @@ orm.annotations:
     defaultCache: apcu
     paths:
         - app/Model
-
 
 dbal:
 	debug: %debugMode%
@@ -46,7 +39,6 @@ dbal:
 			uuid_binary:
 				class: Ramsey\Uuid\Doctrine\UuidBinaryType
 				commented: false
-
 
 includes:
 	- credentials.neon
