@@ -1,2 +1,2 @@
 services:
-    - Snipcode\Form\SnippetFormFactory
+	- Snipcode\Form\SnippetFormFactory

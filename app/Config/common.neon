@@ -1,17 +1,17 @@
 extensions:
-    dbal: Nettrine\DBAL\DI\DbalExtension
-    dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
-    orm: Nettrine\ORM\DI\OrmExtension
-    orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
-    orm.console: Nettrine\ORM\DI\OrmConsoleExtension
-    annotations: Nettrine\Annotations\DI\AnnotationsExtension
-    formMapper: FreezyBee\DoctrineFormMapper\DI\FormMapperExtension
+	dbal: Nettrine\DBAL\DI\DbalExtension
+	dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
+	orm: Nettrine\ORM\DI\OrmExtension
+	orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
+	orm.console: Nettrine\ORM\DI\OrmConsoleExtension
+	annotations: Nettrine\Annotations\DI\AnnotationsExtension
+	formMapper: FreezyBee\DoctrineFormMapper\DI\FormMapperExtension
 
 migrations:
-    table: doctrine_migrations
-    column: version
-    directory: %appDir%/../migrations
-    namespace: Migrations
+	table: doctrine_migrations
+	column: version
+	directory: %appDir%/../migrations
+	namespace: Migrations
 
 application:
 	errorPresenter: Error
@@ -25,11 +25,11 @@ services:
 	router: Snipcode\Router\RouterFactory::createRouter
 
 orm.annotations:
-    debug: %debugMode%
-    excludePaths: []
-    defaultCache: apcu
-    paths:
-        - app/Model
+	debug: %debugMode%
+	excludePaths: []
+	defaultCache: apcu
+	paths:
+		- app/Model
 
 dbal:
 	debug: %debugMode%

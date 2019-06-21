@@ -1,4 +1,4 @@
 services:
-    snippetFormComponent:
-        inject: true
-        class: Snipcode\Component\SnippetFormComponent
+	snippetFormComponent:
+		inject: true
+		class: Snipcode\Component\SnippetFormComponent
