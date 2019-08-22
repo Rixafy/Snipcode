@@ -1,3 +1,4 @@
+#!/bin/bash
 cd ~/websites/snipcode.link
 mkdir -p www
 rsync -avh dev/* www
