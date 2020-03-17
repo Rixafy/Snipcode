@@ -13,6 +13,7 @@ class Bootstrap
 		$configurator = new Configurator;
 
 		$configurator->setDebugMode(isset($_SERVER['DEBUG']) && $_SERVER['DEBUG'] === 'true');
+		//$configurator->setDebugMode(true);
 		$configurator->enableTracy(__DIR__ . '/../log');
 
 		$configurator->setTimeZone('Europe/Prague');

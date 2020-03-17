@@ -7,16 +7,10 @@ extensions:
 	annotations: Nettrine\Annotations\DI\AnnotationsExtension
 	formMapper: FreezyBee\DoctrineFormMapper\DI\FormMapperExtension
 
-migrations:
-	table: doctrine_migrations
-	column: version
-	directory: %appDir%/../migrations
-	namespace: Migrations
-
 application:
 	errorPresenter: Error
 	mapping:
-		*: Snipcode\*Module\Presenters\*Presenter
+		*: Snipcode\Presenters\*Presenter
 
 session:
 	expiration: 30 days

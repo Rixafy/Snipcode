@@ -19,10 +19,10 @@ final class RouterFactory
 	{
 		$router = new RouteList();
 
-        $router->addRoute('/', [Presenter::PRESENTER_KEY => 'Homepage:default']);
-        $router->addRoute('/<slug>', [Presenter::PRESENTER_KEY => 'Snippet:default']);
-        $router->addRoute('/raw/<slug>', [Presenter::PRESENTER_KEY => 'Snippet:raw']);
-		$router->addRoute('/fork/<forkId>', [Presenter::PRESENTER_KEY => 'Homepage:default']);
+        $router->addRoute('/', [Presenter::PRESENTER_KEY => 'Homepage', Presenter::ACTION_KEY => 'default']);
+        $router->addRoute('/<slug>', [Presenter::PRESENTER_KEY => 'Snippet', Presenter::ACTION_KEY => 'default']);
+        $router->addRoute('/raw/<slug>', [Presenter::PRESENTER_KEY => 'Snippet', Presenter::ACTION_KEY => 'raw']);
+		$router->addRoute('/fork/<forkId>', [Presenter::PRESENTER_KEY => 'Homepage', Presenter::ACTION_KEY => 'default']);
 
 		return $router;
 	}

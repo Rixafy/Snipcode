@@ -2,6 +2,8 @@
 
 namespace Snipcode\Facade;
 
+use Exception;
+use Rixafy\Country\Exception\CountryNotFoundException;
 use Snipcode\Entity\IpAddress;
 use Snipcode\Entity\Session;
 use Snipcode\Repository\CountryRepository;
@@ -44,19 +46,15 @@ class ProfileFacade
             if ($this->ipAddress === null) {
                 $country = null;
 
-                $ctx = stream_context_create(array('http' => array('timeout' => 3)));
-                if ($data = @file_get_contents('http://www.geoplugin.net/json.gp?ip=' . $_SERVER['REMOTE_ADDR'], false, $ctx)) {
-                    try {
-                        if ($json = Json::decode($data)) {
-                            $country = $this->countryRepository->getByCode($json->geoplugin_countryCode);
-                            if ($country === null) {
-                                $country = $this->countryRepository->create($json->geoplugin_countryName, $json->geoplugin_currencyCode, $json->geoplugin_continentCode, $json->geoplugin_countryCode, locale::country2locale($json->geoplugin_countryCode));
-                            }
-                        }
-                    } catch (JsonException $e) {
-
-                    }
-                }
+				if (isset($_SERVER['HTTP_CF_IPCOUNTRY']) && !empty($_SERVER['HTTP_CF_IPCOUNTRY'])) {
+					$country = $this->countryRepository->getByCode($_SERVER['HTTP_CF_IPCOUNTRY']);
+				} else {
+					throw new Exception('Header "HTTP_CF_IPCOUNTRY" not found in http request.');
+				}
+				
+				if ($country === null) {
+					$country = $this->countryRepository->getByCode('US');
+				}
 
                 $this->ipAddress = $this->ipAddressRepository->create($_SERVER['REMOTE_ADDR'], $country);
 
