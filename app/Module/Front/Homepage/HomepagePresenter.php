@@ -60,7 +60,7 @@ final class HomepagePresenter extends BaseFrontPresenter
         $form = $this->snippetFormFactory->create($this->forkedFrom);
         
         $form->onSuccess[] = function (Form $form, array $data): void {
-            $slug = $this->snippetFacade->create($this->snippetDataFactory->createFromFormData($data))->getSlug();
+            $slug = $this->snippetFacade->create($this->snippetDataFactory->createFromFormData($data, $this->forkedFrom))->getSlug();
             $this->redirect('Snippet:default', [
                 'slug' => $slug
             ]);

@@ -21,7 +21,7 @@ final class SnippetDataFactory
 		private HashidsProvider $hashidsProvider,
 	) {}
 
-	public function createFromFormData(array $formData): SnippetData
+	public function createFromFormData(array $formData, ?Snippet $forkedFrom): SnippetData
 	{
 		$data = new SnippetData();
 		$data->title = $formData['title'];
@@ -30,6 +30,7 @@ final class SnippetDataFactory
 		$data->session = $this->sessionProvider->provide();
 		$data->ipAddress = $this->sessionProvider->provide()->getIpAddress();
 		$data->syntax = $formData['syntax'] === null ? null : $this->syntaxFacade->get(Uuid::fromString($formData['syntax']));
+		$data->forkedFrom = $forkedFrom;
 		
 		$data->encodedNumber = $this->getNextEncodedNumber();
 		$data->slug = $this->hashidsProvider->provide()->encode($data->encodedNumber);
