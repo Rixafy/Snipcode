@@ -2,29 +2,31 @@
 
 declare(strict_types=1);
 
-namespace Snipcode;
+namespace App;
 
 use Nette\Configurator;
 
 class Bootstrap
 {
-	public static function boot(): Configurator
-	{
-		$configurator = new Configurator;
+    public static function boot(): Configurator
+    {
+        $configurator = new Configurator();
 
-		$configurator->setDebugMode(isset($_SERVER['DEBUG']) && $_SERVER['DEBUG'] === 'true');
-		//$configurator->setDebugMode(true);
-		$configurator->enableTracy(__DIR__ . '/../log');
+        $debugMode = substr(dirname(__FILE__), -7) !== 'www/app';
 
-		$configurator->setTimeZone('Europe/Prague');
-		$configurator->setTempDirectory(__DIR__ . '/../temp');
+        $configurator->setDebugMode($debugMode);
+        $configurator->enableTracy(__DIR__ . '/../log');
 
-		$configurator->createRobotLoader()
-			->addDirectory(__DIR__)
-			->register();
+        $configurator->setTimeZone('Europe/Prague');
+        $configurator->setTempDirectory(__DIR__ . '/../temp');
 
-		$configurator->addConfig(__DIR__ . '/Config/common.neon');
+        $configurator->addConfig(__DIR__ . '/../config/main.neon');
 
-		return $configurator;
-	}
+        $configurator->addConfig(__DIR__ . '/../config/parameters_dev.neon');
+        if (!$debugMode) {
+            $configurator->addConfig(__DIR__ . '/../config/parameters_prod.neon');
+        }
+        
+        return $configurator;
+    }
 }

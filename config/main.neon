@@ -1,0 +1,35 @@
+extensions:
+	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+	archette.country: Archette\Country\CountryExtension
+	archette.ipAddress: Archette\IpAddress\IpAddressExtension
+
+
+console:
+    lazy: false
+
+
+http:
+	headers:
+		X-Powered-By: PHP 6.0.42
+
+
+application:
+	errorPresenter: Front:Error
+	mapping:
+		*: ['App\Module', '*', '*\*Presenter']
+
+
+session:
+	expiration: 14 days
+
+
+services:
+	routerFactory: App\Router\RouterFactory
+	router: @routerFactory::create
+
+
+includes:
+    - doctrine.neon
+    - model.neon
+    - console.neon
+    - front.neon

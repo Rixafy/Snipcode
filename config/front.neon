@@ -1,0 +1,12 @@
+search:
+	front:
+		in: %appDir%/Module/Front
+		classes:
+			- *Factory
+			- *Component
+	frontPresenters:
+		in: %appDir%/Module/Front
+		classes:
+			- *Presenter
+		tags:
+			- nette.inject

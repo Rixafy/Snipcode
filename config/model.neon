@@ -1,0 +1,13 @@
+search:
+	model:
+		in: %appDir%/Model
+		classes:
+			- *Facade
+			- *Factory
+			- *Authenticator
+			- *Subscriber
+			- *Provider
+
+
+services:
+    - App\Model\Hashids\HashidsProvider(%hashids.salt%)

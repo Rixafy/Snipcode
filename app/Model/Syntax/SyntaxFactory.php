@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Snipcode\Model\Syntax;
+namespace App\Model\Syntax;
 
-class SyntaxFactory
+use Ramsey\Uuid\Uuid;
+
+final class SyntaxFactory
 {
-	public function create(SyntaxData $syntaxData): Syntax
+	public function create(SyntaxData $data): Syntax
 	{
-		return new Syntax($syntaxData);
+		return new Syntax(Uuid::uuid4(), $data);
 	}
 }

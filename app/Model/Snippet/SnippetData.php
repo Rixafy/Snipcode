@@ -2,30 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Snipcode\Model\Snippet;
+namespace App\Model\Snippet;
 
-use Snipcode\Entity\IpAddress;
-use Snipcode\Entity\Session;
+use App\Model\Session\Session;
+use App\Model\Syntax\Syntax;
 use DateTime;
-use Snipcode\Model\Syntax\Syntax;
+use Rixafy\IpAddress\IpAddress;
 
-class SnippetData
+final class SnippetData
 {
-    /** @var string */
-    public $title;
-
-    /** @var string */
-    public $payload;
-
-    /** @var Session */
-    public $authorSession;
-
-    /** @var IpAddress */
-    public $authorIpAddress;
-
-    /** @var Syntax */
-    public $syntax;
-
-    /** @var DateTime */
-    public $expireAt;
+	public ?string $title = null;
+	public string $slug;
+	public int $encodedNumber;
+	public string $payload;
+	public ?Snippet $forkedFrom = null;
+	public Session $session;
+	public IpAddress $ipAddress;
+	public ?Syntax $syntax = null;
+	public DateTime $expireAt;
 }

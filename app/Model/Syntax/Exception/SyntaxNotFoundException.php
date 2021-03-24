@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Snipcode\Model\Syntax\Exception;
+namespace App\Model\Syntax\Exception;
 
 use Exception;
 
-class SyntaxNotFoundException extends Exception
+final class SyntaxNotFoundException extends Exception
 {
-
 }

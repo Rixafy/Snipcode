@@ -1,0 +1,30 @@
+{templateType App\Module\Front\Homepage\HomepageTemplate}
+{block title}{if $forkedFrom !== null}Fork snippet {$forkedFrom->getSlug()}{else}New Snippet{/if}{/block}
+{block content}
+{snippet homepage}
+    {form snippetForm}
+        <label>
+            <textarea class="snippet" n:name="payload"></textarea>
+        </label>
+
+        <section class="box">
+            <label>
+                <input n:name="title">
+            </label>
+            <label>
+                <select n:name="expireInDays"></select>
+            </label>
+            <p>
+                <button n:name="send">Save Snippet</button>
+            </p>
+        </section>
+    {/form}
+    <section n:if="count($yourSnippets) > 0" class="box down">
+        <h2>Your Snippets</h2>
+        <ul>
+            <li n:foreach="$yourSnippets as $s">
+                <a n:href="Snippet:default $s->getSlug()">{$s->getTitle()}</a>
+            </li>
+        </ul>
+    </section>
+{/snippet}

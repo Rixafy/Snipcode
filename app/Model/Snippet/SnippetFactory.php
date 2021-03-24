@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Snipcode\Model\Snippet;
+namespace App\Model\Snippet;
 
-class SnippetFactory
+use Ramsey\Uuid\Uuid;
+
+final class SnippetFactory
 {
-	public function create(SnippetData $snippetData): Snippet
+	public function create(SnippetData $data): Snippet
 	{
-		return new Snippet($snippetData);
+		return new Snippet(Uuid::uuid4(), $data);
 	}
 }

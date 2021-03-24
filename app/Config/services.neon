@@ -1,3 +1,0 @@
-services:
-	slugHelper:
-		factory: Snipcode\Model\Slug\SlugHelper(%hashids.salt%)

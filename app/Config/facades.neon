@@ -1,8 +1,0 @@
-services:
-	configFacade:
-		inject: true
-		class: Snipcode\Facade\ConfigFacade
-		
-	profileFacade:
-		inject: true
-		class: Snipcode\Facade\ProfileFacade

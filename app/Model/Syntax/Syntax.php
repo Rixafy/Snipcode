@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Snipcode\Model\Syntax;
+namespace App\Model\Syntax;
 
 use Doctrine\ORM\Mapping as ORM;
-use Snipcode\Entity\UniqueTrait;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity
@@ -13,33 +13,28 @@ use Snipcode\Entity\UniqueTrait;
  */
 class Syntax
 {
-    use UniqueTrait;
+	/**
+	 * @ORM\Id
+	 * @ORM\Column(type="uuid_binary", unique=true)
+	 */
+	private UuidInterface $id;
 
-    /**
-     * @ORM\Column(type="string", unique=true, length=63)
-     * @var string
-     */
-    protected $name;
+	/** @ORM\Column(type="string", unique=true) */
+	private string $name;
 
-    /**
-     * @ORM\Column(type="string", unique=true, length=31)
-     * @var string
-     */
-    protected $shortName;
+	public function __construct(UuidInterface $id, SyntaxData $data)
+	{
+		$this->id = $id;
+		$this->name = $data->name;
+	}
 
-    public function __construct(SyntaxData $syntaxData)
-    {
-        $this->name = $syntaxData->name;
-        $this->shortName = $syntaxData->shortName;
-    }
+	public function getId(): UuidInterface
+	{
+		return $this->id;
+	}
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getShortName(): string
-    {
-        return $this->shortName;
-    }
+	public function getName(): string
+	{
+		return $this->name;
+	}
 }

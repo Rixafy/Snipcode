@@ -1,6 +1,9 @@
+/appgen
+/appgen.neon
 /composer.lock
 /.idea
 /vendor
 /temp
 /log
-/app/Config/credentials.neon
+/config/parameters_dev.neon
+/config/parameters_prod.neon

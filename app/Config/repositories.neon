@@ -1,5 +1,0 @@
-services:
-    - Snipcode\Repository\ConstantRepository
-    - Snipcode\Repository\CountryRepository
-    - Snipcode\Repository\IpAddressRepository
-    - Snipcode\Repository\SessionRepository

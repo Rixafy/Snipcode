@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Snipcode\Model\Syntax;
+namespace App\Model\Syntax;
 
-class SyntaxData
+final class SyntaxData
 {
-	/** @var string */
-	public $name;
+	public string $name;
 
-	/** @var string */
-	public $shortName;
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+    }
 }

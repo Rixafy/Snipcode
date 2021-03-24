@@ -2,35 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Snipcode\Model\Syntax;
+namespace App\Model\Syntax;
 
+use App\Model\Syntax\Exception\SyntaxNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;
 
-class SyntaxFacade
+final class SyntaxFacade extends SyntaxRepository
 {
-	/** @var EntityManagerInterface */
-	protected $entityManager;
-
-	/** @var SyntaxRepository */
-	protected $syntaxRepository;
-
-	/** @var SyntaxFactory */
-	protected $syntaxFactory;
-
 	public function __construct(
-		EntityManagerInterface $entityManager,
-		SyntaxRepository $syntaxRepository,
-		SyntaxFactory $syntaxFactory
+		private SyntaxFactory $syntaxFactory,
+		private EntityManagerInterface $entityManager,
 	) {
-		$this->entityManager = $entityManager;
-		$this->syntaxRepository = $syntaxRepository;
-		$this->syntaxFactory = $syntaxFactory;
+		parent::__construct($entityManager);
 	}
 
-	public function create(SyntaxData $syntaxData): Syntax
+	public function create(SyntaxData $data): Syntax
 	{
-		$syntax =  $this->syntaxFactory->create($syntaxData);
+		$syntax = $this->syntaxFactory->create($data);
 
 		$this->entityManager->persist($syntax);
 		$this->entityManager->flush();
@@ -39,10 +28,13 @@ class SyntaxFacade
 	}
 
 	/**
-	 * @throws Exception\SyntaxNotFoundException
+	 * @throws SyntaxNotFoundException
 	 */
-	public function get(UuidInterface $id): Syntax
+	public function delete(UuidInterface $id): void
 	{
-		return $this->syntaxRepository->get($id);
+		$syntax = $this->get($id);
+
+		$this->entityManager->remove($syntax);
+		$this->entityManager->flush();
 	}
 }

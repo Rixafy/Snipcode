@@ -1,0 +1,38 @@
+{templateType App\Module\Front\Snippet\SnippetTemplate}
+{block title}{$snippet->getTitle()}{/block}
+{block content}
+
+<pre>
+    <code>{$snippet->getPayload()}</code>
+</pre>
+
+<section class="box">
+    <p>
+        <a class="button bg-green" n:href="Homepage:default">New Snippet</a>
+    </p>
+    <p>
+        <a target="_blank" class="button bg-red" n:href="RawSnippet:default $snippet->getSlug()">View raw data</a>
+    </p>
+    <p>
+        <a class="button bg-blue" n:href="Homepage:default $snippet->getId()->toString()">Fork this Snippet</a>
+    </p>
+</section>
+
+<script>
+    $('pre > code').each(function() {
+        hljs.highlightBlock(this);
+    });
+
+    $(document).ready(function() {
+        $('code.hljs').each(function(i, block) {
+            hljs.lineNumbersBlock(block);
+        });
+    });
+
+    document.title = {$snippet->getTitle()} + ' | Snipcode';
+</script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>

@@ -2,112 +2,113 @@
 
 declare(strict_types=1);
 
-namespace Snipcode\Model\Snippet;
+namespace App\Model\Snippet;
 
-use Snipcode\Entity\DateTimeTrait;
-use Snipcode\Entity\IpAddress;
-use Snipcode\Entity\Session;
-use Snipcode\Entity\UniqueTrait;
+use App\Model\Session\Session;
+use App\Model\Syntax\Syntax;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use Snipcode\Model\Syntax\Syntax;
+use Ramsey\Uuid\UuidInterface;
+use Rixafy\IpAddress\IpAddress;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="snippet", indexes={
- *	 @ORM\Index(name="search_index", columns={"slug"}),
- *	 @ORM\Index(name="updated_order", columns={"updated_at"}),
- *	 @ORM\Index(name="created_order", columns={"created_at"})
+ *     @ORM\Index(name="slug", columns={"slug"}),
+ *     @ORM\Index(name="encoded_number", columns={"encoded_number"}),
+ *     @ORM\Index(name="created_at", columns={"created_at"}),
+ *     @ORM\Index(name="expire_at", columns={"expire_at"})
  * })
- * @ORM\HasLifecycleCallbacks
  */
 class Snippet
 {
-	use UniqueTrait;
-	use DateTimeTrait;
+	/**
+	 * @ORM\Id
+	 * @ORM\Column(type="uuid_binary", unique=true)
+	 */
+	private UuidInterface $id;
+
+	/** @ORM\Column(type="string", nullable=true) */
+	private ?string $title;
+
+	/** @ORM\Column(type="string", options={"collation":"utf8_bin"}) */
+	private string $slug;
+
+	/** @ORM\Column(type="integer") */
+	private int $encodedNumber;
+
+	/** @ORM\Column(type="text") */
+	private string $payload;
+
+	/** @ORM\Column(type="integer") */
+	private int $views = 0;
 
 	/**
-	 * @ORM\Column(type="string", nullable=true)
-	 * @var string
+	 * @ORM\ManyToOne(targetEntity="\App\Model\Snippet\Snippet")
+	 * @ORM\JoinColumn(onDelete="SET NULL")
 	 */
-	protected $title;
+	private ?Snippet $forkedFrom;
 
 	/**
-	 * @ORM\Column(type="string", options={"collation":"utf8_bin"})
-	 * @var string
+	 * @ORM\ManyToOne(targetEntity="\App\Model\Session\Session")
+	 * @ORM\JoinColumn(onDelete="CASCADE")
 	 */
-	protected $slug;
+	private Session $session;
 
 	/**
-	 * @ORM\Column(type="integer")
-	 * @var int
+	 * @ORM\ManyToOne(targetEntity="\Rixafy\IpAddress\IpAddress")
+	 * @ORM\JoinColumn(onDelete="CASCADE")
 	 */
-	protected $slugHelper;
+	private IpAddress $ipAddress;
 
-	/**
-	 * @ORM\Column(type="text")
-	 * @var string
-	 */
-	protected $payload;
+	/** @ORM\ManyToOne(targetEntity="\App\Model\Syntax\Syntax") */
+	private ?Syntax $syntax;
 
-	/**
-	 * @ORM\Column(type="integer")
-	 * @var int
-	 */
-	protected $views = 0;
+	/** @ORM\Column(type="datetime") */
+	private DateTime $createdAt;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="\Snipcode\Entity\Session", inversedBy="snippet", cascade={"persist"})
-	 * @var Session
-	 */
-	protected $authorSession;
+	/** @ORM\Column(type="datetime") */
+	private DateTime $expireAt;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="\Snipcode\Entity\IpAddress", inversedBy="snippet", cascade={"persist"})
-	 * @var IpAddress
-	 */
-	protected $authorIpAddress;
-
-	/**
-	 * @ORM\ManyToOne(targetEntity="\Snipcode\Model\Syntax\Syntax", inversedBy="snippet", cascade={"persist"})
-	 * @var Syntax
-	 */
-	protected $syntax;
-
-	/**
-	 * @ORM\Column(type="datetime", nullable=true)
-	 * @var DateTime
-	 */
-	protected $expireAt;
-
-	public function __construct(SnippetData $snippetData)
+	public function __construct(UuidInterface $id, SnippetData $data)
 	{
-		$this->edit($snippetData);
-		$this->authorSession->addSnippet($this);
+		$this->id = $id;
+		$this->createdAt = new DateTime();
+        $this->forkedFrom = $data->forkedFrom;
+        $this->session = $data->session;
+        $this->ipAddress = $data->ipAddress;
+        $this->slug = $data->slug;
+        $this->encodedNumber = $data->encodedNumber;
+        $this->edit($data);
 	}
 
-	public function edit(SnippetData $snippetData): void
+	public function edit(SnippetData $data): void
 	{
-		$this->title = $snippetData->title;
-		$this->payload = $snippetData->payload;
-		$this->authorSession = $snippetData->authorSession;
-		$this->authorIpAddress = $snippetData->authorIpAddress;
-		$this->syntax = $snippetData->syntax;
-		$this->expireAt = $snippetData->expireAt;
+		$this->title = $data->title;
+		$this->payload = $data->payload;
+		$this->syntax = $data->syntax;
+		$this->expireAt = $data->expireAt;
 	}
 
 	public function getData(): SnippetData
 	{
 		$data = new SnippetData();
-
 		$data->title = $this->title;
 		$data->payload = $this->payload;
-		$data->authorSession = $this->authorSession;
-		$data->authorIpAddress = $this->authorIpAddress;
 		$data->syntax = $this->syntax;
 		$data->expireAt = $this->expireAt;
 
 		return $data;
+	}
+
+	public function getId(): UuidInterface
+	{
+		return $this->id;
+	}
+
+	public function getTitle(): string
+	{
+        return $this->title == null ? 'Snippet #'.$this->getSlug() : $this->title;
 	}
 
 	public function getSlug(): string
@@ -115,10 +116,9 @@ class Snippet
 		return $this->slug;
 	}
 
-	public function createSlug(int $slugHelper, string $slug): void
+	public function getEncodedNumber(): int
 	{
-		$this->slugHelper = $slugHelper;
-		$this->slug = $slug;
+		return $this->encodedNumber;
 	}
 
 	public function getPayload(): string
@@ -126,14 +126,24 @@ class Snippet
 		return $this->payload;
 	}
 
-	public function getAuthorSession(): Session
+	public function getViews(): int
 	{
-		return $this->authorSession;
+		return $this->views;
 	}
 
-	public function getAuthorIpAddress(): IpAddress
+	public function getForkedFrom(): ?Snippet
 	{
-		return $this->authorIpAddress;
+		return $this->forkedFrom;
+	}
+
+	public function getSession(): Session
+	{
+		return $this->session;
+	}
+
+	public function getIpAddress(): IpAddress
+	{
+		return $this->ipAddress;
 	}
 
 	public function getSyntax(): Syntax
@@ -141,23 +151,13 @@ class Snippet
 		return $this->syntax;
 	}
 
-	public function getSlugHelper(): int
+	public function getCreatedAt(): DateTime
 	{
-		return $this->slugHelper;
+		return $this->createdAt;
 	}
 
-	public function getTitle(): string
+	public function getExpireAt(): DateTime
 	{
-		return $this->title == null ? 'Snippet #'.$this->getSlug() : $this->title;
-	}
-
-	public function getViews(): int
-	{
-		return $this->views;
-	}
-
-	public function addView(): void
-	{
-		$this->views++;
+		return $this->expireAt;
 	}
 }

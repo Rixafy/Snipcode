@@ -2,75 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Snipcode\Model\Snippet;
+namespace App\Model\Snippet;
 
-use Snipcode\Entity\Session;
-use Snipcode\Facade\ProfileFacade;
-use Snipcode\Model\Slug\SlugHelper;
-use Snipcode\Model\Snippet\Exception\SnippetNotFoundException;
-use Snipcode\Model\Variable\Exception\VariableNotFoundException;
-use Snipcode\Model\Variable\VariableFacade;
-use Snipcode\Model\Syntax\SyntaxRepository;
+use App\Model\Snippet\Exception\SnippetNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;
 
-class SnippetFacade
+final class SnippetFacade extends SnippetRepository
 {
-    /** @var SnippetRepository */
-    private $snippetRepository;
-
-    /** @var SyntaxRepository */
-    private $syntaxRepository;
-
-    /** @var VariableFacade */
-    private $variableFacade;
-
-    /** @var SlugHelper */
-    private $slugHelper;
-
-    /** @var ProfileFacade */
-    private $profileFacade;
-
-    /** @var SnippetFactory */
-    private $snippetFactory;
-
-    /** @var EntityManagerInterface */
-    private $entityManager;
-
 	public function __construct(
-		SnippetRepository $snippetRepository, 
-		SyntaxRepository $syntaxRepository, 
-		VariableFacade $variableFacade, 
-		SlugHelper $slugHelper, 
-		ProfileFacade $profileFacade, 
-		SnippetFactory $snippetFactory, 
-		EntityManagerInterface $entityManager
+		private SnippetFactory $snippetFactory,
+		private EntityManagerInterface $entityManager,
 	) {
-		$this->snippetRepository = $snippetRepository;
-		$this->syntaxRepository = $syntaxRepository;
-		$this->variableFacade = $variableFacade;
-		$this->slugHelper = $slugHelper;
-		$this->profileFacade = $profileFacade;
-		$this->snippetFactory = $snippetFactory;
-		$this->entityManager = $entityManager;
+		parent::__construct($entityManager);
 	}
 
-	/**
-	 * @throws SnippetNotFoundException
-	 */
-	public function get(UuidInterface $uuid): Snippet
+	public function create(SnippetData $data): Snippet
 	{
-		return $this->snippetRepository->get($uuid);
-	}
-
-	/**
-	 * @throws VariableNotFoundException
-	 */
-	public function create(SnippetData $snippetData): Snippet
-	{
-		$snippet = $this->snippetFactory->create($snippetData);
-
-		$this->slugHelper->injectSlug($snippet);
+		$snippet = $this->snippetFactory->create($data);
 
 		$this->entityManager->persist($snippet);
 		$this->entityManager->flush();
@@ -81,23 +30,24 @@ class SnippetFacade
 	/**
 	 * @throws SnippetNotFoundException
 	 */
-	public function getBySlug(string $slug, bool $addView = false): Snippet
-    {
-        $snippet = $this->snippetRepository->getBySlug($slug);
+	public function edit(UuidInterface $id, SnippetData $data): Snippet
+	{
+		$snippet = $this->get($id);
 
-        if ($snippet !== null && $addView) {
-            $snippet->addView();
-            $this->entityManager->flush();
-        }
+		$snippet->edit($data);
+		$this->entityManager->flush();
 
-        return $snippet;
-    }
+		return $snippet;
+	}
 
 	/**
 	 * @throws SnippetNotFoundException
 	 */
-	public function getLastSnippet(Session $session): Snippet
-    {
-        return $this->snippetRepository->getLastBySession($session);
-    }
+	public function delete(UuidInterface $id): void
+	{
+		$snippet = $this->get($id);
+
+		$this->entityManager->remove($snippet);
+		$this->entityManager->flush();
+	}
 }
