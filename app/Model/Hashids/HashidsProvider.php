@@ -10,7 +10,8 @@ class HashidsProvider
 {
     private Hashids $hashids;
     
-    public function __construct(string $salt) {
+    public function __construct(string $salt) 
+    {
         $this->hashids = new Hashids(salt: $salt, minHashLength: 8);
     }
     
