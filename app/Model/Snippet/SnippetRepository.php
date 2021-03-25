@@ -13,74 +13,74 @@ use Ramsey\Uuid\UuidInterface;
 
 abstract class SnippetRepository
 {
-	public function __construct(private EntityManagerInterface $entityManager)
-	{
-	}
+    public function __construct(private EntityManagerInterface $entityManager)
+    {
+    }
 
-	private function getRepository(): ObjectRepository
-	{
-		return $this->entityManager->getRepository(Snippet::class);
-	}
+    private function getRepository(): ObjectRepository
+    {
+        return $this->entityManager->getRepository(Snippet::class);
+    }
 
-	/**
-	 * @throws SnippetNotFoundException
-	 */
-	public function get(UuidInterface $id): Snippet
-	{
-		/** @var Snippet $snippet */
-		$snippet = $this->getRepository()->findOneBy([
-			'id' => $id
-		]);
+    /**
+     * @throws SnippetNotFoundException
+     */
+    public function get(UuidInterface $id): Snippet
+    {
+        /** @var Snippet $snippet */
+        $snippet = $this->getRepository()->findOneBy([
+            'id' => $id
+        ]);
 
-		if ($snippet === null) {
-			throw new SnippetNotFoundException();
-		}
+        if ($snippet === null) {
+            throw new SnippetNotFoundException();
+        }
 
-		return $snippet;
-	}
+        return $snippet;
+    }
 
-	/**
-	 * @throws SnippetNotFoundException
-	 */
-	public function getBySlug(string $slug): Snippet
-	{
-		/** @var Snippet $snippet */
-		$snippet = $this->getRepository()->findOneBy([
-			'slug' => $slug
-		]);
+    /**
+     * @throws SnippetNotFoundException
+     */
+    public function getBySlug(string $slug): Snippet
+    {
+        /** @var Snippet $snippet */
+        $snippet = $this->getRepository()->findOneBy([
+            'slug' => $slug
+        ]);
 
-		if ($snippet === null) {
-			throw new SnippetNotFoundException();
-		}
+        if ($snippet === null) {
+            throw new SnippetNotFoundException();
+        }
 
-		return $snippet;
-	}
+        return $snippet;
+    }
 
-	/**
-	 * @return Snippet[]
-	 */
-	public function getAllBySession(UuidInterface $sessionId): array
-	{
-		return $this->getRepository()->findBy([
-			'session' => $sessionId
-		]);
-	}
+    /**
+     * @return Snippet[]
+     */
+    public function getAllBySession(UuidInterface $sessionId): array
+    {
+        return $this->getRepository()->findBy([
+            'session' => $sessionId
+        ]);
+    }
 
-	/**
-	 * @return Snippet[]
-	 */
-	public function getAll(): array
-	{
-		return $this->getQueryBuilderForAll()->getQuery()->execute();
-	}
+    /**
+     * @return Snippet[]
+     */
+    public function getAll(): array
+    {
+        return $this->getQueryBuilderForAll()->getQuery()->execute();
+    }
 
-	private function getQueryBuilderForAll(): QueryBuilder
-	{
-		return $this->getRepository()->createQueryBuilder('e');
-	}
+    private function getQueryBuilderForAll(): QueryBuilder
+    {
+        return $this->getRepository()->createQueryBuilder('e');
+    }
 
-	public function getQueryBuilderForDataGrid(): QueryBuilder
-	{
-		return $this->getQueryBuilderForAll();
-	}
+    public function getQueryBuilderForDataGrid(): QueryBuilder
+    {
+        return $this->getQueryBuilderForAll();
+    }
 }

@@ -8,8 +8,8 @@ use Ramsey\Uuid\Uuid;
 
 final class SyntaxFactory
 {
-	public function create(SyntaxData $data): Syntax
-	{
-		return new Syntax(Uuid::uuid4(), $data);
-	}
+    public function create(SyntaxData $data): Syntax
+    {
+        return new Syntax(Uuid::uuid4(), $data);
+    }
 }

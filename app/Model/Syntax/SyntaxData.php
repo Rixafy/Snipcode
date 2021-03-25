@@ -6,7 +6,7 @@ namespace App\Model\Syntax;
 
 final class SyntaxData
 {
-	public string $name;
+    public string $name;
 
     public function __construct(string $name)
     {

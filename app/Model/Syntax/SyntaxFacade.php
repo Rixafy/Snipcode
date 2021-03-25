@@ -10,31 +10,31 @@ use Ramsey\Uuid\UuidInterface;
 
 final class SyntaxFacade extends SyntaxRepository
 {
-	public function __construct(
-		private SyntaxFactory $syntaxFactory,
-		private EntityManagerInterface $entityManager,
-	) {
-		parent::__construct($entityManager);
-	}
+    public function __construct(
+        private SyntaxFactory $syntaxFactory,
+        private EntityManagerInterface $entityManager,
+    ) {
+        parent::__construct($entityManager);
+    }
 
-	public function create(SyntaxData $data): Syntax
-	{
-		$syntax = $this->syntaxFactory->create($data);
+    public function create(SyntaxData $data): Syntax
+    {
+        $syntax = $this->syntaxFactory->create($data);
 
-		$this->entityManager->persist($syntax);
-		$this->entityManager->flush();
+        $this->entityManager->persist($syntax);
+        $this->entityManager->flush();
 
-		return $syntax;
-	}
+        return $syntax;
+    }
 
-	/**
-	 * @throws SyntaxNotFoundException
-	 */
-	public function delete(UuidInterface $id): void
-	{
-		$syntax = $this->get($id);
+    /**
+     * @throws SyntaxNotFoundException
+     */
+    public function delete(UuidInterface $id): void
+    {
+        $syntax = $this->get($id);
 
-		$this->entityManager->remove($syntax);
-		$this->entityManager->flush();
-	}
+        $this->entityManager->remove($syntax);
+        $this->entityManager->flush();
+    }
 }

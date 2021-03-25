@@ -11,13 +11,13 @@ use Rixafy\IpAddress\IpAddress;
 
 final class SnippetData
 {
-	public ?string $title = null;
-	public string $slug;
-	public int $encodedNumber;
-	public string $payload;
-	public ?Snippet $forkedFrom = null;
-	public Session $session;
-	public IpAddress $ipAddress;
-	public ?Syntax $syntax = null;
-	public DateTime $expireAt;
+    public ?string $title = null;
+    public string $slug;
+    public int $encodedNumber;
+    public string $payload;
+    public ?Snippet $forkedFrom = null;
+    public Session $session;
+    public IpAddress $ipAddress;
+    public ?Syntax $syntax = null;
+    public DateTime $expireAt;
 }

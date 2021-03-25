@@ -10,44 +10,44 @@ use Ramsey\Uuid\UuidInterface;
 
 final class SnippetFacade extends SnippetRepository
 {
-	public function __construct(
-		private SnippetFactory $snippetFactory,
-		private EntityManagerInterface $entityManager,
-	) {
-		parent::__construct($entityManager);
-	}
+    public function __construct(
+        private SnippetFactory $snippetFactory,
+        private EntityManagerInterface $entityManager,
+    ) {
+        parent::__construct($entityManager);
+    }
 
-	public function create(SnippetData $data): Snippet
-	{
-		$snippet = $this->snippetFactory->create($data);
+    public function create(SnippetData $data): Snippet
+    {
+        $snippet = $this->snippetFactory->create($data);
 
-		$this->entityManager->persist($snippet);
-		$this->entityManager->flush();
+        $this->entityManager->persist($snippet);
+        $this->entityManager->flush();
 
-		return $snippet;
-	}
+        return $snippet;
+    }
 
-	/**
-	 * @throws SnippetNotFoundException
-	 */
-	public function edit(UuidInterface $id, SnippetData $data): Snippet
-	{
-		$snippet = $this->get($id);
+    /**
+     * @throws SnippetNotFoundException
+     */
+    public function edit(UuidInterface $id, SnippetData $data): Snippet
+    {
+        $snippet = $this->get($id);
 
-		$snippet->edit($data);
-		$this->entityManager->flush();
+        $snippet->edit($data);
+        $this->entityManager->flush();
 
-		return $snippet;
-	}
+        return $snippet;
+    }
 
-	/**
-	 * @throws SnippetNotFoundException
-	 */
-	public function delete(UuidInterface $id): void
-	{
-		$snippet = $this->get($id);
+    /**
+     * @throws SnippetNotFoundException
+     */
+    public function delete(UuidInterface $id): void
+    {
+        $snippet = $this->get($id);
 
-		$this->entityManager->remove($snippet);
-		$this->entityManager->flush();
-	}
+        $this->entityManager->remove($snippet);
+        $this->entityManager->flush();
+    }
 }

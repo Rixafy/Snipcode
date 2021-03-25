@@ -8,8 +8,8 @@ use Ramsey\Uuid\Uuid;
 
 final class SnippetFactory
 {
-	public function create(SnippetData $data): Snippet
-	{
-		return new Snippet(Uuid::uuid4(), $data);
-	}
+    public function create(SnippetData $data): Snippet
+    {
+        return new Snippet(Uuid::uuid4(), $data);
+    }
 }
