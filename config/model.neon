@@ -1,12 +1,12 @@
 search:
-	model:
-		in: %appDir%/Model
-		classes:
-			- *Facade
-			- *Factory
-			- *Authenticator
-			- *Subscriber
-			- *Provider
+    model:
+        in: %appDir%/Model
+        classes:
+            - *Facade
+            - *Factory
+            - *Authenticator
+            - *Subscriber
+            - *Provider
 
 
 services:
